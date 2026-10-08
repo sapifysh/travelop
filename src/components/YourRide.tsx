@@ -480,24 +480,12 @@ export default function YourRide({
                     referrerPolicy="no-referrer"
                   />
 
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#123B45]/90 backdrop-blur-md text-[#FAF7F0] text-[11px] font-semibold uppercase tracking-[0.16em] border border-white/10 shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F4C95D]" />
-                    <span>FLAGSHIP CHAUFFEUR</span>
-                  </div>
-
                   {isAlphardSelected && (
                     <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-[#123B45] text-[#FAF7F0] text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                       <Check className="w-3.5 h-3.5 text-[#F4C95D]" />
                       <span>Selected</span>
                     </div>
                   )}
-
-                  <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] font-medium tracking-wide bg-gradient-to-t from-[#123B45]/80 to-transparent p-3 pt-6 rounded-b-xl flex items-center justify-between">
-                    <span>Lombok Executive Private Fleet</span>
-                    <span className="text-white/80 flex items-center gap-1">
-                      <Users className="w-3 h-3 text-[#4F9DA6]" /> 6 Luxury Captain Seats
-                    </span>
-                  </div>
                 </div>
               </div>
 
