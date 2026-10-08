@@ -13,7 +13,7 @@ export default function Hero({
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[calc(100svh-64px)] sm:min-h-[calc(100svh-72px)] flex flex-col justify-center items-center overflow-hidden bg-[#1F4A52]"
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#1F4A52]"
     >
       {/* Background Image with Layered Deep Teal Color Grading */}
       <div className="absolute inset-0 z-0">
@@ -22,24 +22,27 @@ export default function Hero({
           alt="Lombok turquoise beach and peaceful coastline"
           className="w-full h-full object-cover object-center"
         />
-        {/* Layer 1: Deep teal base overlay (rgba(41, 78, 86, 0.60)) */}
-        <div className="absolute inset-0 bg-[rgba(41,78,86,0.60)]" />
+        {/* Layer 1: Subtle top vignette for crystal clear navigation readability without a dark bar */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,36,43,0.55)] via-[rgba(41,78,86,0.40)] to-[rgba(31,74,82,0.65)]" />
 
-        {/* Layer 2: Subtle lighter teal luminous radial glow around center/right (rgba(73, 127, 135, 0.20)) */}
+        {/* Layer 2: Subtle lighter teal luminous radial glow around center/right */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_65%_45%,rgba(73,127,135,0.20),transparent_75%)]" />
 
-        {/* Layer 3: Subtle darker gradient toward the bottom (rgba(31, 74, 82, 0.38)) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(31,74,82,0.15)] to-[rgba(31,74,82,0.38)]" />
+        {/* Layer 3: Subtle bottom gradient transition to content */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(10,36,43,0.5)]" />
       </div>
 
+      {/* Spacer to balance top navigation when in flex flex-col justify-between */}
+      <div className="hidden lg:block h-24" aria-hidden="true" />
+
       {/* Main Hero Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 w-full py-16 sm:py-24 text-center flex flex-col items-center my-auto">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 w-full pt-28 sm:pt-32 pb-16 sm:pb-24 lg:pt-0 lg:pb-16 text-center flex flex-col items-center my-auto">
         {/* Large centered bold headline - refined editorial scale */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="font-bold text-[44px] sm:text-[58px] md:text-[64px] lg:text-[76px] xl:text-[80px] text-[#F6F5EE] tracking-tight leading-[1.0] sm:leading-[1.02] lg:leading-[0.98] max-w-[800px] mx-auto"
+          className="font-bold text-[44px] sm:text-[58px] md:text-[64px] lg:text-[76px] xl:text-[80px] text-[#F6F5EE] tracking-tight leading-[1.0] sm:leading-[1.02] lg:leading-[0.98] max-w-[800px] mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
           id="hero-headline"
         >
           Find Your Way<br />to Lombok.
@@ -50,7 +53,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.3 }}
-          className="mt-5 sm:mt-6 text-[15px] sm:text-[16px] lg:text-[18px] text-[#F6F5EE]/85 font-normal max-w-[540px] mx-auto leading-[1.55]"
+          className="mt-5 sm:mt-6 text-[15px] sm:text-[16px] lg:text-[18px] text-[#F6F5EE]/90 font-normal max-w-[540px] mx-auto leading-[1.55] drop-shadow-[0_1px_8px_rgba(0,0,0,0.2)]"
           id="hero-supporting-copy"
         >
           Take the long way to the beach. Stay for one more sunset. Let Lombok set the pace.
@@ -79,11 +82,16 @@ export default function Hero({
             type="button"
             onClick={onViewExperiences}
             id="hero-secondary-cta"
-            className="w-full sm:w-auto inline-flex items-center justify-center bg-[#294E56]/65 hover:bg-[#294E56]/90 active:scale-[0.98] text-[#F6F5EE] border border-white/20 hover:border-white/35 font-semibold text-xs sm:text-[13px] tracking-[0.16em] uppercase px-8 py-4 rounded-full transition-all duration-200 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-[#294E56]/65 hover:bg-[#294E56]/90 active:scale-[0.98] text-[#F6F5EE] border border-white/20 hover:border-white/35 font-semibold text-xs sm:text-[13px] tracking-[0.16em] uppercase px-8 py-4 rounded-full transition-all duration-200 cursor-pointer backdrop-blur-sm"
           >
             <span>VIEW EXPERIENCES</span>
           </button>
         </motion.div>
+      </div>
+
+      {/* Bottom subtle indicator or spacer to guarantee visual balance */}
+      <div className="relative z-10 w-full pb-6 hidden sm:flex justify-center pointer-events-none">
+        <div className="w-1 h-8 rounded-full bg-white/20" />
       </div>
     </section>
   );

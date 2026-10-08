@@ -44,13 +44,17 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
 
   return (
     <>
-      {/* Editorial Navigation - Sticky in normal document flow */}
+      {/* Editorial Navigation - Integrated directly over Hero section */}
       <header
         id="main-navigation"
-        className="sticky top-0 z-50 w-full bg-[#0A242B] backdrop-blur-md border-b border-white/10 shadow-md py-3.5 sm:py-4 transition-all duration-300"
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#0A242B]/85 backdrop-blur-md border-b border-white/10 shadow-lg py-3 sm:py-3.5'
+            : 'bg-transparent border-b border-transparent pt-6 sm:pt-7 lg:pt-8 pb-4'
+        }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between">
-          {/* Brand Logo / Wordmark on the far left matching uploaded logo */}
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between">
+          {/* Brand Logo / Wordmark on the far left */}
           <a
             href="#"
             onClick={(e) => {
@@ -61,16 +65,16 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             id="nav-logo"
             aria-label="FIRST-LOP INDONESIA"
           >
-            <FirstLopLogo />
+            <FirstLopLogo textColor="text-[#F6F5EE]" />
           </a>
 
           {/* Navigation Links Centered (shown on iPad landscape and desktop >= lg) */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-11 text-[13px] lg:text-[14px] font-medium tracking-[0.05em]">
+          <nav className="hidden lg:flex items-center gap-8 xl:gap-11 text-[13.5px] lg:text-[14px] font-medium tracking-[0.06em]">
             <button
               type="button"
               onClick={() => scrollToSection('experiences')}
               id="nav-link-experiences"
-              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
+              className="text-[#F6F5EE]/85 hover:text-[#FFFFFF] transition-colors duration-150 cursor-pointer drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
             >
               Experiences
             </button>
@@ -78,7 +82,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               type="button"
               onClick={() => scrollToSection('packages')}
               id="nav-link-packages"
-              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
+              className="text-[#F6F5EE]/85 hover:text-[#FFFFFF] transition-colors duration-150 cursor-pointer drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
             >
               Journeys
             </button>
@@ -86,7 +90,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               type="button"
               onClick={() => scrollToSection('your-ride')}
               id="nav-link-your-ride"
-              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
+              className="text-[#F6F5EE]/85 hover:text-[#FFFFFF] transition-colors duration-150 cursor-pointer drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
             >
               Your Ride
             </button>
@@ -94,7 +98,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               type="button"
               onClick={() => scrollToSection('about')}
               id="nav-link-about"
-              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
+              className="text-[#F6F5EE]/85 hover:text-[#FFFFFF] transition-colors duration-150 cursor-pointer drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
             >
               About
             </button>
@@ -107,7 +111,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               type="button"
               onClick={onOpenPlanModal}
               id="nav-btn-plan-trip"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#123B45] text-xs font-bold uppercase tracking-[0.14em] px-4.5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-[0_4px_16px_rgba(244,201,93,0.3)] transition-all duration-200 cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#123B45] text-xs font-bold uppercase tracking-[0.14em] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-[0_4px_18px_rgba(244,201,93,0.35)] transition-all duration-200 cursor-pointer"
             >
               <span>PLAN YOUR TRIP</span>
               <span className="text-sm font-normal transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -119,7 +123,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               id="nav-mobile-toggle"
               aria-label="Toggle Navigation Menu"
-              className="lg:hidden p-2 text-[#FAF7F0] hover:text-[#F4C95D] transition-colors cursor-pointer"
+              className="lg:hidden p-2 text-[#FAF7F0] hover:text-[#F4C95D] transition-colors cursor-pointer drop-shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
