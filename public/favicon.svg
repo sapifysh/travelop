@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E171A"/>
+      <stop offset="50%" stop-color="#0A1114"/>
+      <stop offset="100%" stop-color="#050809"/>
+    </linearGradient>
+    <linearGradient id="emblemGradient" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#FFFBF5"/>
+      <stop offset="25%" stop-color="#F5E8D3"/>
+      <stop offset="65%" stop-color="#E5CCA7"/>
+      <stop offset="100%" stop-color="#CAAA7D"/>
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E8D3" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#F5E8D3" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Premium dark rounded container matching FIRST-LOP aesthetic -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGradient)"/>
+  <rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="url(#borderGradient)" stroke-width="4"/>
+
+  <!-- Elegant Cream Flow Emblem (Artistic Ribbon 'F' Monogram) -->
+  <g filter="url(#subtleGlow)" fill="url(#emblemGradient)">
+    <!-- Main stem & upper wave ribbon -->
+    <path d="M 172 400 
+             C 172 400, 160 360, 160 310
+             C 160 230, 185 180, 205 145
+             C 225 110, 260 92, 310 92
+             C 355 92, 395 106, 412 122
+             C 416 126, 414 133, 408 135
+             C 392 139, 360 148, 335 162
+             C 295 184, 275 220, 268 255
+             C 290 245, 320 240, 355 244
+             C 375 246, 385 252, 385 258
+             C 385 264, 372 270, 350 274
+             C 315 280, 280 292, 262 312
+             C 255 320, 250 332, 246 348
+             C 238 380, 222 418, 172 420
+             Z" />
+             
+    <!-- Secondary inner flowing ribbon / harmonic accent stroke -->
+    <path d="M 195 245
+             C 205 200, 230 160, 272 136
+             C 310 114, 352 112, 375 118
+             C 345 125, 312 142, 288 168
+             C 264 194, 252 225, 248 255
+             C 232 250, 212 248, 195 245
+             Z" opacity="0.9" />
+
+    <!-- Delicate mid-wing calligraphic flow accent -->
+    <path d="M 270 295
+             C 300 286, 338 282, 370 288
+             C 378 290, 374 296, 365 299
+             C 335 310, 298 322, 262 342
+             C 265 325, 268 308, 270 295
+             Z" opacity="0.95" />
+             
+    <!-- Lower anchor swirl dot/seed -->
+    <circle cx="182" cy="406" r="14" />
+  </g>
+</svg>
