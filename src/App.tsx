@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Destinations from './components/Destinations';
 import Experiences from './components/Experiences';
 import Packages from './components/Packages';
 import YourRide from './components/YourRide';
@@ -73,7 +72,7 @@ export default function App() {
     if (target) {
       setSelectedDestination(target);
     } else {
-      scrollToSection('destinations');
+      scrollToSection('experiences');
     }
   };
 
@@ -94,14 +93,9 @@ export default function App() {
       <main id="main-content">
         {/* Hero Section */}
         <Hero
-          onExploreLombok={() => scrollToSection('destinations')}
+          onExploreLombok={() => scrollToSection('experiences')}
           onViewExperiences={() => scrollToSection('experiences')}
           onSelectDestinationFast={handleSelectDestinationFast}
-        />
-
-        {/* Destinations Editorial Section (Where to go) */}
-        <Destinations
-          onSelectDestination={(dest) => setSelectedDestination(dest)}
         />
 
         {/* Experiences Section (What to do) */}

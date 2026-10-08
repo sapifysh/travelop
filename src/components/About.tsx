@@ -52,12 +52,12 @@ export default function About() {
         </div>
 
         {/* Editorial Composition: Photography Collage + Story */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-18 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 xl:gap-18 items-start">
           {/* LEFT: Editorial Multi-Image Composition with Liquid Glass frames */}
           <div className="lg:col-span-7 order-1">
             <div className="relative">
               {/* Dominant Hero Landscape Anchor */}
-              <div className="w-full lg:w-[92%] relative z-10">
+              <div className="w-full lg:w-[94%] relative z-10">
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
                   <img
                     src={sekotongCoastalImage}
@@ -72,14 +72,14 @@ export default function About() {
               </div>
 
               {/* SECONDARY TIERS */}
-              <div className="grid grid-cols-12 gap-4 sm:gap-6 mt-6 sm:mt-8 lg:mt-6 items-start">
+              <div className="grid grid-cols-12 gap-3.5 sm:gap-6 mt-6 sm:mt-8 items-start">
                 {/* DESA SADE — TRADITIONAL SASAK VILLAGE */}
                 <div className="col-span-5 sm:col-span-5 lg:col-span-5 pt-1 sm:pt-2">
-                  <div className="aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
+                  <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
                     <img
                       src={desaSadeVillageImage}
                       alt="Sasak artisan woman weaving traditional songket textile outside a Bale Sasak house in Desa Sade village, Central Lombok"
-                      className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       loading="lazy"
                     />
                   </div>
@@ -91,12 +91,12 @@ export default function About() {
                 {/* RIGHT COLUMN CLUSTER: BALE SASAK & CUISINE */}
                 <div className="col-span-7 sm:col-span-7 lg:col-span-7 space-y-4 sm:space-y-6">
                   {/* BALE SASAK ARCHITECTURE */}
-                  <div className="lg:-mt-16 relative z-20">
-                    <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.08)] group">
+                  <div className="relative z-10">
+                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.08)] group">
                       <img
                         src={baleSasakImage}
                         alt="Authentic Bale Sasak traditional house with thatched alang-alang roof and woven bamboo walls in a Sasak village"
-                        className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
@@ -106,12 +106,12 @@ export default function About() {
                   </div>
 
                   {/* TRADITIONAL LOMBOK CUISINE */}
-                  <div className="w-[88%] sm:w-[82%] ml-auto relative z-20">
-                    <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
+                  <div className="w-full sm:w-[90%] ml-auto relative z-10">
+                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
                       <img
                         src={lombokFoodImage}
                         alt="Traditional Lombok cuisine with Ayam Taliwang, Plecing Kangkung, and fresh sambal on banana leaf platter"
-                        className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>

@@ -14,7 +14,7 @@ import innovaRebornImg from '../assets/images/innova_reborn_rental_1788753278997
 import zenixTypeGImg from '../assets/images/zenix_type_g_rental_1788753295680.jpg';
 import zenixVHybridImg from '../assets/images/zenix_v_hybrid_rental_1788753313587.jpg';
 import toyotaFortunerImg from '../assets/images/toyota_fortuner_rental_1788753330204.jpg';
-import toyotaAlphardImg from '../assets/images/toyota_alphard_lombok_1788755476396.jpg';
+import toyotaAlphardImg from '../assets/images/alphard_clean_flagship_1791426729161.jpg';
 import lombokCoastalDriveHeroImg from '../assets/images/lombok_scenic_coastal_drive_1788754067003.jpg';
 
 export const YOUR_RIDE_HERO_IMAGE = lombokCoastalDriveHeroImg;

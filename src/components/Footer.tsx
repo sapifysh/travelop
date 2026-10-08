@@ -54,15 +54,6 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
               <li>
                 <button
                   type="button"
-                  onClick={() => scrollToSection('destinations')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  Destinations
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
                   onClick={() => scrollToSection('experiences')}
                   className="hover:text-white transition-colors cursor-pointer"
                 >

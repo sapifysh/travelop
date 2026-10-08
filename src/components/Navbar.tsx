@@ -44,14 +44,10 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
 
   return (
     <>
-      {/* Editorial Transparent Overlay Navigation */}
+      {/* Editorial Navigation - Sticky in normal document flow */}
       <header
         id="main-navigation"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-          isScrolled
-            ? 'bg-[#0A242B]/95 backdrop-blur-md border-b border-white/10 py-3.5 sm:py-4 shadow-xl'
-            : 'bg-[#0A242B] sm:bg-transparent sm:bg-gradient-to-b sm:from-[#0A242B]/80 sm:via-[#0A242B]/35 sm:to-transparent py-4 sm:py-7 border-b border-white/5 sm:border-b-0'
-        }`}
+        className="sticky top-0 z-50 w-full bg-[#0A242B] backdrop-blur-md border-b border-white/10 shadow-md py-3.5 sm:py-4 transition-all duration-300"
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between">
           {/* Brand Logo / Wordmark on the far left matching uploaded logo */}
@@ -68,16 +64,8 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             <FirstLopLogo />
           </a>
 
-          {/* Navigation Links Centered */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-11 text-[13px] lg:text-[14px] font-medium tracking-[0.05em]">
-            <button
-              type="button"
-              onClick={() => scrollToSection('destinations')}
-              id="nav-link-destinations"
-              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
-            >
-              Destinations
-            </button>
+          {/* Navigation Links Centered (shown on iPad landscape and desktop >= lg) */}
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-11 text-[13px] lg:text-[14px] font-medium tracking-[0.05em]">
             <button
               type="button"
               onClick={() => scrollToSection('experiences')}
@@ -85,6 +73,14 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
             >
               Experiences
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection('packages')}
+              id="nav-link-packages"
+              className="text-[#FAF7F0]/85 hover:text-[#FAF7F0] transition-colors duration-150 cursor-pointer"
+            >
+              Journeys
             </button>
             <button
               type="button"
@@ -104,27 +100,26 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             </button>
           </nav>
 
-          {/* Plan Your Trip CTA on the far right */}
-          <div className="hidden sm:flex items-center">
+          {/* Action Area: Plan Your Trip CTA + Hamburger Toggle */}
+          <div className="flex items-center gap-3">
+            {/* Plan Your Trip CTA: visible on iPad portrait & desktop (>= sm) */}
             <button
               type="button"
               onClick={onOpenPlanModal}
               id="nav-btn-plan-trip"
-              className="group inline-flex items-center gap-2 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#123B45] text-xs font-bold uppercase tracking-[0.14em] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-[0_4px_16px_rgba(244,201,93,0.3)] transition-all duration-200 cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#123B45] text-xs font-bold uppercase tracking-[0.14em] px-4.5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-[0_4px_16px_rgba(244,201,93,0.3)] transition-all duration-200 cursor-pointer"
             >
               <span>PLAN YOUR TRIP</span>
               <span className="text-sm font-normal transition-transform duration-200 group-hover:translate-x-1">→</span>
             </button>
-          </div>
 
-          {/* Mobile Hamburger Toggle */}
-          <div className="flex sm:hidden items-center">
+            {/* Hamburger Toggle (visible on Mobile and iPad portrait < lg) */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               id="nav-mobile-toggle"
               aria-label="Toggle Navigation Menu"
-              className="p-2 text-[#FAF7F0] hover:text-[#F4C95D] transition-colors cursor-pointer"
+              className="lg:hidden p-2 text-[#FAF7F0] hover:text-[#F4C95D] transition-colors cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -132,7 +127,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
         </div>
       </header>
 
-      {/* Mobile Menu Clean Overlay Sheet */}
+      {/* Mobile & Tablet Overlay Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -141,7 +136,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             id="mobile-nav-drawer"
-            className="fixed inset-0 z-40 bg-[#0A242B]/95 backdrop-blur-xl text-[#FAF7F0] flex flex-col justify-between p-6 sm:p-8 pt-24 md:hidden"
+            className="fixed inset-0 z-40 bg-[#0A242B]/95 backdrop-blur-xl text-[#FAF7F0] flex flex-col justify-between p-6 sm:p-10 pt-24 lg:hidden"
             onClick={() => setMobileMenuOpen(false)}
           >
             <div
@@ -158,13 +153,6 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
               </div>
 
               <nav className="flex flex-col gap-4 text-lg font-medium tracking-tight">
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('destinations')}
-                  className="text-left py-2 hover:text-[#F4C95D] transition-colors cursor-pointer"
-                >
-                  Destinations
-                </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('experiences')}

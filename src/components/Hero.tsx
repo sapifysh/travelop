@@ -13,7 +13,7 @@ export default function Hero({
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[100svh] min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#1F4A52]"
+      className="relative w-full min-h-[calc(100svh-64px)] sm:min-h-[calc(100svh-72px)] flex flex-col justify-center items-center overflow-hidden bg-[#1F4A52]"
     >
       {/* Background Image with Layered Deep Teal Color Grading */}
       <div className="absolute inset-0 z-0">
@@ -33,7 +33,7 @@ export default function Hero({
       </div>
 
       {/* Main Hero Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 w-full pt-28 pb-14 sm:py-24 text-center flex flex-col items-center my-auto">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 w-full py-16 sm:py-24 text-center flex flex-col items-center my-auto">
         {/* Large centered bold headline - refined editorial scale */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
