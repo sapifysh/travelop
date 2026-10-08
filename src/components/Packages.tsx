@@ -20,12 +20,6 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-24">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#3D95A5]" />
-            <span className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#3D95A5]">
-              Curated Lombok Tour Packages
-            </span>
-          </div>
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#FAF8F5] tracking-tight leading-[1.08]">
             Choose Your Kind<br />of Escape.
           </h2>

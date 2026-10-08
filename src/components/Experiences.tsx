@@ -21,12 +21,6 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2E7987]" />
-            <span className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#2E7987]">
-              Lombok Day Tours & Experiences
-            </span>
-          </div>
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#0E171A] tracking-tight leading-[1.08]">
             Don't Just Visit Lombok.<br />Experience It.
           </h2>

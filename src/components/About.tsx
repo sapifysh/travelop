@@ -31,17 +31,8 @@ export default function About() {
       className="relative bg-[#FAF8F5] text-[#0E171A] pt-16 sm:pt-36 lg:pt-40 pb-20 sm:pb-36 lg:pb-44 overflow-hidden scroll-mt-20 border-t border-[#0E171A]/8"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
-        {/* Section Intro: Eyebrow + Large Editorial Headline */}
+        {/* Section Intro: Large Editorial Headline */}
         <div className="max-w-3xl mb-16 sm:mb-20 lg:mb-24">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2E7987]" />
-            <p
-              id="about-eyebrow"
-              className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#2E7987]"
-            >
-              LOMBOK PRIVATE TOURS · OUR STORY
-            </p>
-          </div>
           <h2
             id="about-headline"
             className="font-semibold text-3xl sm:text-5xl lg:text-[58px] text-[#0E171A] tracking-[-0.025em] leading-[1.06]"

@@ -83,12 +83,6 @@ export default function YourRide({
         <div className="mb-12 sm:mb-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#123B45]" />
-                <span className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#123B45]/80">
-                  Private Chauffeur Service
-                </span>
-              </div>
               {/* Main Headline */}
               <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-[#123B45] tracking-tight leading-[1.12]">
                 Go further, your way.
