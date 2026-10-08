@@ -6,7 +6,7 @@
         font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
         font-size: 38px;
         font-weight: 400;
-        fill: #FFFFFF;
+        fill: #0E171A;
         text-anchor: middle;
         letter-spacing: 0.04em;
       }
@@ -14,9 +14,17 @@
         font-family: 'Space Mono', 'Inter', monospace, sans-serif;
         font-size: 11px;
         font-weight: 600;
-        fill: #FFFFFF;
+        fill: #2E7987;
         text-anchor: middle;
         letter-spacing: 0.34em;
+      }
+      @media (prefers-color-scheme: dark) {
+        .first-lop-title {
+          fill: #FFFFFF;
+        }
+        .first-lop-sub {
+          fill: #FAF8F5;
+        }
       }
     </style>
   </defs>
