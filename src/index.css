@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-wordmark: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
+  --color-warm-ivory: #FAF8F5;
+  --color-warm-ivory-light: #FCFAF7;
+  --color-warm-ivory-dark: #F3EFE8;
+  --color-deep-charcoal: #0E171A;
+  --color-deep-ocean: #112026;
+  --color-deep-ocean-dark: #091316;
+  --color-ocean-blue: #2E7987;
+  --color-ocean-blue-light: #3D95A5;
+  --color-tropical-green: #476657;
+  --color-sand: #DFD7C7;
+  --color-sand-light: #F4EFE6;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    background-color: #FAF7F0;
+    color: #123B45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-editorial {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  }
+
+  .font-wordmark {
+    font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* ========================================================================= */
+/* APPLE LIQUID GLASS MATERIAL SYSTEM */
+/* ========================================================================= */
+
+/* 1. GLASS SUBTLE (Secondary controls, badges, micro-elements) */
+.liquid-glass-subtle {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 4px 16px rgba(14, 23, 26, 0.04),
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.7);
+}
+
+.liquid-glass-dark-subtle {
+  background: rgba(14, 23, 26, 0.45);
+  backdrop-filter: blur(20px) saturate(135%);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.18);
+}
+
+/* 2. GLASS STANDARD (Cards, buttons, floating controls) */
+.liquid-glass-standard {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 10px 32px rgba(14, 23, 26, 0.06),
+    0 2px 8px rgba(14, 23, 26, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 1px rgba(14, 23, 26, 0.03);
+}
+
+.liquid-glass-dark-standard {
+  background: rgba(14, 23, 26, 0.65);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 12px 36px rgba(0, 0, 0, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. GLASS ELEVATED (Featured modals, active hero capsules, primary CTAs) */
+.liquid-glass-elevated {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(36px) saturate(160%);
+  -webkit-backdrop-filter: blur(36px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 24px 64px rgba(14, 23, 26, 0.12),
+    0 6px 18px rgba(14, 23, 26, 0.05),
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(14, 23, 26, 0.04);
+}
+
+.liquid-glass-dark-elevated {
+  background: rgba(14, 23, 26, 0.8);
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* 4. LIQUID GLASS BUTTONS (Physical, tactile controls with Apple spring feel) */
+.liquid-glass-btn-primary {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  color: #0E171A;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1.5px rgba(255, 255, 255, 1),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.06);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+.liquid-glass-btn-primary:active {
+  transform: scale(0.975);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.liquid-glass-btn-dark-primary {
+  position: relative;
+  background: rgba(14, 23, 26, 0.82);
+  color: #FAF8F5;
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 4px 18px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.28);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn-dark-primary:hover {
+  background: rgba(20, 32, 36, 0.92);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.38);
+}
+
+.liquid-glass-btn-dark-primary:active {
+  transform: scale(0.975);
+  background: rgba(10, 18, 20, 0.85);
+}
+
+.liquid-glass-btn-secondary {
+  position: relative;
+  background: rgba(255, 255, 255, 0.16);
+  color: #FAF8F5;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 8px 22px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
+}
+
+.liquid-glass-btn-secondary:active {
+  transform: scale(0.975);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 5. REFRACTION HIGHLIGHT GRADIENT OVERLAY */
+.refraction-highlight {
+  position: relative;
+}
+.refraction-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.7) 65%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+/* Atmospheric Hero Gradients */
+.hero-vignette {
+  background: radial-gradient(circle at 50% 40%, rgba(14, 23, 26, 0.15) 0%, rgba(14, 23, 26, 0.55) 75%, rgba(14, 23, 26, 0.85) 100%);
+}
+
+.hero-subtle-glow {
+  background: radial-gradient(ellipse at 50% 30%, rgba(46, 121, 135, 0.3) 0%, transparent 65%);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #DFD7C7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2E7987;
+}

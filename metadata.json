@@ -1,0 +1,6 @@
+{
+  "name": "FIRST-LOP — Contemporary Island Travel",
+  "description": "Boutique contemporary island travel company in Lombok, West Nusa Tenggara, Indonesia. The island, your way.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
