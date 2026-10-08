@@ -46,6 +46,7 @@ export default function Hero({
           id="hero-headline"
         >
           Find Your Way<br />to Lombok.
+          <span className="sr-only"> — Private tours and chauffeur service in Lombok, Indonesia.</span>
         </motion.h1>
 
         {/* Refined editorial paragraph */}

@@ -39,7 +39,7 @@ export default function About() {
               id="about-eyebrow"
               className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#2E7987]"
             >
-              OUR STORY · ISLAND ROOTS
+              LOMBOK PRIVATE TOURS · OUR STORY
             </p>
           </div>
           <h2
@@ -132,7 +132,7 @@ export default function About() {
                 FIRST-LOP is a contemporary island travel studio rooted in Lombok.
               </p>
               <p className="text-base sm:text-[17px] text-[#0E171A]/80 font-normal leading-[1.7]">
-                We created FIRST-LOP for travelers who want more than a checklist of places to visit. No rushed itineraries. No cookie-cutter tours. Just thoughtfully designed ways to experience the island — from the beaches of Selong Belanak to the quiet shores of Gili Meno.
+                We created FIRST-LOP for travelers who want more than a checklist of places to visit. No rushed itineraries. No cookie-cutter tours. Just thoughtfully designed ways to experience the island — from bespoke private tours and executive chauffeur services to Gili Islands private excursions.
               </p>
             </div>
 

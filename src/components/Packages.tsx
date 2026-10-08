@@ -23,7 +23,7 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3D95A5]" />
             <span className="text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#3D95A5]">
-              Curated Itineraries
+              Curated Lombok Tour Packages
             </span>
           </div>
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#FAF8F5] tracking-tight leading-[1.08]">
