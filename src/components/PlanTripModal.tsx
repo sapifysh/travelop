@@ -183,6 +183,14 @@ export default function PlanTripModal({
     : 'Not sure yet';
   const styleText = TRIP_STYLES.find((t) => t.id === tripStyle)?.label || 'Not chosen';
 
+  // Packages have a fixed length; only ask for nights on a custom/undecided trip
+  const showNights = tripStyle === '' || tripStyle === 'CUSTOM';
+  const chosenPackage = PACKAGES.find((p) => p.name === tripStyle);
+  const durationText =
+    showNights || !chosenPackage
+      ? `${nights} ${nights === 1 ? 'night' : 'nights'}`
+      : chosenPackage.duration.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+
   // Submit Handler
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -214,7 +222,7 @@ export default function PlanTripModal({
       name: name.trim(),
       email: email.trim() || '-',
       whatsapp: whatsapp.trim() || '-',
-      travelDate: `${travelDate} (${nights} ${nights === 1 ? 'night' : 'nights'})`,
+      travelDate: `${travelDate} (${durationText})`,
       travelers: String(travelers),
       interests: `Style: ${styleLabel} | Places: ${destinationsText}`,
       message: fullMessage,
@@ -249,7 +257,7 @@ export default function PlanTripModal({
       `• Name: ${name || 'Traveler'}`,
       `• Trip style: ${styleText}`,
       `• Places: ${destinationsText}`,
-      `• Arrival: ${travelDate || 'Flexible'} (${nights} ${nights === 1 ? 'night' : 'nights'})`,
+      `• Arrival: ${travelDate || 'Flexible'} (${durationText})`,
       `• Travelers: ${travelers}`,
       `• Vehicle: ${vehicleSummaryText}`,
       `• Notes: ${notes || '-'}`,
@@ -328,7 +336,7 @@ export default function PlanTripModal({
                   </div>
                   <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
                     <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Travel Date</span>
-                    <span className="font-medium text-[#0E171A]">{travelDate || 'Flexible'} · {nights} {nights === 1 ? 'night' : 'nights'}</span>
+                    <span className="font-medium text-[#0E171A]">{travelDate || 'Flexible'} · {durationText}</span>
                   </div>
                   <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
                     <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Travelers</span>
@@ -507,7 +515,7 @@ export default function PlanTripModal({
                 </div>
 
                 {/* TRAVELERS + NIGHTS */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className={`grid ${showNights ? 'grid-cols-2' : 'grid-cols-1'} gap-3`}>
                   <div className="space-y-1.5">
                     <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
                       Travelers <span className="text-[#2E7987]">*</span>
@@ -559,6 +567,7 @@ export default function PlanTripModal({
                       <p className="text-[11px] text-red-600 font-medium">{fieldErrors.travelers}</p>
                     )}
                   </div>
+                  {showNights && (
                   <div className="space-y-1.5">
                     <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
                       Nights in Lombok
@@ -585,6 +594,7 @@ export default function PlanTripModal({
                       </button>
                     </div>
                   </div>
+                  )}
                 </div>
 
                 {/* 4. TRANSPORTATION (Compact, Focused) */}
