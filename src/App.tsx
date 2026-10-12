@@ -13,6 +13,7 @@ import DestinationModal from './components/DestinationModal';
 import PackageModal from './components/PackageModal';
 
 import LombokPrivateTours from './pages/LombokPrivateTours';
+import SeoLandingPage, { findSeoPage } from './pages/SeoLandingPage';
 
 import { Destination, Experience, TravelPackage, VehicleOption } from './types';
 import { DESTINATIONS } from './data/content';
@@ -116,6 +117,29 @@ export default function App() {
     (typeof window !== 'undefined' &&
       (window.location.pathname === '/lombok-private-tours' ||
         window.location.pathname === '/lombok-private-tours/'));
+
+  const seoPage = findSeoPage(currentPath);
+
+  if (seoPage) {
+    return (
+      <div className="min-h-screen bg-[#FAF7F0] text-[#123B45] overflow-x-hidden">
+        <SeoLandingPage page={seoPage} onNavigate={handleNavigate} onOpenPlanModal={handleOpenPlanModal} />
+        <PlanTripModal
+          isOpen={isPlanModalOpen}
+          onClose={handleClosePlanModal}
+          initialDestination={planInitialDestination}
+          initialPackage={planInitialPackage}
+          selectedVehicle={selectedVehicle}
+          onSelectVehicle={setSelectedVehicle}
+          onNavigateToYourRide={() => {
+            setIsPlanModalOpen(false);
+            handleNavigate('/');
+            setTimeout(() => scrollToSection('your-ride'), 200);
+          }}
+        />
+      </div>
+    );
+  }
 
   if (isLombokPrivateTours) {
     return (

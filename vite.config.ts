@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import seoPages from './src/data/seo-pages.json';
 
 export default defineConfig(() => {
   return {
@@ -16,6 +17,9 @@ export default defineConfig(() => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           'lombok-private-tours': path.resolve(__dirname, 'lombok-private-tours/index.html'),
+          ...Object.fromEntries(
+            seoPages.map((p: {slug: string}) => [p.slug, path.resolve(__dirname, `${p.slug}/index.html`)]),
+          ),
         },
       },
     },
