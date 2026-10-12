@@ -1,7 +1,7 @@
-import baleSasakImage from '../assets/images/south_lombok_hills.jpg';
-import lombokFoodImage from '../assets/images/lombok_ayam_bakar.jpg';
-import sekotongCoastalImage from '../assets/images/lombok_coast_aerial.jpg';
-import desaSadeVillageImage from '../assets/images/sasak_songket_weaver.jpg';
+import bukitMereseImage from '../assets/images/bukit_merese_sunset.jpg';
+import pasarBambuImage from '../assets/images/pasar_bambu_bonjeruk.jpg';
+import giliUnderwaterImage from '../assets/images/gili_trawangan_underwater.jpg';
+import sukararaWeaverImage from '../assets/images/sukarara_weaver.jpg';
 
 export default function About() {
   const principles = [
@@ -51,63 +51,63 @@ export default function About() {
               <div className="w-full lg:w-[94%] relative z-10">
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
                   <img
-                    src={sekotongCoastalImage}
-                    alt="Aerial view of turquoise water and green headlands along the Lombok coastline"
+                    src={giliUnderwaterImage}
+                    alt="Snorkeler swimming alongside a green sea turtle in the clear water off Gili Trawangan"
                     className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     loading="lazy"
                   />
                 </div>
                 <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 pl-2">
-                  Lombok Coastline · From Above
+                  Gili Trawangan · Beneath the Surface
                 </p>
               </div>
 
               {/* SECONDARY TIERS */}
               <div className="grid grid-cols-12 gap-3.5 sm:gap-6 mt-6 sm:mt-8 items-start">
-                {/* DESA SADE — TRADITIONAL SASAK VILLAGE */}
+                {/* DESA SUKARARA — SASAK WEAVING VILLAGE */}
                 <div className="col-span-5 sm:col-span-5 lg:col-span-5 pt-1 sm:pt-2">
                   <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
                     <img
-                      src={desaSadeVillageImage}
-                      alt="Young woman weaving songket on a traditional backstrap loom in West Nusa Tenggara"
+                      src={sukararaWeaverImage}
+                      alt="Sasak weaver at her loom surrounded by handwoven songket in Desa Sukarara, Central Lombok"
                       className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       loading="lazy"
                     />
                   </div>
                   <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2.5 pl-1">
-                    Tenun Songket · Sasak Craft
+                    Desa Sukarara · Tenun Songket
                   </p>
                 </div>
 
-                {/* RIGHT COLUMN CLUSTER: BALE SASAK & CUISINE */}
+                {/* RIGHT COLUMN CLUSTER: BUKIT MERESE & PASAR BAMBU */}
                 <div className="col-span-7 sm:col-span-7 lg:col-span-7 space-y-4 sm:space-y-6">
-                  {/* BALE SASAK ARCHITECTURE */}
+                  {/* BUKIT MERESE SUNSET */}
                   <div className="relative z-10">
                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.08)] group">
                       <img
-                        src={baleSasakImage}
-                        alt="Golden bay and rolling green hills on the south coast of Lombok"
+                        src={bukitMereseImage}
+                        alt="Sunset over the bays and headlands seen from Bukit Merese, South Lombok"
                         className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
                     <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 pl-2">
-                      South Coast · Lombok
+                      Bukit Merese · Golden Hour
                     </p>
                   </div>
 
-                  {/* TRADITIONAL LOMBOK CUISINE */}
+                  {/* PASAR BAMBU BONJERUK */}
                   <div className="w-full sm:w-[90%] ml-auto relative z-10">
                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
                       <img
-                        src={lombokFoodImage}
-                        alt="Spicy grilled chicken with rice, sambal and fresh vegetables"
+                        src={pasarBambuImage}
+                        alt="Thatched bamboo dining huts beneath a bamboo grove at Pasar Bambu Bonjeruk"
                         className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
                     <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 text-right pr-2">
-                      Ayam Bakar & Sambal · Island Table
+                      Pasar Bambu Bonjeruk · Village Table
                     </p>
                   </div>
                 </div>
