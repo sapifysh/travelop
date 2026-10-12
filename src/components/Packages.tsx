@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Clock, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
 import { PACKAGES } from '../data/content';
 import { TravelPackage } from '../types';
 
@@ -9,6 +10,17 @@ interface PackagesProps {
 }
 
 export default function Packages({ onSelectPackage, onViewItinerary }: PackagesProps) {
+  const INITIAL_COUNT = 3;
+  const [showAll, setShowAll] = useState(false);
+  const visiblePackages = showAll ? PACKAGES : PACKAGES.slice(0, INITIAL_COUNT);
+
+  const toggleShowAll = () => {
+    if (showAll) {
+      document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setShowAll((v) => !v);
+  };
+
   return (
     <section
       id="packages"
@@ -19,7 +31,7 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 sm:mb-24">
+        <div className="max-w-3xl mb-10 sm:mb-24">
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#FAF8F5] tracking-tight leading-[1.08]">
             Choose Your Kind<br />of Escape.
           </h2>
@@ -29,8 +41,8 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
         </div>
 
         {/* Apple-Style Liquid Glass Package Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8">
-          {PACKAGES.map((pkg, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-7 lg:gap-8">
+          {visiblePackages.map((pkg, index) => {
             return (
               <motion.div
                 key={pkg.id}
@@ -38,12 +50,12 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, delay: (index % INITIAL_COUNT) * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="group flex flex-col justify-between liquid-glass-dark-standard rounded-3xl overflow-hidden refraction-highlight transition-all duration-300 hover:-translate-y-1.5"
               >
                 <div>
                   {/* Visual Header */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-[2/1] sm:aspect-[16/10] overflow-hidden">
                     <img
                       src={pkg.image}
                       alt={pkg.name}
@@ -66,17 +78,17 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6 sm:p-7">
-                    <h3 className="font-semibold text-xl sm:text-2xl text-white tracking-tight">
+                  <div className="p-5 sm:p-7">
+                    <h3 className="font-semibold text-lg sm:text-2xl text-white tracking-tight">
                       {pkg.name}
                     </h3>
 
-                    <p className="mt-2 text-xs sm:text-sm text-white/70 font-normal leading-relaxed min-h-[40px]">
+                    <p className="mt-2 text-[13px] sm:text-sm text-white/70 font-normal leading-relaxed sm:min-h-[40px]">
                       "{pkg.subtitle}"
                     </p>
 
                     {/* Unboxed Metadata Tags (Anti-slop: clean text with dividers) */}
-                    <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-white/60">
+                    <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-white/60">
                       {pkg.tags.map((tag, tIdx) => (
                         <div key={tag} className="flex items-center gap-2">
                           <span>{tag}</span>
@@ -87,8 +99,14 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                       ))}
                     </div>
 
-                    {/* Inclusions summary preview */}
-                    <div className="mt-6 pt-5 border-t border-white/10 space-y-2">
+                    {pkg.priceEstimate && (
+                      <p className="mt-3 sm:mt-4 text-[13px] sm:text-sm font-semibold text-[#3D95A5]">
+                        {pkg.priceEstimate}
+                      </p>
+                    )}
+
+                    {/* Inclusions summary preview (hidden on phones; full list lives in the modal) */}
+                    <div className="hidden sm:block mt-6 pt-5 border-t border-white/10 space-y-2">
                       <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-white/50 block">
                         Included Experience
                       </span>
@@ -103,12 +121,12 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                 </div>
 
                 {/* Card Footer Actions: Liquid Glass Button */}
-                <div className="p-6 sm:p-7 pt-0 flex flex-col gap-3">
+                <div className="p-5 sm:p-7 pt-0 sm:pt-0 flex flex-col gap-3">
                   <button
                     type="button"
                     onClick={() => onViewItinerary(pkg)}
                     id={`btn-view-itinerary-${pkg.id}`}
-                    className="w-full liquid-glass-btn-primary inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] py-3.5 rounded-full cursor-pointer"
+                    className="w-full liquid-glass-btn-primary inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] py-3 sm:py-3.5 rounded-full cursor-pointer"
                   >
                     <span>Explore Package</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -118,6 +136,21 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
             );
           })}
         </div>
+
+        {PACKAGES.length > INITIAL_COUNT && (
+          <div className="mt-8 sm:mt-12 flex justify-center">
+            <button
+              type="button"
+              onClick={toggleShowAll}
+              aria-expanded={showAll}
+              id="btn-toggle-packages"
+              className="w-full sm:w-auto liquid-glass-dark-standard inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-[0.14em] text-[#FAF8F5] cursor-pointer transition-colors hover:text-white"
+            >
+              <span>{showAll ? 'Show less' : `View all ${PACKAGES.length} packages`}</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
