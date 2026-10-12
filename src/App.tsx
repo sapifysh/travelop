@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Experiences from './components/Experiences';
 import Packages from './components/Packages';
 import YourRide from './components/YourRide';
+import WhyBookWithUs from './components/WhyBookWithUs';
 import About from './components/About';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -187,6 +188,9 @@ export default function App() {
           onSelectPackage={handleSelectPackageForPlanning}
           onViewItinerary={(pkg) => setSelectedPackage(pkg)}
         />
+
+        {/* Why travelers book with us (liquid-glass marquee) */}
+        <WhyBookWithUs />
 
         {/* YOUR RIDE Dedicated Vehicle Experience (How to get around) */}
         <YourRide
