@@ -76,8 +76,12 @@ ${others.map((o) => `          <a href="/${o.slug}">${esc(o.navLabel)}</a>`).joi
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="google-site-verification" content="tDlYLO48w0lIpSdYIxWDqGL80g3e2ZAwFtXcD80xL4k" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
-    <link rel="apple-touch-icon" href="/favicon.svg?v=2" />
+    <link rel="icon" href="/favicon.ico?v=3" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+    <link rel="manifest" href="/site.webmanifest?v=3" />
+    <meta name="theme-color" content="#3D6074" />
     <link rel="canonical" href="${url}" />
     <title>${esc(p.title)}</title>
     <meta name="description" content="${esc(p.description)}" />
