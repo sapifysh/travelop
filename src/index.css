@@ -276,3 +276,28 @@
   .why-marquee { -webkit-mask-image: none; mask-image: none; overflow-x: auto; }
   .why-marquee-track { animation: none; padding-left: 24px; }
 }
+
+/* ABOUT — photo marquee (right to left, same pace as Why book) */
+.about-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.about-marquee-track {
+  display: flex;
+  width: max-content;
+  padding: 8px 0 24px;
+  animation: about-marquee-rtl 53s linear infinite;
+  will-change: transform;
+}
+.about-marquee:hover .about-marquee-track { animation-play-state: paused; }
+.about-tile { flex: 0 0 auto; width: 280px; margin-right: 16px; list-style: none; }
+@media (min-width: 640px) { .about-tile { width: 400px; margin-right: 24px; } }
+@keyframes about-marquee-rtl {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-marquee { -webkit-mask-image: none; mask-image: none; overflow-x: auto; }
+  .about-marquee-track { animation: none; padding-left: 24px; }
+}

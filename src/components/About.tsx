@@ -26,6 +26,14 @@ export default function About() {
     },
   ];
 
+  const photos = [
+    { src: giliUnderwaterImage, alt: 'Green sea turtles gliding over a coral reef in the clear turquoise water off Gili Trawangan', caption: 'Gili Trawangan · Beneath the Surface' },
+    { src: sukararaWeaverImage, alt: 'Sasak weaver at her wooden loom beneath handwoven songket in Desa Sukarara, Central Lombok', caption: 'Desa Sukarara · Tenun Songket' },
+    { src: bukitMereseImage, alt: 'Sunset over the bays and headlands seen from Bukit Merese, South Lombok', caption: 'Bukit Merese · Golden Hour' },
+    { src: pasarBambuImage, alt: 'Nasi ayam merangkat served beside thatched bamboo huts in the bamboo grove of Pasar Bambu Bonjeruk', caption: 'Pasar Bambu Bonjeruk · Village Table' },
+    { src: tampahHillsImage, alt: 'Golden-hour view over the green hills and turquoise bay of Tampah Hills, South Lombok', caption: 'Tampah Hills · South Lombok' },
+  ];
+
   return (
     <section
       id="about"
@@ -33,7 +41,7 @@ export default function About() {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Intro: Large Editorial Headline */}
-        <div className="max-w-3xl mb-16 sm:mb-20 lg:mb-24">
+        <div className="max-w-3xl mb-10 sm:mb-14">
           <h2
             id="about-headline"
             className="font-semibold text-3xl sm:text-5xl lg:text-[58px] text-[#0E171A] tracking-[-0.025em] leading-[1.06]"
@@ -43,96 +51,34 @@ export default function About() {
           </h2>
         </div>
 
-        {/* Editorial Composition: Photography Collage + Story */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 xl:gap-18 items-start">
-          {/* LEFT: Editorial Multi-Image Composition with Liquid Glass frames */}
-          <div className="lg:col-span-7 order-1">
-            <div className="relative">
-              {/* Dominant Hero Landscape Anchor */}
-              <div className="w-full lg:w-[94%] relative z-10">
-                <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
-                  <img
-                    src={giliUnderwaterImage}
-                    alt="Green sea turtles gliding over a coral reef in the clear turquoise water off Gili Trawangan"
-                    className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 pl-2">
-                  Gili Trawangan · Beneath the Surface
-                </p>
+      </div>
+
+      {/* Photo marquee: full width, moves right to left, pauses on hover */}
+      <div className="about-marquee relative z-10">
+        <ul className="about-marquee-track">
+          {[...photos, ...photos].map((ph, i) => (
+            <li key={`${ph.caption}-${i}`} aria-hidden={i >= photos.length} className="about-tile">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.07)]">
+                <img
+                  src={ph.src}
+                  alt={ph.alt}
+                  className="w-full h-full object-cover object-center rounded-2xl"
+                  loading="lazy"
+                />
               </div>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 pl-2">
+                {ph.caption}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-              {/* SECONDARY TIERS */}
-              <div className="grid grid-cols-12 gap-3.5 sm:gap-6 mt-6 sm:mt-8 items-start">
-                {/* DESA SUKARARA — SASAK WEAVING VILLAGE */}
-                <div className="col-span-5 sm:col-span-5 lg:col-span-5 pt-1 sm:pt-2">
-                  <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
-                    <img
-                      src={sukararaWeaverImage}
-                      alt="Sasak weaver at her wooden loom beneath handwoven songket in Desa Sukarara, Central Lombok"
-                      className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2.5 pl-1">
-                    Desa Sukarara · Tenun Songket
-                  </p>
-                </div>
-
-                {/* RIGHT COLUMN CLUSTER: BUKIT MERESE & PASAR BAMBU */}
-                <div className="col-span-7 sm:col-span-7 lg:col-span-7 space-y-4 sm:space-y-6">
-                  {/* BUKIT MERESE SUNSET */}
-                  <div className="relative z-10">
-                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.08)] group">
-                      <img
-                        src={bukitMereseImage}
-                        alt="Sunset over the bays and headlands seen from Bukit Merese, South Lombok"
-                        className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 pl-2">
-                      Bukit Merese · Golden Hour
-                    </p>
-                  </div>
-
-                  {/* PASAR BAMBU BONJERUK */}
-                  <div className="w-full sm:w-[90%] ml-auto relative z-10">
-                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
-                      <img
-                        src={pasarBambuImage}
-                        alt="Nasi ayam merangkat served beside thatched bamboo huts in the bamboo grove of Pasar Bambu Bonjeruk"
-                        className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 text-right pr-2">
-                      Pasar Bambu Bonjeruk · Village Table
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* TAMPAH HILLS — SOUTH LOMBOK PANORAMA */}
-              <div className="w-full lg:w-[94%] ml-auto relative z-10 mt-6 sm:mt-8">
-                <div className="aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
-                  <img
-                    src={tampahHillsImage}
-                    alt="Golden-hour view over the green hills and turquoise bay of Tampah Hills, South Lombok"
-                    className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 text-right pr-2">
-                  Tampah Hills · South Lombok
-                </p>
-              </div>
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+        <div className="mt-12 sm:mt-16 pt-10 sm:pt-12 border-t border-[#0E171A]/10">
 
           {/* RIGHT: Brand Story + Principles + Subtle Base */}
-          <div className="lg:col-span-5 order-2 flex flex-col justify-between pt-2 lg:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 xl:gap-x-20">
             {/* Introductory Copy */}
             <div className="max-w-[640px] mb-10 sm:mb-12">
               <p className="text-lg sm:text-[19px] lg:text-[20px] text-[#0E171A] font-medium leading-[1.65] mb-4 sm:mb-5">
@@ -144,7 +90,7 @@ export default function About() {
             </div>
 
             {/* Editorial Numbered Principles */}
-            <div className="space-y-6 sm:space-y-8 border-t border-[#0E171A]/10 pt-8 sm:pt-10">
+            <div className="space-y-6 sm:space-y-8 border-t lg:border-t-0 border-[#0E171A]/10 pt-8 sm:pt-10 lg:pt-0">
               {principles.map((item) => (
                 <div
                   key={item.number}
