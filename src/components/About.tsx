@@ -2,6 +2,7 @@ import bukitMereseImage from '../assets/images/bukit_merese_sunset.jpg';
 import pasarBambuImage from '../assets/images/pasar_bambu_bonjeruk.jpg';
 import giliUnderwaterImage from '../assets/images/gili_trawangan_underwater.jpg';
 import sukararaWeaverImage from '../assets/images/sukarara_weaver.jpg';
+import tampahHillsImage from '../assets/images/tampah_hills.jpg';
 
 export default function About() {
   const principles = [
@@ -52,7 +53,7 @@ export default function About() {
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
                   <img
                     src={giliUnderwaterImage}
-                    alt="Snorkeler swimming alongside a green sea turtle in the clear water off Gili Trawangan"
+                    alt="Green sea turtles gliding over a coral reef in the clear turquoise water off Gili Trawangan"
                     className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     loading="lazy"
                   />
@@ -69,7 +70,7 @@ export default function About() {
                   <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
                     <img
                       src={sukararaWeaverImage}
-                      alt="Sasak weaver at her loom surrounded by handwoven songket in Desa Sukarara, Central Lombok"
+                      alt="Sasak weaver at her wooden loom beneath handwoven songket in Desa Sukarara, Central Lombok"
                       className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       loading="lazy"
                     />
@@ -101,7 +102,7 @@ export default function About() {
                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
                       <img
                         src={pasarBambuImage}
-                        alt="Thatched bamboo dining huts beneath a bamboo grove at Pasar Bambu Bonjeruk"
+                        alt="Nasi ayam merangkat served beside thatched bamboo huts in the bamboo grove of Pasar Bambu Bonjeruk"
                         className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
@@ -111,6 +112,21 @@ export default function About() {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* TAMPAH HILLS — SOUTH LOMBOK PANORAMA */}
+              <div className="w-full lg:w-[94%] ml-auto relative z-10 mt-6 sm:mt-8">
+                <div className="aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
+                  <img
+                    src={tampahHillsImage}
+                    alt="Golden-hour view over the green hills and turquoise bay of Tampah Hills, South Lombok"
+                    className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 text-right pr-2">
+                  Tampah Hills · South Lombok
+                </p>
               </div>
             </div>
           </div>
