@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { TripInquiryPayload, VehicleOption } from '../types';
 import { submitTripInquiryToGoogleSheet } from '../config/tripPlannerConfig';
+import { BRAND, PACKAGES } from '../data/content';
 
 interface PlanTripModalProps {
   isOpen: boolean;
@@ -29,13 +30,21 @@ interface PlanTripModalProps {
 
 // Compact selectable destination chips as specified
 const DESTINATION_CHIPS = [
-  'Selong Belanak',
   'Kuta Lombok',
+  'Selong Belanak',
   'Gili Trawangan',
   'Gili Meno',
+  'Gili Air',
   'Rinjani Mountain',
+  'North Lombok Waterfalls',
   'Not sure yet',
 ];
+
+const toTitle = (str: string) =>
+  str.replace(/^THE\s+/i, '').toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Trip styles mirror the live packages, plus a fully custom option
+const TRIP_STYLES = [...PACKAGES.map((p) => ({ id: p.name, label: toTitle(p.name) })), { id: 'CUSTOM', label: 'Custom Trip' }];
 
 export default function PlanTripModal({
   isOpen,
@@ -47,7 +56,9 @@ export default function PlanTripModal({
   onNavigateToYourRide,
 }: PlanTripModalProps) {
   // Step 1: Destination
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>(['Selong Belanak']);
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);
+  const [tripStyle, setTripStyle] = useState<string>('');
+  const [nights, setNights] = useState<number>(4);
 
   // Step 2: Date & Travelers
   const [travelDate, setTravelDate] = useState<string>('');
@@ -84,11 +95,15 @@ export default function PlanTripModal({
         );
         setSelectedDestinations([match || initialDestination]);
       } else {
-        setSelectedDestinations(['Selong Belanak']);
+        setSelectedDestinations([]);
       }
 
-      if (initialPackage) {
-        setNotes(`Interested in package: ${initialPackage}`);
+      const pkgMatch = initialPackage
+        ? TRIP_STYLES.find((t) => t.id.toLowerCase() === initialPackage.toLowerCase())
+        : undefined;
+      setTripStyle(pkgMatch ? pkgMatch.id : '');
+      if (initialPackage && !pkgMatch) {
+        setNotes(`Interested in: ${initialPackage}`);
       } else {
         setNotes('');
       }
@@ -114,7 +129,7 @@ export default function PlanTripModal({
       const filtered = prev.filter((d) => d !== 'Not sure yet');
       if (filtered.includes(dest)) {
         const next = filtered.filter((d) => d !== dest);
-        return next.length === 0 ? ['Not sure yet'] : next;
+        return next;
       } else {
         return [...filtered, dest];
       }
@@ -130,16 +145,14 @@ export default function PlanTripModal({
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim()) {
-      errors.email = 'Please enter your email address.';
-    } else if (!emailRegex.test(email.trim())) {
+    if (!email.trim() && !whatsapp.trim()) {
+      errors.whatsapp = 'Add your WhatsApp or email so we can reply.';
+    }
+    if (email.trim() && !emailRegex.test(email.trim())) {
       errors.email = 'Please enter a valid email address (e.g. name@example.com).';
     }
-
-    if (!whatsapp.trim()) {
-      errors.whatsapp = 'Please enter your WhatsApp or phone number.';
-    } else if (whatsapp.trim().replace(/\D/g, '').length < 6) {
-      errors.whatsapp = 'Please enter a valid phone number (at least 6 digits).';
+    if (whatsapp.trim() && whatsapp.trim().replace(/\D/g, '').length < 6) {
+      errors.whatsapp = 'Please enter a valid phone number with country code.';
     }
 
     if (!travelDate) {
@@ -153,12 +166,22 @@ export default function PlanTripModal({
     setFieldErrors(errors);
 
     if (Object.keys(errors).length > 0) {
-      setErrorMessage('Please fill in all required fields highlighted below.');
+      setErrorMessage('Please complete the highlighted fields.');
       return false;
     }
 
     return true;
   };
+
+  // Packages already define their places, so only ask where to go for a custom/undecided trip
+  // (or when the traveler arrived from a destination card).
+  const showDestinations = tripStyle === '' || tripStyle === 'CUSTOM' || Boolean(initialDestination);
+  const destinationsText = !showDestinations
+    ? 'As per package'
+    : selectedDestinations.length > 0
+    ? selectedDestinations.join(', ')
+    : 'Not sure yet';
+  const styleText = TRIP_STYLES.find((t) => t.id === tripStyle)?.label || 'Not chosen';
 
   // Submit Handler
   const handleSubmit = async (e: FormEvent) => {
@@ -186,13 +209,14 @@ export default function PlanTripModal({
       ? `Transport: ${carSummary}`
       : 'None';
 
+    const styleLabel = TRIP_STYLES.find((t) => t.id === tripStyle)?.label || 'Not chosen';
     const payload: TripInquiryPayload = {
       name: name.trim(),
-      email: email.trim(),
-      whatsapp: whatsapp.trim(),
-      travelDate: travelDate,
+      email: email.trim() || '-',
+      whatsapp: whatsapp.trim() || '-',
+      travelDate: `${travelDate} (${nights} ${nights === 1 ? 'night' : 'nights'})`,
       travelers: String(travelers),
-      interests: selectedDestinations.length > 0 ? selectedDestinations.join(', ') : 'Not sure yet',
+      interests: `Style: ${styleLabel} | Places: ${destinationsText}`,
       message: fullMessage,
     };
 
@@ -218,13 +242,23 @@ export default function PlanTripModal({
     ? "I'd like a car"
     : 'No car needed';
 
-  const directWhatsAppLink = `https://wa.me/6281234567890?text=${encodeURIComponent(
-    `Hello FIRST-LOP!%0A%0AI just submitted my Lombok travel plan.%0A• Name: ${name || 'Traveler'}%0A• Email: ${email || '-'}%0A• WhatsApp: ${whatsapp}%0A• Date: ${travelDate || 'Flexible'}%0A• Destination: ${selectedDestinations.join(', ')}%0A• Travelers: ${travelers}%0A• Vehicle: ${vehicleSummaryText}%0A• Notes: ${notes || '-'}`
+  const directWhatsAppLink = `https://wa.me/${BRAND.contact.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(
+    [
+      `Hello ${BRAND.name}! I just sent my Lombok trip plan.`,
+      '',
+      `• Name: ${name || 'Traveler'}`,
+      `• Trip style: ${styleText}`,
+      `• Places: ${destinationsText}`,
+      `• Arrival: ${travelDate || 'Flexible'} (${nights} ${nights === 1 ? 'night' : 'nights'})`,
+      `• Travelers: ${travelers}`,
+      `• Vehicle: ${vehicleSummaryText}`,
+      `• Notes: ${notes || '-'}`,
+    ].join('\n')
   )}`;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 overflow-y-auto bg-[#0A242B]/85 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 overflow-y-auto bg-[#0E171A]/85 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
@@ -234,7 +268,7 @@ export default function PlanTripModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97, y: 12 }}
         transition={{ duration: 0.24, ease: 'easeOut' }}
-        className="relative w-full max-w-xl bg-[#FAF7F0] text-[#123B45] rounded-2xl shadow-2xl border border-[#123B45]/15 overflow-hidden my-auto max-h-[92vh] flex flex-col font-sans"
+        className="relative w-full max-w-xl bg-[#FAF8F5] text-[#0E171A] rounded-2xl shadow-2xl border border-[#0E171A]/15 overflow-hidden my-auto max-h-[92dvh] flex flex-col font-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -242,7 +276,7 @@ export default function PlanTripModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-[#123B45]/5 hover:bg-[#123B45]/10 text-[#123B45] flex items-center justify-center transition-colors cursor-pointer z-20"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-[#0E171A]/5 hover:bg-[#0E171A]/10 text-[#0E171A] flex items-center justify-center transition-colors cursor-pointer z-20"
         >
           <X className="w-4 h-4" />
         </button>
@@ -262,53 +296,53 @@ export default function PlanTripModal({
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="py-6 text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#4F9DA6]/15 text-[#4F9DA6] mx-auto flex items-center justify-center mb-4 ring-8 ring-[#4F9DA6]/5">
-                  <CheckCircle2 className="w-9 h-9 text-[#4F9DA6]" />
+                <div className="w-16 h-16 rounded-full bg-[#2E7987]/15 text-[#2E7987] mx-auto flex items-center justify-center mb-4 ring-8 ring-[#2E7987]/5">
+                  <CheckCircle2 className="w-9 h-9 text-[#2E7987]" />
                 </div>
 
-                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4F9DA6] mb-1">
-                  Inquiry Confirmed
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#2E7987] mb-1">
+                  Plan received
                 </div>
 
-                <h3 className="font-bold text-2xl sm:text-3xl text-[#123B45] tracking-tight">
-                  YOUR JOURNEY STARTS HERE.
+                <h3 className="font-semibold text-2xl sm:text-3xl text-[#0E171A] tracking-tight">
+                  Thank you, {name.split(' ')[0] || 'traveler'}.
                 </h3>
 
-                <p className="text-sm sm:text-base text-[#123B45]/75 mt-2 max-w-md mx-auto leading-relaxed">
-                  Thank you. We've received your inquiry and our team will be in touch shortly.
+                <p className="text-sm sm:text-base text-[#0E171A]/75 mt-2 max-w-md mx-auto leading-relaxed">
+                  Your plan is saved. We'll reply personally with a suggested itinerary and price.
                 </p>
 
                 {/* Liquid Glass Inquiry Summary Card */}
-                <div className="mt-6 p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#123B45]/10 max-w-md mx-auto text-left text-xs space-y-2.5 text-[#123B45]/85 shadow-sm">
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Traveler</span>
-                    <span className="font-semibold text-[#123B45]">{name}</span>
+                <div className="mt-6 p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#0E171A]/10 max-w-md mx-auto text-left text-xs space-y-2.5 text-[#0E171A]/85 shadow-sm">
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Traveler</span>
+                    <span className="font-semibold text-[#0E171A]">{name}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Email</span>
-                    <span className="font-medium text-[#123B45]">{email}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Email</span>
+                    <span className="font-medium text-[#0E171A]">{email}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">WhatsApp</span>
-                    <span className="font-medium text-[#123B45]">{whatsapp}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">WhatsApp</span>
+                    <span className="font-medium text-[#0E171A]">{whatsapp}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Travel Date</span>
-                    <span className="font-medium text-[#123B45]">{travelDate || 'Flexible'}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Travel Date</span>
+                    <span className="font-medium text-[#0E171A]">{travelDate || 'Flexible'} · {nights} {nights === 1 ? 'night' : 'nights'}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Travelers</span>
-                    <span className="font-medium text-[#123B45]">{travelers} {travelers === 1 ? 'guest' : 'guests'}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Travelers</span>
+                    <span className="font-medium text-[#0E171A]">{travelers} {travelers === 1 ? 'guest' : 'guests'}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-[#123B45]/8">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Interests</span>
-                    <span className="font-medium text-[#123B45] truncate max-w-[220px]">
-                      {selectedDestinations.join(', ')}
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#0E171A]/8">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Trip</span>
+                    <span className="font-medium text-[#0E171A] truncate max-w-[220px]">
+                      {styleText} · {destinationsText}
                     </span>
                   </div>
                   <div className="flex justify-between items-center pt-0.5">
-                    <span className="text-[#123B45]/50 uppercase tracking-wider text-[10px] font-semibold">Transportation</span>
-                    <span className="font-medium text-[#123B45]">
+                    <span className="text-[#0E171A]/50 uppercase tracking-wider text-[10px] font-semibold">Transportation</span>
+                    <span className="font-medium text-[#0E171A]">
                       {selectedVehicle
                         ? `${selectedVehicle.name} ($${selectedVehicle.pricePerDay}/day)`
                         : transportChoice === 'need-car'
@@ -323,18 +357,18 @@ export default function PlanTripModal({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="w-full sm:w-auto bg-[#123B45] hover:bg-[#0E2E36] text-[#FAF7F0] px-7 py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm"
+                    className="w-full sm:w-auto bg-[#0E171A] hover:bg-[#1C2A2E] text-[#FAF8F5] px-7 py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm"
                   >
-                    BACK TO FIRST-LOP
+                    Back to site
                   </button>
 
                   <a
                     href={directWhatsAppLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-[#123B45] hover:text-[#0E2E36] text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full border border-[#123B45]/20 hover:bg-white/60 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-[#0E171A] hover:text-[#1C2A2E] text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full border border-[#0E171A]/20 hover:bg-white/60 transition-colors"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-[#4F9DA6]" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#2E7987]" />
                     <span>Open WhatsApp</span>
                   </a>
                 </div>
@@ -355,16 +389,16 @@ export default function PlanTripModal({
                 {/* Header */}
                 <div className="pr-8">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F4C95D]" />
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#123B45]/60">
-                      FIRST-LOP Concierge
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#3D95A5]" />
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0E171A]/60">
+                      Plan your trip
                     </span>
                   </div>
-                  <h2 className="font-bold text-2xl sm:text-3xl text-[#123B45] tracking-tight leading-snug">
+                  <h2 className="font-semibold text-2xl sm:text-3xl text-[#0E171A] tracking-tight leading-snug">
                     Tell us your plan.
                   </h2>
-                  <p className="text-xs sm:text-sm text-[#123B45]/70 mt-1 font-normal">
-                    Share the basics. We’ll take it from there.
+                  <p className="text-xs sm:text-sm text-[#0E171A]/70 mt-1 font-normal">
+                    Share the basics. We’ll reply with an itinerary and a price.
                   </p>
                 </div>
 
@@ -381,10 +415,39 @@ export default function PlanTripModal({
                   </div>
                 )}
 
-                {/* 1. WHERE DO YOU WANT TO GO? */}
+                {/* 1. TRIP STYLE */}
                 <div className="space-y-2">
-                  <label className="block text-xs font-semibold text-[#123B45] uppercase tracking-wider">
-                    1. Where do you want to go?
+                  <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                    What kind of trip?
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {TRIP_STYLES.map((style) => {
+                      const isSelected = tripStyle === style.id;
+                      return (
+                        <button
+                          key={style.id}
+                          type="button"
+                          onClick={() => setTripStyle(isSelected ? '' : style.id)}
+                          className={`px-3 py-2.5 rounded-xl text-xs font-medium text-left transition-all flex items-center gap-1.5 cursor-pointer ${
+                            isSelected
+                              ? 'bg-[#0E171A] text-white shadow-xs'
+                              : 'bg-white/80 text-[#0E171A]/80 border border-[#0E171A]/15 hover:border-[#0E171A]/40'
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3 h-3 text-[#3D95A5] shrink-0" />}
+                          <span className="truncate">{style.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {showDestinations && (
+                <>
+                {/* WHERE DO YOU WANT TO GO? */}
+                <div className="space-y-2">
+                  <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                    Where do you want to go? <span className="normal-case tracking-normal font-normal text-[#0E171A]/50">(pick any)</span>
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {DESTINATION_CHIPS.map((chip) => {
@@ -396,23 +459,25 @@ export default function PlanTripModal({
                           onClick={() => handleToggleDestination(chip)}
                           className={`px-3.5 py-2 rounded-xl text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer ${
                             isSelected
-                              ? 'bg-[#123B45] text-white shadow-xs'
-                              : 'bg-white text-[#123B45]/80 border border-[#123B45]/15 hover:border-[#123B45]/40'
+                              ? 'bg-[#0E171A] text-white shadow-xs'
+                              : 'bg-white text-[#0E171A]/80 border border-[#0E171A]/15 hover:border-[#0E171A]/40'
                           }`}
                         >
-                          {isSelected && <Check className="w-3 h-3 text-[#F4C95D]" />}
+                          {isSelected && <Check className="w-3 h-3 text-[#3D95A5]" />}
                           <span>{chip}</span>
                         </button>
                       );
                     })}
                   </div>
                 </div>
+                </>
+                )}
 
-                {/* 2. DATES & TRAVELERS */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* 3. ARRIVAL DATE */}
+                <div className="grid grid-cols-1 gap-3.5">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-[#123B45] uppercase tracking-wider">
-                      2. When are you coming? <span className="text-[#4F9DA6]">*</span>
+                    <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                      Arrival date <span className="text-[#2E7987]">*</span>
                     </label>
                     <input
                       type="date"
@@ -428,10 +493,10 @@ export default function PlanTripModal({
                           });
                         }
                       }}
-                      className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#123B45] focus:outline-none transition-colors ${
+                      className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#0E171A] focus:outline-none transition-colors ${
                         fieldErrors.travelDate
                           ? 'border-red-400 focus:border-red-500 bg-red-50/20'
-                          : 'border-[#123B45]/15 focus:border-[#4F9DA6]'
+                          : 'border-[#0E171A]/15 focus:border-[#2E7987]'
                       }`}
                     />
                     {fieldErrors.travelDate && (
@@ -439,13 +504,17 @@ export default function PlanTripModal({
                     )}
                   </div>
 
+                </div>
+
+                {/* TRAVELERS + NIGHTS */}
+                <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-[#123B45] uppercase tracking-wider">
-                      3. How many travelers? <span className="text-[#4F9DA6]">*</span>
+                    <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                      Travelers <span className="text-[#2E7987]">*</span>
                     </label>
                     <div
                       className={`flex items-center justify-between bg-white px-3 py-1.5 rounded-xl border transition-colors ${
-                        fieldErrors.travelers ? 'border-red-400 bg-red-50/20' : 'border-[#123B45]/15'
+                        fieldErrors.travelers ? 'border-red-400 bg-red-50/20' : 'border-[#0E171A]/15'
                       }`}
                     >
                       <button
@@ -460,12 +529,12 @@ export default function PlanTripModal({
                             });
                           }
                         }}
-                        className="w-7 h-7 rounded-lg bg-[#FAF7F0] hover:bg-[#123B45] hover:text-white text-[#123B45] flex items-center justify-center font-bold text-sm transition-colors cursor-pointer"
+                        className="w-7 h-7 rounded-lg bg-[#FAF8F5] hover:bg-[#0E171A] hover:text-white text-[#0E171A] flex items-center justify-center font-semibold text-sm transition-colors cursor-pointer"
                         aria-label="Decrease travelers"
                       >
                         –
                       </button>
-                      <span className="font-semibold text-sm text-[#123B45]">
+                      <span className="font-semibold text-sm text-[#0E171A]">
                         {travelers} {travelers === 1 ? 'traveler' : 'travelers'}
                       </span>
                       <button
@@ -480,7 +549,7 @@ export default function PlanTripModal({
                             });
                           }
                         }}
-                        className="w-7 h-7 rounded-lg bg-[#FAF7F0] hover:bg-[#123B45] hover:text-white text-[#123B45] flex items-center justify-center font-bold text-sm transition-colors cursor-pointer"
+                        className="w-7 h-7 rounded-lg bg-[#FAF8F5] hover:bg-[#0E171A] hover:text-white text-[#0E171A] flex items-center justify-center font-semibold text-sm transition-colors cursor-pointer"
                         aria-label="Increase travelers"
                       >
                         +
@@ -490,21 +559,47 @@ export default function PlanTripModal({
                       <p className="text-[11px] text-red-600 font-medium">{fieldErrors.travelers}</p>
                     )}
                   </div>
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                      Nights in Lombok
+                    </label>
+                    <div className="flex items-center justify-between bg-white px-3 py-1.5 rounded-xl border border-[#0E171A]/15">
+                      <button
+                        type="button"
+                        onClick={() => setNights((n) => Math.max(1, n - 1))}
+                        className="w-7 h-7 rounded-lg bg-[#FAF8F5] hover:bg-[#0E171A] hover:text-white text-[#0E171A] flex items-center justify-center font-semibold text-sm transition-colors cursor-pointer"
+                        aria-label="Fewer nights"
+                      >
+                        –
+                      </button>
+                      <span className="font-semibold text-sm text-[#0E171A]">
+                        {nights} {nights === 1 ? 'night' : 'nights'}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setNights((n) => Math.min(30, n + 1))}
+                        className="w-7 h-7 rounded-lg bg-[#FAF8F5] hover:bg-[#0E171A] hover:text-white text-[#0E171A] flex items-center justify-center font-semibold text-sm transition-colors cursor-pointer"
+                        aria-label="More nights"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* 4. TRANSPORTATION (Compact, Focused) */}
                 <div className="space-y-2 pt-1">
-                  <label className="block text-xs font-semibold text-[#123B45] uppercase tracking-wider">
-                    4. Transportation
+                  <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                    Transportation
                   </label>
 
                   {selectedVehicle ? (
                     /* Populated vehicle selected from YOUR RIDE */
-                    <div className="p-3.5 rounded-xl bg-white border border-[#123B45]/15 shadow-2xs space-y-2">
+                    <div className="p-3.5 rounded-xl bg-white border border-[#0E171A]/15 shadow-2xs space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#F4C95D]" />
-                          <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#4F9DA6]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#3D95A5]" />
+                          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2E7987]">
                             YOUR RIDE
                           </span>
                         </div>
@@ -514,7 +609,7 @@ export default function PlanTripModal({
                             onClose();
                             onNavigateToYourRide();
                           }}
-                          className="text-[11px] font-semibold text-[#123B45]/70 hover:text-[#123B45] underline flex items-center gap-1 cursor-pointer"
+                          className="text-[11px] font-semibold text-[#0E171A]/70 hover:text-[#0E171A] underline flex items-center gap-1 cursor-pointer"
                         >
                           <span>Change vehicle →</span>
                         </button>
@@ -522,7 +617,7 @@ export default function PlanTripModal({
 
                       <div className="flex items-center justify-between gap-3 pt-0.5">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-10 rounded-lg overflow-hidden bg-[#FAF7F0] border border-[#123B45]/10 shrink-0">
+                          <div className="w-12 h-10 rounded-lg overflow-hidden bg-[#FAF8F5] border border-[#0E171A]/10 shrink-0">
                             <img
                               src={selectedVehicle.image}
                               alt={selectedVehicle.name}
@@ -531,23 +626,23 @@ export default function PlanTripModal({
                           </div>
                           <div>
                             <div className="flex items-center gap-1.5">
-                              <p className="text-xs sm:text-sm font-bold text-[#123B45]">
+                              <p className="text-xs sm:text-sm font-semibold text-[#0E171A]">
                                 {selectedVehicle.name}
                               </p>
                               {selectedVehicle.isFlagship && (
-                                <span className="text-[10px] font-semibold uppercase tracking-wider bg-[#123B45]/10 text-[#123B45] px-1.5 py-0.5 rounded">
+                                <span className="text-[10px] font-semibold uppercase tracking-wider bg-[#0E171A]/10 text-[#0E171A] px-1.5 py-0.5 rounded">
                                   Signature
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] text-[#123B45]/70">
+                            <p className="text-[11px] text-[#0E171A]/70">
                               From ${selectedVehicle.pricePerDay} / day · Driver, Fuel & Snack Included
                             </p>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-1 text-[11px] font-semibold text-[#123B45] bg-[#FAF7F0] px-2.5 py-1 rounded-full border border-[#123B45]/12 shrink-0">
-                          <Check className="w-3 h-3 text-[#F4C95D]" />
+                        <div className="flex items-center gap-1 text-[11px] font-semibold text-[#0E171A] bg-[#FAF8F5] px-2.5 py-1 rounded-full border border-[#0E171A]/12 shrink-0">
+                          <Check className="w-3 h-3 text-[#3D95A5]" />
                           <span>Selected</span>
                         </div>
                       </div>
@@ -561,11 +656,11 @@ export default function PlanTripModal({
                           onClick={() => setTransportChoice('none')}
                           className={`py-2.5 px-3.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
                             transportChoice === 'none'
-                              ? 'bg-[#123B45] text-[#FAF7F0] shadow-2xs'
-                              : 'bg-white text-[#123B45]/70 border border-[#123B45]/15 hover:border-[#123B45]/40'
+                              ? 'bg-[#0E171A] text-[#FAF8F5] shadow-2xs'
+                              : 'bg-white text-[#0E171A]/70 border border-[#0E171A]/15 hover:border-[#0E171A]/40'
                           }`}
                         >
-                          {transportChoice === 'none' && <Check className="w-3 h-3 text-[#F4C95D]" />}
+                          {transportChoice === 'none' && <Check className="w-3 h-3 text-[#3D95A5]" />}
                           <span>No car needed</span>
                         </button>
 
@@ -574,18 +669,18 @@ export default function PlanTripModal({
                           onClick={() => setTransportChoice('need-car')}
                           className={`py-2.5 px-3.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
                             transportChoice === 'need-car'
-                              ? 'bg-[#123B45] text-[#FAF7F0] shadow-2xs'
-                              : 'bg-white text-[#123B45]/70 border border-[#123B45]/15 hover:border-[#123B45]/40'
+                              ? 'bg-[#0E171A] text-[#FAF8F5] shadow-2xs'
+                              : 'bg-white text-[#0E171A]/70 border border-[#0E171A]/15 hover:border-[#0E171A]/40'
                           }`}
                         >
-                          {transportChoice === 'need-car' && <Check className="w-3 h-3 text-[#F4C95D]" />}
+                          {transportChoice === 'need-car' && <Check className="w-3 h-3 text-[#3D95A5]" />}
                           <span>I’d like a car</span>
                         </button>
                       </div>
 
                       {transportChoice === 'need-car' && (
-                        <div className="p-3 rounded-xl bg-white border border-[#123B45]/12 flex items-center justify-between gap-3 text-xs">
-                          <span className="text-[#123B45]/70">
+                        <div className="p-3 rounded-xl bg-white border border-[#0E171A]/12 flex items-center justify-between gap-3 text-xs">
+                          <span className="text-[#0E171A]/70">
                             Want to choose a specific vehicle first?
                           </span>
                           <button
@@ -594,7 +689,7 @@ export default function PlanTripModal({
                               onClose();
                               onNavigateToYourRide();
                             }}
-                            className="shrink-0 text-xs font-semibold text-[#123B45] hover:text-[#4F9DA6] underline flex items-center gap-1 cursor-pointer"
+                            className="shrink-0 text-xs font-semibold text-[#0E171A] hover:text-[#2E7987] underline flex items-center gap-1 cursor-pointer"
                           >
                             <span>Browse available rides →</span>
                           </button>
@@ -606,14 +701,14 @@ export default function PlanTripModal({
 
                 {/* 5. CONTACT & PREFERENCES */}
                 <div className="space-y-3 pt-1">
-                  <label className="block text-xs font-semibold text-[#123B45] uppercase tracking-wider">
-                    5. Contact Details
+                  <label className="block text-xs font-semibold text-[#0E171A] uppercase tracking-wider">
+                    How can we reach you? <span className="normal-case tracking-normal font-normal text-[#0E171A]/50">(WhatsApp or email)</span>
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     {/* Full Name */}
                     <div className="space-y-1">
-                      <label className="block text-xs font-medium text-[#123B45]">
-                        Full Name <span className="text-[#4F9DA6]">*</span>
+                      <label className="block text-xs font-medium text-[#0E171A]">
+                        Full Name <span className="text-[#2E7987]">*</span>
                       </label>
                       <input
                         type="text"
@@ -629,10 +724,10 @@ export default function PlanTripModal({
                             });
                           }
                         }}
-                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#123B45] placeholder-[#123B45]/40 focus:outline-none transition-colors ${
+                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#0E171A] placeholder-[#0E171A]/40 focus:outline-none transition-colors ${
                           fieldErrors.name
                             ? 'border-red-400 focus:border-red-500 bg-red-50/20'
-                            : 'border-[#123B45]/15 focus:border-[#4F9DA6]'
+                            : 'border-[#0E171A]/15 focus:border-[#2E7987]'
                         }`}
                       />
                       {fieldErrors.name && (
@@ -642,8 +737,8 @@ export default function PlanTripModal({
 
                     {/* Email Address */}
                     <div className="space-y-1">
-                      <label className="block text-xs font-medium text-[#123B45]">
-                        Email Address <span className="text-[#4F9DA6]">*</span>
+                      <label className="block text-xs font-medium text-[#0E171A]">
+                        Email
                       </label>
                       <input
                         type="email"
@@ -659,10 +754,10 @@ export default function PlanTripModal({
                             });
                           }
                         }}
-                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#123B45] placeholder-[#123B45]/40 focus:outline-none transition-colors ${
+                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#0E171A] placeholder-[#0E171A]/40 focus:outline-none transition-colors ${
                           fieldErrors.email
                             ? 'border-red-400 focus:border-red-500 bg-red-50/20'
-                            : 'border-[#123B45]/15 focus:border-[#4F9DA6]'
+                            : 'border-[#0E171A]/15 focus:border-[#2E7987]'
                         }`}
                       />
                       {fieldErrors.email && (
@@ -672,12 +767,12 @@ export default function PlanTripModal({
 
                     {/* WhatsApp Number */}
                     <div className="space-y-1 sm:col-span-2">
-                      <label className="block text-xs font-medium text-[#123B45]">
-                        WhatsApp / Phone <span className="text-[#4F9DA6]">*</span>
+                      <label className="block text-xs font-medium text-[#0E171A]">
+                        WhatsApp (with country code)
                       </label>
                       <input
                         type="tel"
-                        placeholder="+62 812..."
+                        placeholder="+61 412 345 678"
                         value={whatsapp}
                         onChange={(e) => {
                           setWhatsapp(e.target.value);
@@ -689,10 +784,10 @@ export default function PlanTripModal({
                             });
                           }
                         }}
-                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#123B45] placeholder-[#123B45]/40 focus:outline-none transition-colors ${
+                        className={`w-full bg-white px-3.5 py-2.5 rounded-xl border text-sm text-[#0E171A] placeholder-[#0E171A]/40 focus:outline-none transition-colors ${
                           fieldErrors.whatsapp
                             ? 'border-red-400 focus:border-red-500 bg-red-50/20'
-                            : 'border-[#123B45]/15 focus:border-[#4F9DA6]'
+                            : 'border-[#0E171A]/15 focus:border-[#2E7987]'
                         }`}
                       />
                       {fieldErrors.whatsapp && (
@@ -703,15 +798,15 @@ export default function PlanTripModal({
 
                   {/* Travel notes / message */}
                   <div className="space-y-1">
-                    <label className="block text-xs font-medium text-[#123B45]">
-                      Anything else? <span className="text-[#123B45]/40 font-normal">(optional)</span>
+                    <label className="block text-xs font-medium text-[#0E171A]">
+                      Anything else? <span className="text-[#0E171A]/40 font-normal">(optional)</span>
                     </label>
                     <input
                       type="text"
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Tell us what you have in mind or any special wishes…"
-                      className="w-full bg-white px-3.5 py-2.5 rounded-xl border border-[#123B45]/15 text-sm text-[#123B45] placeholder-[#123B45]/40 focus:outline-none focus:border-[#4F9DA6] transition-colors"
+                      className="w-full bg-white px-3.5 py-2.5 rounded-xl border border-[#0E171A]/15 text-sm text-[#0E171A] placeholder-[#0E171A]/40 focus:outline-none focus:border-[#2E7987] transition-colors"
                     />
                   </div>
                 </div>
@@ -722,21 +817,21 @@ export default function PlanTripModal({
                     type="submit"
                     disabled={isSubmitting}
                     id="plan-trip-submit-button"
-                    className="w-full bg-[#123B45] hover:bg-[#0E2E36] active:scale-[0.99] text-[#FAF7F0] py-3.5 rounded-xl font-semibold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                    className="w-full bg-[#0E171A] hover:bg-[#1C2A2E] active:scale-[0.99] text-[#FAF8F5] py-3.5 rounded-xl font-semibold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin text-[#F4C95D]" />
-                        <span>SUBMITTING...</span>
+                        <Loader2 className="w-4 h-4 animate-spin text-[#3D95A5]" />
+                        <span>Sending…</span>
                       </>
                     ) : (
                       <>
-                        <span>PLAN MY TRIP →</span>
+                        <span>Send my plan →</span>
                       </>
                     )}
                   </button>
-                  <p className="text-center text-[11px] text-[#123B45]/50 mt-2 font-normal">
-                    Direct concierge response on WhatsApp · No spam, no obligation
+                  <p className="text-center text-[11px] text-[#0E171A]/50 mt-2 font-normal">
+                    We reply personally by WhatsApp or email · No spam, no obligation
                   </p>
                 </div>
               </motion.form>
