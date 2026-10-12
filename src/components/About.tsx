@@ -1,7 +1,7 @@
-import baleSasakImage from '../assets/images/bale_sasak_traditional_1788475908128.jpg';
-import lombokFoodImage from '../assets/images/lombok_traditional_food_1788475923293.jpg';
-import sekotongCoastalImage from '../assets/images/sekotong_coastal_lombok_1788475821026.jpg';
-import desaSadeVillageImage from '../assets/images/desa_sade_village_weaving_1788475836400.jpg';
+import baleSasakImage from '../assets/images/bale_sasak_sade_real.jpg';
+import lombokFoodImage from '../assets/images/ayam_taliwang_real.jpg';
+import sekotongCoastalImage from '../assets/images/gili_nanggu_sekotong_real.jpg';
+import desaSadeVillageImage from '../assets/images/desa_sade_weaver_real.jpg';
 
 export default function About() {
   const principles = [
@@ -52,13 +52,13 @@ export default function About() {
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_20px_50px_rgba(14,23,26,0.06)] group">
                   <img
                     src={sekotongCoastalImage}
-                    alt="Pristine white sandbar and crystal turquoise waters of Sekotong islands in West Lombok"
+                    alt="Turquoise shallows and traditional outrigger boats at Gili Nanggu, Sekotong, West Lombok"
                     className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     loading="lazy"
                   />
                 </div>
                 <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-3 pl-2">
-                  Sekotong Archipelago · West Lombok
+                  Gili Nanggu · Sekotong, West Lombok
                 </p>
               </div>
 
@@ -69,7 +69,7 @@ export default function About() {
                   <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_12px_36px_rgba(14,23,26,0.05)] group">
                     <img
                       src={desaSadeVillageImage}
-                      alt="Sasak artisan woman weaving traditional songket textile outside a Bale Sasak house in Desa Sade village, Central Lombok"
+                      alt="Young Sasak woman spinning thread for traditional weaving in Desa Sade village, Central Lombok"
                       className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       loading="lazy"
                     />
@@ -86,13 +86,13 @@ export default function About() {
                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.08)] group">
                       <img
                         src={baleSasakImage}
-                        alt="Authentic Bale Sasak traditional house with thatched alang-alang roof and woven bamboo walls in a Sasak village"
+                        alt="Bale Sasak traditional houses with thatched alang-alang roofs and woven bamboo walls in Desa Sade"
                         className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
                     <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 pl-2">
-                      Bale Sasak · Vernacular Architecture
+                      Bale Sasak · Desa Sade
                     </p>
                   </div>
 
@@ -101,13 +101,13 @@ export default function About() {
                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_10px_30px_rgba(14,23,26,0.05)] group">
                       <img
                         src={lombokFoodImage}
-                        alt="Traditional Lombok cuisine with Ayam Taliwang, Plecing Kangkung, and fresh sambal on banana leaf platter"
+                        alt="Grilled Ayam Taliwang served on a banana leaf, a signature dish of Lombok"
                         className="w-full h-full object-cover object-center rounded-xl sm:rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
                     <p className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#0E171A]/60 mt-2 text-right pr-2">
-                      Ayam Taliwang & Plecing Kangkung
+                      Ayam Taliwang · Lombok Cuisine
                     </p>
                   </div>
                 </div>
@@ -176,6 +176,11 @@ export default function About() {
             <p>Let the island set the pace.</p>
           </div>
         </div>
+
+        {/* Photo credits (CC BY / CC BY-SA, Wikimedia Commons) */}
+        <p className="mt-16 sm:mt-20 text-center text-[10px] leading-relaxed text-[#0E171A]/40">
+          Photos via Wikimedia Commons: Gili Nanggu by Muanseey (CC BY-SA 4.0) · Desa Sade weaver by Tabitaisabella (CC BY-SA 4.0) · Bale Sasak &amp; Ayam Taliwang by Midori (CC BY 3.0)
+        </p>
       </div>
     </section>
   );
