@@ -20,7 +20,7 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <div className="max-w-3xl mb-8 sm:mb-16">
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#0E171A] tracking-tight leading-[1.08]">
             Don't Just Visit Lombok.<br />Experience It.
           </h2>
@@ -30,7 +30,7 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
         </div>
 
         {/* Apple-Style Liquid Glass Segmented Control Filter */}
-        <div className="flex items-center overflow-x-auto pb-4 mb-10 sm:mb-14 no-scrollbar">
+        <div className="flex items-center overflow-x-auto pb-3 sm:pb-4 mb-6 sm:mb-14 no-scrollbar">
           <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full liquid-glass-subtle refraction-highlight">
             {EXPERIENCES.map((exp) => {
               const isSelected = exp.category === activeCategory;
@@ -62,7 +62,7 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center liquid-glass-standard rounded-3xl p-6 sm:p-10 lg:p-12 refraction-highlight"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-12 items-center liquid-glass-standard rounded-3xl p-3.5 sm:p-10 lg:p-12 refraction-highlight"
             >
               {/* Large Photography Container */}
               <div className="lg:col-span-7 overflow-hidden rounded-2xl aspect-[16/10] sm:aspect-[16/9] relative group shadow-[0_16px_40px_rgba(14,23,26,0.06)] border border-white/60">
@@ -74,12 +74,12 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
                 {/* Floating Liquid Glass Badges */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2 text-xs">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between gap-2 text-[11px] sm:text-xs">
                   <div className="flex items-center gap-2 liquid-glass-dark-subtle px-3.5 py-1.5 rounded-full text-white/95">
                     <MapPin className="w-3.5 h-3.5 text-[#3D95A5]" />
                     <span className="font-medium tracking-wide">{activeExp.location}</span>
                   </div>
-                  <div className="flex items-center gap-2 liquid-glass-dark-subtle px-3.5 py-1.5 rounded-full text-white/95">
+                  <div className="hidden sm:flex items-center gap-2 liquid-glass-dark-subtle px-3.5 py-1.5 rounded-full text-white/95">
                     <Clock className="w-3.5 h-3.5 text-[#3D95A5]" />
                     <span className="font-medium tracking-wide">{activeExp.duration}</span>
                   </div>
@@ -87,27 +87,32 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
               </div>
 
               {/* Minimal Editorial Details */}
-              <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="lg:col-span-5 flex flex-col justify-center px-1.5 pb-1.5 sm:p-0">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#2E7987]">
                     {activeExp.category}
                   </span>
                 </div>
 
-                <h3 className="font-semibold text-2xl sm:text-3xl text-[#0E171A] tracking-tight">
+                <h3 className="font-semibold text-xl sm:text-3xl text-[#0E171A] tracking-tight">
                   {activeExp.title}
                 </h3>
 
-                <p className="text-sm sm:text-base text-[#2E7987] font-medium mt-1.5">
+                <p className="text-[13px] sm:text-base text-[#2E7987] font-medium mt-1 sm:mt-1.5">
                   "{activeExp.tagline}"
                 </p>
 
-                <p className="mt-4 text-sm sm:text-base text-[#0E171A]/75 font-normal leading-relaxed">
+                <p className="mt-2.5 sm:mt-4 text-[13px] sm:text-base text-[#0E171A]/75 font-normal leading-relaxed">
                   {activeExp.description}
                 </p>
 
                 {/* Key Highlights */}
-                <div className="mt-6 pt-5 border-t border-[#0E171A]/10 space-y-2.5">
+                <div className="sm:hidden mt-3 flex items-center gap-1.5 text-xs font-medium text-[#0E171A]/80">
+                  <Clock className="w-3.5 h-3.5 text-[#2E7987]" />
+                  <span>{activeExp.duration}</span>
+                </div>
+
+                <div className="hidden sm:block mt-6 pt-5 border-t border-[#0E171A]/10 space-y-2.5">
                   <span className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#0E171A]/55 block mb-2">
                     Signature Elements
                   </span>
@@ -120,12 +125,12 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
                 </div>
 
                 {/* Plan Trip Action: Liquid Glass Button */}
-                <div className="mt-8">
+                <div className="mt-5 sm:mt-8">
                   <button
                     type="button"
                     onClick={() => onPlanExperience(activeExp)}
                     id={`btn-plan-exp-${activeExp.id}`}
-                    className="liquid-glass-btn-primary inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] px-6 py-3.5 rounded-full cursor-pointer"
+                    className="liquid-glass-btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] px-6 py-3 sm:py-3.5 rounded-full cursor-pointer"
                   >
                     <span>Add to My Trip Plan</span>
                     <ArrowRight className="w-3.5 h-3.5" />

@@ -1,8 +1,11 @@
 import { Destination, Experience, TravelPackage, GalleryItem, Testimonial } from '../types';
 import mandalikaCircuitImage from '../assets/images/mandalika_circuit_aerial_1788474583616.jpg';
 import tanjungAanBeachImage from '../assets/images/tanjung_aan_beach_1788474598205.jpg';
-import rinjaniAdventureImage from '../assets/images/rinjani_adventure_cover_1788476233808.jpg';
-import sasakTraditionalFeastImage from '../assets/images/sasak_traditional_feast_1788476667136.jpg';
+import expIslandEscapesImage from '../assets/images/exp_island_escapes.jpg';
+import expSurfBeachImage from '../assets/images/exp_surf_beach.jpg';
+import expSunsetMereseImage from '../assets/images/exp_sunset_merese.jpg';
+import expWaterfallAdventureImage from '../assets/images/exp_waterfall_adventure.jpg';
+import expSasakWeavingImage from '../assets/images/exp_sasak_weaving.jpg';
 import giliUnderwaterStatuesImage from '../assets/images/gili_underwater_statues_1788529424643.jpg';
 import pkgEssentialImage from '../assets/images/pkg_lombok_essential.jpg';
 import pkgIslandImage from '../assets/images/pkg_island_escape.jpg';
@@ -106,8 +109,8 @@ export const EXPERIENCES: Experience[] = [
     category: 'ISLAND ESCAPES',
     title: 'Island Escapes',
     tagline: 'Island hopping, snorkeling and open-water adventures.',
-    description: 'Charter a handcrafted teak outrigger across the turquoise channel to secluded sandbars, drifting over pristine coral gardens where only sea turtles swim.',
-    image: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1600&q=85',
+    description: 'Charter a traditional outrigger across the turquoise channel to secluded sandbars, drifting over coral gardens where sea turtles swim.',
+    image: expIslandEscapesImage,
     location: 'North Lombok & Gili Archipelago',
     duration: 'Full Day / Half Day',
     highlights: ['Private local captain & marine guide', 'Snorkel gear & underwater photography', 'Fresh tropical fruit feast on deck'],
@@ -117,8 +120,8 @@ export const EXPERIENCES: Experience[] = [
     category: 'SURF & BEACH',
     title: 'Surf & Beach',
     tagline: 'Find your wave, your beach, or simply your place in the sun.',
-    description: 'Whether paddling into your first gentle green wave at Selong Belanak or navigating the outer reefs of Gerupuk with a seasoned local coach, experience Lombok surf at its purest.',
-    image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1600&q=85',
+    description: 'Paddle into your first gentle green wave at Selong Belanak or ride the outer reefs of Gerupuk with a seasoned local coach.',
+    image: expSurfBeachImage,
     location: 'South Coast & Secret Coves',
     duration: 'Morning / Late Afternoon',
     highlights: ['Private coach & customized board selection', 'Tide & wind matched daily sessions', 'High-definition surf photography included'],
@@ -128,8 +131,8 @@ export const EXPERIENCES: Experience[] = [
     category: 'SUNSET MOMENTS',
     title: 'Sunset Moments',
     tagline: 'Golden hours, quiet shores and evenings worth staying out for.',
-    description: 'Climb the breeze-kissed headlands of Bukit Merese or settle into comfortable linen cushions on the west beach of Gili Trawangan for Lombok’s legendary fiery skies.',
-    image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1600&q=85',
+    description: 'Climb the breezy headlands of Bukit Merese with fresh coconuts and watch the bays turn rose-gold.',
+    image: expSunsetMereseImage,
     location: 'Bukit Merese & Gili West Coast',
     duration: 'Twilight (4:30 PM – 7:00 PM)',
     highlights: ['Chilled fresh young coconuts & artisanal snacks', 'Private scenic seating & panoramic vantage', 'Spectacular Mount Agung silhouettes'],
@@ -139,8 +142,8 @@ export const EXPERIENCES: Experience[] = [
     category: 'ISLAND ADVENTURES',
     title: 'Island Adventures',
     tagline: 'Go beyond the obvious and explore more of Lombok.',
-    description: 'Cruise down smooth coastal ribbons flanked by coconut palm canopies, venture north toward cascading Sendang Gile waterfalls, and discover lookouts unseen by tourist buses.',
-    image: rinjaniAdventureImage,
+    description: 'Venture north to the cascading Sendang Gile and Tiu Kelep waterfalls through rainforest trails few tour buses reach.',
+    image: expWaterfallAdventureImage,
     location: 'Rinjani Foothills & Coastline',
     duration: 'Full Day Expedition',
     highlights: ['Private air-conditioned defender or vintage scooter convoy', 'Lush rainforest trails & refreshing canyon pools', 'Local insider route maps'],
@@ -150,8 +153,8 @@ export const EXPERIENCES: Experience[] = [
     category: 'LOCAL LIFE',
     title: 'Local Life',
     tagline: 'Taste, meet and experience the island beyond the itinerary.',
-    description: 'Immerse in the timeless rhythms of Sasak villages: hand-thrown pottery in Banyumulek, intricate songket weaving in Sukarara, and home-cooked heirloom sambal in village courtyards.',
-    image: sasakTraditionalFeastImage,
+    description: 'Sit with Sasak weavers in Sukarara, shape clay in Banyumulek and share a home-cooked village lunch.',
+    image: expSasakWeavingImage,
     location: 'Central Lombok Villages',
     duration: 'Half Day Immersion',
     highlights: ['Warm village host introductions', 'Hands-on heritage weaving & clay craft', 'Traditional Sasak family lunch'],
