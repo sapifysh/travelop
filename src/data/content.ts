@@ -4,6 +4,12 @@ import tanjungAanBeachImage from '../assets/images/tanjung_aan_beach_17884745982
 import rinjaniAdventureImage from '../assets/images/rinjani_adventure_cover_1788476233808.jpg';
 import sasakTraditionalFeastImage from '../assets/images/sasak_traditional_feast_1788476667136.jpg';
 import giliUnderwaterStatuesImage from '../assets/images/gili_underwater_statues_1788529424643.jpg';
+import pkgEssentialImage from '../assets/images/pkg_lombok_essential.jpg';
+import pkgIslandImage from '../assets/images/pkg_island_escape.jpg';
+import pkgAdventureImage from '../assets/images/pkg_lombok_adventure.jpg';
+import pkgRomanceImage from '../assets/images/pkg_lombok_romance.jpg';
+import pkgRinjaniImage from '../assets/images/pkg_rinjani_summit.jpg';
+import pkgSouthDayImage from '../assets/images/pkg_south_lombok_day.jpg';
 
 export const BRAND = {
   name: 'FIRST-LOP',
@@ -157,132 +163,237 @@ export const PACKAGES: TravelPackage[] = [
     id: 'lombok-essential',
     name: 'THE LOMBOK ESSENTIAL',
     duration: '3 DAYS · 2 NIGHTS',
-    subtitle: 'For first-time visitors who want a little bit of everything.',
-    tags: ['Beaches', 'Kuta', 'Selong Belanak', 'Island Life'],
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
-    priceEstimate: 'From $420 / guest',
-    description: 'A curated introductory escape tailored for those wanting to soak in Lombok\'s most iconic white sand beaches, stunning headlands, and warm island hospitality without feeling rushed.',
+    subtitle: 'For first-timers who want Lombok\'s best beaches without the rush.',
+    tags: ['Kuta', 'Selong Belanak', 'Bukit Merese', '5-Star Stay'],
+    image: pkgEssentialImage,
+    priceEstimate: 'From $460 / guest',
+    description: 'Two nights at a five-star beachfront resort in Mandalika, the south coast\'s most famous sunset hill and the long white bay of Selong Belanak, with a private driver the whole way.',
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in South Lombok & Kuta Vibe',
-        description: 'Private airport greeting, check-in to boutique villa. Afternoon orientation around Kuta village and a sunset welcome toast atop Bukit Merese.',
-        highlights: ['Private VIP airport transfer', 'Boutique eco-resort check-in', 'Sunset at Bukit Merese']
+        title: 'Arrival & Merese Sunset',
+        description: 'Private pickup at Lombok International Airport and check-in at Pullman Lombok Mandalika (or similar). In the late afternoon we drive up Bukit Merese for sunset drinks over Tanjung Aan.',
+        highlights: ['Private airport pickup', '5-star beachfront resort', 'Sunset drinks on Bukit Merese']
       },
       {
         day: 2,
-        title: 'Selong Belanak & Beachfront Living',
-        description: 'Morning drive to the serene crescent bay of Selong Belanak. Gentle surf lesson or beach day under sun umbrellas, followed by fresh coconut seafood lunch.',
-        highlights: ['Private coach surf session or sun lounger setup', 'Beachfront lunch at local warung', 'Afternoon visit to Tanjung Aan']
+        title: 'Selong Belanak & Tanjung Aan',
+        description: 'Morning at Selong Belanak with a gentle surf lesson or a lounger on the sand, seafood lunch at a beach warung, then a slow afternoon swim at Tanjung Aan.',
+        highlights: ['Beginner surf lesson or beach lounger', 'Seafood lunch by the bay', 'Afternoon at Tanjung Aan']
       },
       {
         day: 3,
         title: 'Slow Morning & Departure',
-        description: 'Leisurely artisanal breakfast, souvenir stop for handmade Lombok pottery, and private transfer back to the airport.',
-        highlights: ['Relaxed check-out', 'Artisanal craft stops', 'Airport transfer']
+        description: 'Late breakfast at the resort, a stop at Banyumulek pottery village on the way, and a private transfer to the airport.',
+        highlights: ['Banyumulek pottery village', 'Private airport transfer']
       }
     ],
     included: [
-      '2 nights boutique villa accommodation',
-      'Private air-conditioned island vehicle & personal host',
-      'All airport and destination transfers',
-      'Daily curated breakfasts & 1 sunset picnic',
-      'Surf coaching or beach lounger pass in Selong Belanak'
+      '2 nights 5-star beachfront resort (Pullman Lombok Mandalika or similar)',
+      'Private car & English-speaking driver',
+      'Airport transfers & daily breakfast',
+      'Surf lesson or beach lounger, sunset drinks',
+      'Toyota Alphard upgrade available'
     ]
   },
   {
     id: 'island-escape',
     name: 'THE ISLAND ESCAPE',
     duration: '4 DAYS · 3 NIGHTS',
-    subtitle: 'Slow down, get on the water and discover the Gili Islands.',
-    tags: ['Gili Trawangan', 'Gili Meno', 'Snorkeling', 'Sunset'],
-    image: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1200&q=85',
-    priceEstimate: 'From $580 / guest',
-    description: 'Designed for ocean lovers and seekers of slow island time. Glide through turquoise waters, snorkel alongside wild sea turtles, and watch the sun sink into the sea from bicycle saddles.',
+    subtitle: 'Turtles, clear water and slow island days on the Gilis.',
+    tags: ['Gili Trawangan', 'Gili Meno', 'Snorkeling', 'Beachfront'],
+    image: pkgIslandImage,
+    priceEstimate: 'From $700 / guest',
+    description: 'Three nights at a four-star beachfront resort on Gili Trawangan, a private snorkel boat to the turtle reefs of Gili Meno and Gili Air, and a free day to do nothing at all.',
     itinerary: [
       {
         day: 1,
-        title: 'Mainland to the Gili Archipelago',
-        description: 'Scenic coastal drive to Teluk Nare followed by a private speedboat crossing to Gili Trawangan. Island cruiser bicycles provided upon villa check-in.',
-        highlights: ['Private harbor speedboat crossing', 'Boutique beachfront lodge', 'Bicycle island sunset loop']
+        title: 'Crossing to Gili Trawangan',
+        description: 'Coastal drive to Teluk Nare and a private speedboat across. Beachfront check-in, then bikes along the island loop to the west-coast sunset.',
+        highlights: ['Private speedboat crossing', '4-star beachfront resort', 'West-coast sunset by bike']
       },
       {
         day: 2,
-        title: 'Private Outrigger Turtle Safari',
-        description: 'Morning private wooden boat charter to the quiet coral reefs of Gili Meno and Gili Air. Snorkel among the famous underwater sculptures and giant sea turtles.',
-        highlights: ['Private boat & local marine guide', 'Jason deCaires underwater statues', 'Secluded island beach lunch']
+        title: 'Private Snorkel Safari',
+        description: 'A wooden boat with your own guide to the reefs of Gili Meno and Gili Air: sea turtles, coral gardens and Jason deCaires Taylor\'s Nest statues. Lunch on a quiet beach.',
+        highlights: ['Swim with green sea turtles', 'The Nest underwater statues', 'Beach lunch on Gili Air']
       },
       {
         day: 3,
-        title: 'Gili Meno Day of Quiet Sanctuary',
-        description: 'Hop across to peaceful Gili Meno for a morning walk along pristine, empty shores, lagoon bird watching, and an intimate candlelit beachfront dinner.',
-        highlights: ['Tranquil Meno excursion', 'Private sunset dinner setup', 'Stargazing by the ocean']
+        title: 'Free Day on Gili Trawangan',
+        description: 'Spa, bikes or a long swim, at your own pace. In the evening, a candlelit dinner set up on the sand.',
+        highlights: ['Free day at your pace', 'Candlelit beach dinner']
       },
       {
         day: 4,
-        title: 'Slow Breakfast & Mainland Return',
-        description: 'Last swim in the crystal-clear morning tide, followed by private boat return to Lombok and transfer to airport or onward journey.',
-        highlights: ['Morning ocean dip', 'Private boat return', 'Transfer to airport or Kuta']
+        title: 'Return to Lombok',
+        description: 'Morning swim, private boat back to Lombok and a transfer to the airport or onward to Kuta.',
+        highlights: ['Private boat return', 'Airport or Kuta transfer']
       }
     ],
     included: [
-      '3 nights luxury boutique island stay',
-      'Private speedboats & harbor transfers',
-      'Dedicated private wooden boat snorkeling safari',
-      'Island cruiser bicycles for your entire stay',
-      'Curated beachfront candlelit dining experience'
+      '3 nights 4-star beachfront resort on Gili Trawangan',
+      'Private speedboat both ways',
+      'Private snorkel boat, guide & gear',
+      'Bikes, candlelit beach dinner',
+      'All land transfers & daily breakfast'
     ]
   },
   {
     id: 'lombok-adventure',
     name: 'THE LOMBOK ADVENTURE',
     duration: '5 DAYS · 4 NIGHTS',
-    subtitle: 'For travelers who want to go further and experience Lombok beyond the postcard.',
-    tags: ['Beaches', 'Surf', 'Island Hopping', 'Local Experiences'],
-    image: rinjaniAdventureImage,
-    priceEstimate: 'From $790 / guest',
-    description: 'The ultimate contemporary Lombok voyage. Spans wild south coast cliffs, exhilarating boat excursions, cultural Sasak immersion, and secret hidden waterfalls under the shadow of Mount Rinjani.',
+    subtitle: 'Surf, waterfalls and Sasak culture: the Lombok beyond the postcard.',
+    tags: ['Surf', 'Waterfalls', 'Sasak Culture', 'Rinjani Foothills'],
+    image: pkgAdventureImage,
+    priceEstimate: 'From $840 / guest',
+    description: 'Four nights on the south coast with a boat out to Gerupuk\'s waves, the twin waterfalls under Mount Rinjani, songket weaving in Sukarara and lunch in a bamboo grove at Bonjeruk.',
     itinerary: [
       {
         day: 1,
-        title: 'Arrival & Wild South Coast Sunset',
-        description: 'Welcome to Kuta Lombok. Settle in, grab afternoon iced coffee at a local roastery, and take in the panoramic sunset over Seger Beach headlands.',
-        highlights: ['VIP airport arrival', 'Boutique stay check-in', 'Seger Beach coastal walk']
+        title: 'Kuta Arrival',
+        description: 'Airport pickup and check-in at Novotel Lombok or Pullman Mandalika (or similar). Sunset walk on the Seger headland.',
+        highlights: ['Private airport pickup', '4–5 star resort in Mandalika', 'Seger headland sunset']
       },
       {
         day: 2,
-        title: 'Surf, Secret Coves & Tanjung Aan',
-        description: 'Morning surf session or paddleboarding in Gerupuk bay, afternoon exploring the powdery white sands of Tanjung Aan and cliff viewpoints.',
-        highlights: ['Boat trip to outer reef wave or bay', 'Tanjung Aan sunset climb', 'Fresh grilled seafood dinner']
+        title: 'Gerupuk & Tanjung Aan',
+        description: 'Boat out to a Gerupuk wave with a surf coach, or paddleboard the calm bay. Tanjung Aan in the afternoon and grilled seafood for dinner.',
+        highlights: ['Surf boat & coach at Gerupuk', 'Tanjung Aan beach', 'Grilled seafood dinner']
       },
       {
         day: 3,
-        title: 'Rinjani Foothills & Sendang Gile Falls',
-        description: 'Head north through the lush heart of Lombok. Walk the shaded jungle path to towering Sendang Gile and Tiu Kelep waterfalls with a local highland guide.',
-        highlights: ['Scenic drive through tropical valleys', 'Refreshing natural pool swims', 'Traditional Sasak highland coffee']
+        title: 'Rinjani Foothills',
+        description: 'Drive north to Senaru and walk to Sendang Gile and Tiu Kelep waterfalls with a licensed local guide, then highland Sasak coffee.',
+        highlights: ['Sendang Gile & Tiu Kelep', 'Licensed local guide', 'Highland coffee stop']
       },
       {
         day: 4,
-        title: 'Living Heritage & Traditional Craft',
-        description: 'Visit Sasak artisan villages of Sukarara and Banyumulek to witness master weaving and terracotta crafts, concluding with a home-style Sasak feast.',
-        highlights: ['Authentic community connections', 'Traditional songket weaving workshop', 'Family courtyard lunch']
+        title: 'Sasak Heritage',
+        description: 'Songket weaving with Sasak women in Desa Sukarara, terracotta in Banyumulek, and a lunch of nasi ayam merangkat at Pasar Bambu Bonjeruk.',
+        highlights: ['Desa Sukarara weaving', 'Banyumulek pottery', 'Lunch at Pasar Bambu Bonjeruk']
       },
       {
         day: 5,
-        title: 'Farewell Lombok',
-        description: 'Sunrise beach walk along Selong Belanak, leisurely brunch, and private departure transfer with memories that linger.',
-        highlights: ['Sunrise ocean stroll', 'Slow brunch', 'Airport farewell']
+        title: 'Farewell Swim',
+        description: 'Morning swim at Selong Belanak, a slow brunch and a private airport transfer.',
+        highlights: ['Selong Belanak morning swim', 'Private airport transfer']
       }
     ],
     included: [
-      '4 nights handpicked design villa accommodation',
-      'Dedicated private driver & local experiential guide throughout',
-      'Highland waterfall excursion with local forest ranger',
-      'Private surf excursion & all gear',
-      'All entry permits, village contributions & authentic meals'
+      '4 nights 4–5 star resort in Mandalika',
+      'Private driver & licensed local guide',
+      'Surf boat & coach, waterfall guide',
+      'Entry fees & village contributions',
+      'Daily breakfast & lunches'
+    ]
+  },
+  {
+    id: 'lombok-romance',
+    name: 'THE LOMBOK ROMANCE',
+    duration: '4 DAYS · 3 NIGHTS',
+    subtitle: 'For honeymooners and couples who want privacy, views and long sunsets.',
+    tags: ['Honeymoon', 'Tampah Hills', 'Royal Avila', 'Private Villa'],
+    image: pkgRomanceImage,
+    priceEstimate: 'From $1,550 / guest',
+    description: 'One night on the cliffs of Malimbu at Royal Avila Boutique Resort, a private boat day to Gili Meno, then two nights in a private-pool villa at Tampah Hills with butler service and the south coast below you.',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Malimbu Cliffs',
+        description: 'Private pickup and check-in to an ocean suite at Royal Avila Boutique Resort, perched above Malimbu bay. Sunset with the Gili islands on the horizon.',
+        highlights: ['Ocean suite at Royal Avila', 'Malimbu sunset', 'Private airport pickup']
+      },
+      {
+        day: 2,
+        title: 'Private Gili Meno Day',
+        description: 'A short drive to the harbour and a private boat to Gili Meno: snorkel with turtles and lunch on an empty stretch of beach. In the afternoon we drive south to Tampah Hills.',
+        highlights: ['Private boat to Gili Meno', 'Snorkel with sea turtles', 'Check-in at Tampah Hills']
+      },
+      {
+        day: 3,
+        title: 'Spa & Private Dinner',
+        description: 'A slow morning at your villa\'s infinity pool, a couples\' spa treatment, and a private dinner set up for two on Bukit Merese at sunset.',
+        highlights: ['Couples\' spa treatment', 'Private sunset dinner on Bukit Merese']
+      },
+      {
+        day: 4,
+        title: 'Floating Breakfast & Departure',
+        description: 'Floating breakfast in your pool, then a private transfer to the airport, about 40 minutes away.',
+        highlights: ['Floating breakfast', 'Private airport transfer']
+      }
+    ],
+    included: [
+      '1 night ocean suite at Royal Avila Boutique Resort (5-star)',
+      '2 nights private-pool villa at Tampah Hills with butler service',
+      'Private boat day to Gili Meno',
+      'Couples\' spa & private sunset dinner',
+      'Private car & driver, daily breakfast'
+    ]
+  },
+  {
+    id: 'rinjani-summit',
+    name: 'THE RINJANI SUMMIT',
+    duration: '3 DAYS · 2 NIGHTS',
+    subtitle: 'Sunrise over Segara Anak from the rim of Indonesia\'s second-highest volcano.',
+    tags: ['Trekking', 'Mount Rinjani', 'Crater Rim', 'April–December'],
+    image: pkgRinjaniImage,
+    priceEstimate: 'From $560 / guest',
+    description: 'The Senaru crater-rim trek with a licensed guide and porters who carry the camp, cook and have the tent ready before you arrive. Runs April to December, when the national park is open.',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Senaru',
+        description: 'Private transfer to Senaru, a gear check with your licensed guide and a night at a mountain lodge.',
+        highlights: ['Private transfer', 'Gear briefing', 'Mountain lodge night']
+      },
+      {
+        day: 2,
+        title: 'To the Crater Rim',
+        description: 'Trek through rainforest up to the Senaru crater rim at 2,641 m. Camp is set when you arrive, and the sun goes down over the crater lake.',
+        highlights: ['Rainforest trek', 'Senaru crater rim, 2,641 m', 'Sunset over Segara Anak']
+      },
+      {
+        day: 3,
+        title: 'Sunrise & Descent',
+        description: 'Sunrise over Segara Anak and the Barujari cone, then the descent to Senaru and a transfer back to your hotel.',
+        highlights: ['Crater-rim sunrise', 'Descent to Senaru', 'Hotel transfer']
+      }
+    ],
+    included: [
+      'Licensed trekking guide & porters',
+      'Tents, sleeping bags & all meals on the mountain',
+      'Rinjani National Park permits',
+      '1 night mountain lodge in Senaru',
+      'Private transfers'
+    ]
+  },
+  {
+    id: 'south-lombok-day',
+    name: 'SOUTH LOMBOK PRIVATE DAY',
+    duration: 'FULL DAY',
+    subtitle: 'One perfect day for short stays: craft, food, beaches and sunset.',
+    tags: ['Day Trip', 'Sukarara', 'Bonjeruk', 'Tanjung Aan'],
+    image: pkgSouthDayImage,
+    priceEstimate: 'From $75 / guest',
+    description: 'A private car and driver for the day: songket weaving in Sukarara, lunch in the bamboo grove at Bonjeruk, a swim at Tanjung Aan and sunset on Bukit Merese.',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Craft, Lunch, Beach & Sunset',
+        description: 'Morning songket weaving with Sasak women in Desa Sukarara, nasi ayam merangkat at Pasar Bambu Bonjeruk, an afternoon swim at Tanjung Aan, then sunset on Bukit Merese before drop-off at your hotel.',
+        highlights: ['Desa Sukarara weaving', 'Lunch at Pasar Bambu Bonjeruk', 'Swim at Tanjung Aan', 'Sunset on Bukit Merese']
+      }
+    ],
+    included: [
+      'Private car & driver (up to 10 hours)',
+      'Lunch at Pasar Bambu Bonjeruk',
+      'Village contribution',
+      'Fresh coconut at sunset'
     ]
   }
 ];
+
 
 export const WHY_US_FEATURES = [
   {

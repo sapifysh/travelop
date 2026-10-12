@@ -28,7 +28,7 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
           </p>
         </div>
 
-        {/* 3 Apple-Style Liquid Glass Package Cards */}
+        {/* Apple-Style Liquid Glass Package Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8">
           {PACKAGES.map((pkg, index) => {
             return (
