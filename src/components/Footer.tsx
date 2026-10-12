@@ -1,6 +1,7 @@
 import { BRAND } from '../data/content';
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import FirstLopLogo from './FirstLopLogo';
+import { SEO_PAGES } from '../pages/SeoLandingPage';
 
 interface FooterProps {
   onOpenAboutModal?: () => void;
@@ -96,6 +97,18 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
                   Contact & Inquiries
                 </button>
               </li>
+              <li>
+                <a href="/lombok-private-tours" className="hover:text-white transition-colors">
+                  Lombok Private Tours
+                </a>
+              </li>
+              {SEO_PAGES.map((p) => (
+                <li key={p.slug}>
+                  <a href={`/${p.slug}`} className="hover:text-white transition-colors">
+                    {p.navLabel}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
