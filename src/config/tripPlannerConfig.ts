@@ -43,36 +43,43 @@ export async function submitTripInquiryToGoogleSheet(
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
+  const body = JSON.stringify(normalizedPayload);
 
   try {
-    // Mode 'no-cors' is required for browser-to-Google-Apps-Script POST requests
-    // to prevent CORS redirect failures ("Load failed").
-    // The request body contains the complete serialized JSON payload.
-    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+    // text/plain keeps this a "simple" CORS request (no preflight). Apps Script
+    // answers via a redirect that carries Access-Control-Allow-Origin: *, so we
+    // can read the JSON reply and only report success when the row was written.
+    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       cache: 'no-cache',
-      body: JSON.stringify(normalizedPayload),
+      redirect: 'follow',
+      body,
       signal: controller.signal,
     });
-
     clearTimeout(timeoutId);
 
-    // Because 'no-cors' produces an opaque response, we do not call response.json()
-    // and treat the request as submitted once the fetch promise resolves.
-    return {
-      success: true,
-      message: 'Inquiry successfully submitted to Google Sheets.',
-    };
+    let result: { success?: boolean; message?: string } = {};
+    try {
+      result = await response.json();
+    } catch {
+      result = {};
+    }
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || `Server responded with ${response.status}`);
+    }
+
+    return { success: true, message: result.message || 'Inquiry recorded.' };
   } catch (error: any) {
     clearTimeout(timeoutId);
     console.error('[FIRST-LOP Google Apps Script Submission Error]:', error);
 
     if (error?.name === 'AbortError') {
-      throw new Error('The request timed out. Please check your connection and try again.');
+      throw new Error('The request timed out. Please check your connection and try again, or message us on WhatsApp.');
     }
 
-    throw new Error("We couldn't send your inquiry right now. Please try again.");
+    throw new Error("We couldn't save your plan right now. Please try again, or send it to us on WhatsApp.");
   }
 }
 
