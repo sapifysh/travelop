@@ -74,7 +74,7 @@ export default function YourRide({
     <section
       id="your-ride"
       ref={sectionRef}
-      className="relative py-20 sm:py-28 bg-[#FAF7F0] text-[#123B45] overflow-hidden"
+      className="relative py-20 sm:py-28 bg-[#FAF8F5] text-[#123B45] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* ========================================================================= */}
