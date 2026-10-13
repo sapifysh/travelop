@@ -24,6 +24,7 @@ import FirstLopLogo from '../components/FirstLopLogo';
 import { BRAND } from '../data/content';
 import { VEHICLE_OPTIONS } from '../data/vehicles';
 import { VehicleOption } from '../types';
+import { scrollToTarget } from '../utils/smoothScroll';
 
 interface LombokPrivateToursProps {
   onNavigateHome: () => void;
@@ -231,10 +232,7 @@ export default function LombokPrivateTours({
   }, []);
 
   const scrollToTours = () => {
-    const el = document.getElementById('curated-private-tours');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToTarget('#curated-private-tours', { offset: -80, duration: 1.15 });
   };
 
   const whatsappInquiryUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(

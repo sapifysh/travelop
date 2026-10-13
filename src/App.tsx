@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+import { setLenis, getLenis, scrollToTarget } from './utils/smoothScroll';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Experiences from './components/Experiences';
@@ -28,6 +31,37 @@ export default function App() {
     return '/';
   });
 
+  // Initialize Lenis with ultimate creamy lerp physics (signature luxury butter feel)
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.075,
+      wheelMultiplier: 1.0,
+      syncTouch: true,
+      syncTouchLerp: 0.08,
+      touchInertiaExponent: 1.85,
+      touchMultiplier: 1.2,
+      smoothWheel: true,
+      infinite: false,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+    });
+
+    setLenis(lenis);
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      setLenis(null);
+    };
+  }, []);
+
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
@@ -40,7 +74,12 @@ export default function App() {
     if (typeof window !== 'undefined') {
       window.history.pushState({}, '', path);
       setCurrentPath(path);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      }
     }
   };
 
@@ -48,6 +87,18 @@ export default function App() {
   const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<TravelPackage | null>(null);
+
+  // Pause background smooth scroll when modal overlay is active
+  useEffect(() => {
+    const isModalActive = isPlanModalOpen || !!selectedDestination || !!selectedPackage;
+    const lenis = getLenis();
+    if (!lenis) return;
+    if (isModalActive) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }, [isPlanModalOpen, selectedDestination, selectedPackage]);
 
   // Vehicle selection state shared across Journey A and Journey B
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleOption | null>(null);
@@ -72,19 +123,7 @@ export default function App() {
   };
 
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
+    scrollToTarget('#' + id, { offset: -80, duration: 1.15 });
   };
 
   const handleNavigateToYourRide = () => {
@@ -176,7 +215,8 @@ export default function App() {
         {/* Hero Section */}
         <Hero
           onExploreLombok={() => scrollToSection('experiences')}
-          onViewExperiences={() => scrollToSection('experiences')}
+          onSeePackages={() => scrollToSection('packages')}
+          onViewExperiences={() => scrollToSection('packages')}
           onSelectDestinationFast={handleSelectDestinationFast}
         />
 

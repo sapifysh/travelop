@@ -130,6 +130,7 @@ export default function YourRide({
           <div
             ref={carouselRef}
             onScroll={handleScroll}
+            data-lenis-prevent
             className="flex md:grid md:grid-cols-3 gap-5 sm:gap-7 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 md:mx-0 md:px-0"
           >
             {BEST_PICKS.map((car) => {

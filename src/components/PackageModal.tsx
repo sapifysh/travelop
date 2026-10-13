@@ -63,7 +63,7 @@ export default function PackageModal({
         </div>
 
         {/* Content Body */}
-        <div className="p-5 sm:p-6 space-y-6 flex-1 min-h-0 overflow-y-auto overscroll-contain">
+        <div data-lenis-prevent className="p-5 sm:p-6 space-y-6 flex-1 min-h-0 overflow-y-auto overscroll-contain">
           {/* Overview */}
           <div>
             <span className="text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#2E7987] block mb-2">

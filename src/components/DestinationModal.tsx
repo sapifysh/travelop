@@ -66,7 +66,7 @@ export default function DestinationModal({
         </div>
 
         {/* Content */}
-        <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+        <div data-lenis-prevent className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto overscroll-contain">
           <div>
             <span className="text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#2E7987] block mb-2">
               About This Shore

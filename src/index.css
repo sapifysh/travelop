@@ -255,6 +255,48 @@ h1 { letter-spacing: -0.01em; }
   background: #2E7987;
 }
 
+/* ========================================================================= */
+/* 90 FPS FLUID SCROLLING & COMPOSITOR OPTIMIZATIONS (Lenis Integration) */
+/* ========================================================================= */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+/* Promote fixed/sticky header and key interaction layers to GPU compositor to eliminate scroll repaint jank */
+#main-navigation,
+#hero-primary-cta,
+#hero-secondary-cta {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* WHY BOOK WITH US — liquid-glass marquee (left to right) */
 .why-marquee {
   overflow: hidden;

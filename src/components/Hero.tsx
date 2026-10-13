@@ -3,14 +3,17 @@ import heroImage from '../assets/images/hero_tanjung_aan.jpg';
 
 interface HeroProps {
   onExploreLombok: () => void;
-  onViewExperiences: () => void;
+  onSeePackages?: () => void;
+  onViewExperiences?: () => void;
   onSelectDestinationFast?: (destinationId: string) => void;
 }
 
 export default function Hero({
   onExploreLombok,
+  onSeePackages,
   onViewExperiences,
 }: HeroProps) {
+  const handlePackagesClick = onSeePackages || onViewExperiences;
   return (
     <section
       id="hero"
@@ -67,27 +70,27 @@ export default function Hero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.45 }}
-          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto"
+          className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full sm:w-auto"
         >
           {/* Primary CTA: Warm yellow/gold accent rounded pill with dark text and subtle glow */}
           <button
             type="button"
             onClick={onExploreLombok}
             id="hero-primary-cta"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#1F4A52] font-bold text-xs sm:text-[13px] tracking-[0.16em] uppercase px-8 py-4 rounded-full shadow-[0_10px_25px_rgba(244,201,93,0.32)] transition-all duration-200 cursor-pointer"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#1F4A52] font-bold text-[11px] sm:text-xs tracking-[0.16em] uppercase px-6 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-[0_6px_20px_rgba(244,201,93,0.28)] transition-all duration-200 cursor-pointer"
           >
             <span>EXPLORE LOMBOK</span>
-            <span className="text-base font-normal transition-transform duration-200 group-hover:translate-x-1">→</span>
+            <span className="text-sm font-normal transition-transform duration-200 group-hover:translate-x-0.5">→</span>
           </button>
 
           {/* Secondary CTA: Translucent dark/teal background, thin subtle border, white text */}
           <button
             type="button"
-            onClick={onViewExperiences}
+            onClick={handlePackagesClick}
             id="hero-secondary-cta"
-            className="w-full sm:w-auto inline-flex items-center justify-center bg-[#294E56]/65 hover:bg-[#294E56]/90 active:scale-[0.98] text-[#F6F5EE] border border-white/20 hover:border-white/35 font-semibold text-xs sm:text-[13px] tracking-[0.16em] uppercase px-8 py-4 rounded-full transition-all duration-200 cursor-pointer backdrop-blur-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-[#294E56]/65 hover:bg-[#294E56]/90 active:scale-[0.98] text-[#F6F5EE] border border-white/20 hover:border-white/35 font-semibold text-[11px] sm:text-xs tracking-[0.16em] uppercase px-6 sm:px-7 py-3 sm:py-3.5 rounded-full transition-all duration-200 cursor-pointer backdrop-blur-sm"
           >
-            <span>VIEW EXPERIENCES</span>
+            <span>SEE PACKAGES</span>
           </button>
         </motion.div>
       </div>

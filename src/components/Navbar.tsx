@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight, MessageCircle } from 'lucide-react';
 import { BRAND } from '../data/content';
 import FirstLopLogo from './FirstLopLogo';
+import { scrollToTarget } from '../utils/smoothScroll';
 
 interface NavbarProps {
   onOpenPlanModal: () => void;
@@ -13,11 +14,14 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 60) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -27,19 +31,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 88;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
+    scrollToTarget('#' + id, { offset: -88, duration: 1.15 });
   };
 
   return (
@@ -59,7 +51,7 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              scrollToTarget(0, { offset: 0, duration: 1.15 });
             }}
             className="group flex items-center focus:outline-none select-none transition-opacity duration-200 hover:opacity-90"
             id="nav-logo"

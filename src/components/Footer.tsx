@@ -2,6 +2,7 @@ import { BRAND } from '../data/content';
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import FirstLopLogo from './FirstLopLogo';
 import { SEO_PAGES } from '../pages/SeoLandingPage';
+import { scrollToTarget } from '../utils/smoothScroll';
 
 interface FooterProps {
   onOpenAboutModal?: () => void;
@@ -10,19 +11,7 @@ interface FooterProps {
 
 export default function Footer({ onOpenPlanModal }: FooterProps) {
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 88;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    scrollToTarget('#' + id, { offset: -88, duration: 1.15 });
   };
 
   return (

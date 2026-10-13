@@ -290,7 +290,7 @@ export default function PlanTripModal({
         </button>
 
         {/* Modal Scrollable Body */}
-        <div className="overflow-y-auto p-6 sm:p-8">
+        <div data-lenis-prevent className="overflow-y-auto p-6 sm:p-8 overscroll-contain">
           <AnimatePresence mode="wait">
             {isSuccess ? (
               /* ========================================================================= */

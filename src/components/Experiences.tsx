@@ -30,7 +30,7 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
         </div>
 
         {/* Apple-Style Liquid Glass Segmented Control Filter */}
-        <div className="flex items-center overflow-x-auto pb-3 sm:pb-4 mb-6 sm:mb-14 no-scrollbar">
+        <div data-lenis-prevent className="flex items-center overflow-x-auto pb-3 sm:pb-4 mb-6 sm:mb-14 no-scrollbar">
           <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full liquid-glass-subtle refraction-highlight">
             {EXPERIENCES.map((exp) => {
               const isSelected = exp.category === activeCategory;

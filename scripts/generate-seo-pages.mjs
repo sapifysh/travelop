@@ -71,7 +71,7 @@ ${others.map((o) => `          <a href="/${o.slug}">${esc(o.navLabel)}</a>`).joi
       </main>`;
 
   const html = `<!doctype html>
-<html lang="${p.lang}" class="scroll-smooth">
+<html lang="${p.lang}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
