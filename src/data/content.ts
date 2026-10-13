@@ -12,6 +12,7 @@ import pkgIslandImage from '../assets/images/pkg_island_escape.jpg';
 import pkgAdventureImage from '../assets/images/pkg_lombok_adventure.jpg';
 import pkgRomanceImage from '../assets/images/pkg_lombok_romance.jpg';
 import pkgRinjaniImage from '../assets/images/pkg_rinjani_summit.jpg';
+import giliTrawanganUnderwaterImage from '../assets/images/gili_trawangan_underwater.jpg';
 import pkgSouthDayImage from '../assets/images/pkg_south_lombok_day.jpg';
 
 export const BRAND = {
@@ -240,6 +241,37 @@ export const PACKAGES: TravelPackage[] = [
       'Private snorkel boat, guide & gear',
       'Bikes, candlelit beach dinner',
       'All land transfers & daily breakfast'
+    ]
+  },
+  {
+    id: 'gili-getaway',
+    name: 'THE GILI GETAWAY',
+    duration: '2 DAYS · 1 NIGHT',
+    subtitle: 'Turtles, one island sunset and a slow morning on the Gilis, for travellers short on time.',
+    tags: ['Gili Trawangan', 'Gili Meno', 'Snorkeling', 'Malimbu'],
+    image: giliTrawanganUnderwaterImage,
+    priceEstimate: 'From $290 / guest',
+    description: 'One night at a four-star beachfront resort on Gili Trawangan, a private snorkel boat to the turtle reefs and the Nest statues, and the coastal road home through the Pusuk hills, with a private driver the whole way. Solo travellers welcome from $390.',
+    itinerary: [
+      {
+        day: 1,
+        title: 'Malimbu & Gili Sunset',
+        description: 'Private pickup at the airport or your hotel, a coffee stop at the Malimbu cliffs, then a private speedboat from Teluk Nare to Gili Trawangan. Afternoon snorkel with green sea turtles, then bikes to the west-coast sunset swings.',
+        highlights: ['Malimbu viewpoint', 'Private speedboat crossing', 'Sunset on the west coast']
+      },
+      {
+        day: 2,
+        title: 'Gili Meno & Pusuk Hills',
+        description: 'An early private boat to the Nest underwater statues off Gili Meno, a late breakfast, then back to Lombok by noon. On the way, the monkey forest at Pusuk Pass, then a private transfer to the airport or your hotel.',
+        highlights: ['The Nest underwater statues', 'Pusuk monkey forest', 'Airport or hotel transfer']
+      }
+    ],
+    included: [
+      '1 night 4-star beachfront resort on Gili Trawangan (Aston Sunset Beach or similar)',
+      'Private speedboat both ways',
+      'Private snorkel boat, guide & gear',
+      'Bikes & breakfast',
+      'Private car & English-speaking driver, all transfers'
     ]
   },
   {
