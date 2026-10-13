@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import heroImage from '../assets/images/hero_tanjung_aan.jpg';
 
 interface HeroProps {
   onExploreLombok: () => void;
@@ -18,18 +19,19 @@ export default function Hero({
       {/* Background Image with Layered Deep Teal Color Grading */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2400&q=90"
-          alt="Lombok turquoise beach and peaceful coastline"
+          src={heroImage}
+          alt="Tanjung Aan bay seen from Bukit Merese at golden hour, South Lombok"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center"
         />
         {/* Layer 1: Subtle top vignette for crystal clear navigation readability without a dark bar */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,36,43,0.55)] via-[rgba(41,78,86,0.40)] to-[rgba(31,74,82,0.65)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,36,43,0.30)] via-[rgba(41,78,86,0.18)] to-[rgba(31,74,82,0.35)]" />
 
         {/* Layer 2: Subtle lighter teal luminous radial glow around center/right */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_65%_45%,rgba(73,127,135,0.20),transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_65%_45%,rgba(73,127,135,0.10),transparent_75%)]" />
 
         {/* Layer 3: Subtle bottom gradient transition to content */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(10,36,43,0.5)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(10,36,43,0.25)]" />
       </div>
 
       {/* Spacer to balance top navigation when in flex flex-col justify-between */}
