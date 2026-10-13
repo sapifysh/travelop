@@ -4,11 +4,6 @@ import {
   Check,
   ArrowRight,
   ArrowUp,
-  Users,
-  UserCheck,
-  Fuel,
-  Cookie,
-  Clock,
 } from 'lucide-react';
 import { VehicleOption } from '../types';
 import {
@@ -22,6 +17,108 @@ interface YourRideProps {
   selectedVehicle: VehicleOption | null;
   onSelectVehicle: (vehicle: VehicleOption | null) => void;
   onContinueToPlan: (vehicle?: VehicleOption) => void;
+}
+
+interface CarCardProps {
+  key?: string;
+  car: VehicleOption;
+  domId: string;
+  isSelected: boolean;
+  onChoose: () => void;
+  onContinue: () => void;
+  compact?: boolean;
+  className?: string;
+}
+
+function CarCard({ car, domId, isSelected, onChoose, onContinue, compact = false, className = '' }: CarCardProps) {
+  return (
+    <div
+      id={domId}
+      className={`group relative flex flex-col overflow-hidden rounded-[20px] bg-white border transition-[box-shadow,border-color] duration-500 ${
+        isSelected
+          ? 'border-[#123B45]/70 shadow-[0_20px_44px_-24px_rgba(18,59,69,0.35)]'
+          : 'border-[#123B45]/[0.07] shadow-[0_1px_2px_rgba(18,59,69,0.04)] hover:shadow-[0_20px_44px_-24px_rgba(18,59,69,0.22)]'
+      } ${className}`}
+    >
+      {/* Photo, edge to edge */}
+      <div className={`relative w-full ${compact ? 'aspect-[16/10]' : 'aspect-[4/3]'} overflow-hidden bg-[#F3EFE8]`}>
+        <img
+          src={car.image}
+          alt={car.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+        />
+        {isSelected && (
+          <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FAF8F5]/95 text-[#123B45] text-[11px] font-medium tracking-wide flex items-center gap-1.5 shadow-sm">
+            <Check className="w-3 h-3" />
+            <span>Selected</span>
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className={`flex flex-1 flex-col ${compact ? 'p-5' : 'p-6 sm:p-7'}`}>
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h4 className={`${compact ? 'text-base' : 'text-xl'} font-semibold text-[#123B45] tracking-tight truncate`}>
+              {car.name}
+            </h4>
+            {car.seats && (
+              <p className="mt-1 text-[13px] text-[#123B45]/55">{car.seats} seats · with driver</p>
+            )}
+          </div>
+          <div className="text-right shrink-0">
+            <span className="block text-[11px] text-[#123B45]/50 leading-none">from</span>
+            <span className={`${compact ? 'text-lg' : 'text-2xl'} font-medium text-[#123B45] tracking-tight leading-tight`}>
+              ${car.pricePerDay}
+            </span>
+            <span className="text-[12px] text-[#123B45]/50"> /day</span>
+          </div>
+        </div>
+
+        <div className={`${compact ? 'mt-4 pt-4' : 'mt-5 pt-5'} border-t border-[#123B45]/[0.07]`}>
+          <p className="text-[13px] leading-relaxed text-[#123B45]/65">
+            Driver · Fuel for your itinerary · Lombok snack · Up to 12 hrs a day
+          </p>
+          <p className="mt-1.5 text-[11px] leading-normal text-[#123B45]/40">
+            Additional hours are charged separately.
+          </p>
+        </div>
+
+        <div className={`mt-auto ${compact ? 'pt-5' : 'pt-6'}`}>
+          {isSelected ? (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={onContinue}
+                className="flex-1 rounded-full bg-[#123B45] text-[#FAF7F0] hover:bg-[#0E2E36] py-3 px-5 text-[13px] font-medium tracking-wide transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2"
+                aria-label="Continue to trip planner"
+              >
+                <span>Continue to plan</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={onChoose}
+                className="shrink-0 text-[12px] text-[#123B45]/55 hover:text-[#123B45] underline underline-offset-4 decoration-[#123B45]/20 transition-colors cursor-pointer"
+              >
+                Change
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={onChoose}
+              className="w-full rounded-full border border-[#123B45]/20 text-[#123B45] hover:bg-[#123B45] hover:text-[#FAF7F0] hover:border-[#123B45] py-3 px-5 text-[13px] font-medium tracking-wide transition-colors duration-300 cursor-pointer"
+            >
+              Choose this car
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function YourRide({
@@ -137,120 +234,15 @@ export default function YourRide({
               const isSelected = selectedVehicle?.id === car.id;
 
               return (
-                <div
+                <CarCard
                   key={car.id}
-                  id={`best-pick-${car.id}`}
-                  className={`w-[85vw] max-w-[340px] md:max-w-none md:w-auto shrink-0 snap-center group relative rounded-2xl bg-white border p-6 flex flex-col justify-between transition-all duration-300 ${
-                    isSelected
-                      ? 'border-[#123B45] ring-2 ring-[#123B45]/15 shadow-md -translate-y-0.5'
-                      : 'border-[#123B45]/12 hover:border-[#123B45]/30 hover:shadow-[0_10px_30px_rgb(18,59,69,0.06)]'
-                  }`}
-                >
-                  {/* Photo with clean background */}
-                  <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#FAF7F0] mb-5">
-                    <img
-                      src={car.image}
-                      alt={car.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
-
-                    {isSelected && (
-                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#123B45] text-[#FAF7F0] text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1 shadow-sm">
-                        <Check className="w-3 h-3 text-[#F4C95D]" />
-                        <span>Selected</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Vehicle Details */}
-                  <div className="space-y-3 mb-5">
-                    <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-lg font-bold text-[#123B45] tracking-tight">
-                        {car.name}
-                      </h4>
-                      {car.seats && (
-                        <span className="text-xs text-[#123B45]/60 flex items-center gap-1 shrink-0">
-                          <Users className="w-3.5 h-3.5 text-[#4F9DA6]" />
-                          <span>{car.seats} seats</span>
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-baseline gap-1 pt-0.5">
-                      <span className="text-xs text-[#123B45]/60 font-medium">From</span>
-                      <span className="text-2xl font-bold text-[#123B45] tracking-tight">
-                        ${car.pricePerDay}
-                      </span>
-                      <span className="text-xs text-[#123B45]/60 font-medium">/ day</span>
-                    </div>
-
-                    {/* INCLUDED Benefits */}
-                    <div className="pt-3 border-t border-[#123B45]/8 space-y-2.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#4F9DA6] block">
-                        INCLUDED
-                      </span>
-                      <ul className="space-y-2">
-                        <li className="flex items-center gap-2 text-xs text-[#123B45]/85">
-                          <UserCheck className="w-3.5 h-3.5 text-[#4F9DA6] shrink-0" />
-                          <span className="font-medium">Professional driver</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-[#123B45]/85">
-                          <Fuel className="w-3.5 h-3.5 text-[#4F9DA6] shrink-0" />
-                          <span className="font-medium">Fuel for your selected itinerary</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-[#123B45]/85">
-                          <Cookie className="w-3.5 h-3.5 text-[#4F9DA6] shrink-0" />
-                          <span className="font-medium">Traditional Lombok snack</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-[#123B45]/85">
-                          <Clock className="w-3.5 h-3.5 text-[#4F9DA6] shrink-0" />
-                          <span className="font-medium text-[#123B45]/75">Up to 12 hours / day</span>
-                        </li>
-                      </ul>
-
-                      {/* Subtle disclaimer */}
-                      <p className="text-[10px] text-[#123B45]/50 leading-normal pt-1">
-                        Fuel included for the agreed itinerary, an additional hours are excluded.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="mt-auto pt-3 border-t border-[#123B45]/8 flex items-center gap-2.5">
-                    <button
-                      type="button"
-                      onClick={() => handleChoose(car)}
-                      className={`w-full text-xs font-semibold uppercase tracking-[0.14em] py-3 px-4 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
-                        isSelected
-                          ? 'bg-[#123B45] text-[#FAF7F0] hover:bg-[#0E2E36]'
-                          : 'bg-[#FAF7F0] text-[#123B45] hover:bg-[#123B45] hover:text-[#FAF7F0] border border-[#123B45]/15'
-                      }`}
-                    >
-                      {isSelected ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-[#F4C95D]" />
-                          <span>Selected</span>
-                        </>
-                      ) : (
-                        <span>CHOOSE</span>
-                      )}
-                    </button>
-
-                    {isSelected && (
-                      <button
-                        type="button"
-                        onClick={() => onContinueToPlan(car)}
-                        title="Continue to Plan Your Trip"
-                        className="shrink-0 bg-[#F4C95D] hover:bg-[#eab941] text-[#123B45] p-3 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center shadow-xs"
-                        aria-label="Continue to trip planner"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                </div>
+                  domId={`best-pick-${car.id}`}
+                  car={car}
+                  isSelected={isSelected}
+                  onChoose={() => handleChoose(car)}
+                  onContinue={() => onContinueToPlan(car)}
+                  className="w-[85vw] max-w-[340px] md:max-w-none md:w-auto shrink-0 snap-center"
+                />
               );
             })}
           </div>
@@ -326,118 +318,15 @@ export default function YourRide({
                           const isSelected = selectedVehicle?.id === car.id;
 
                           return (
-                            <div
+                            <CarCard
                               key={car.id}
-                              id={`additional-vehicle-${car.id}`}
-                              className={`group relative rounded-2xl bg-white border p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ${
-                                isSelected
-                                  ? 'border-[#123B45] ring-2 ring-[#123B45]/15 shadow-md -translate-y-0.5'
-                                  : 'border-[#123B45]/12 hover:border-[#123B45]/30 hover:shadow-[0_8px_24px_rgb(18,59,69,0.06)]'
-                              }`}
-                            >
-                              {/* Photo */}
-                              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#FAF7F0] mb-4">
-                                <img
-                                  src={car.image}
-                                  alt={car.name}
-                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                  loading="lazy"
-                                  referrerPolicy="no-referrer"
-                                />
-
-                                {isSelected && (
-                                  <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#123B45] text-[#FAF7F0] text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1 shadow-sm">
-                                    <Check className="w-3 h-3 text-[#F4C95D]" />
-                                    <span>Selected</span>
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* Details */}
-                              <div className="space-y-2.5 mb-4">
-                                <div className="flex items-center justify-between gap-2">
-                                  <h5 className="text-base font-bold text-[#123B45] tracking-tight truncate">
-                                    {car.name}
-                                  </h5>
-                                  {car.seats && (
-                                    <span className="text-xs text-[#123B45]/60 flex items-center gap-1 shrink-0">
-                                      <Users className="w-3 h-3 text-[#4F9DA6]" />
-                                      <span>{car.seats} seats</span>
-                                    </span>
-                                  )}
-                                </div>
-
-                                <div className="flex items-baseline gap-1 pt-0.5">
-                                  <span className="text-xs text-[#123B45]/60 font-medium">From</span>
-                                  <span className="text-lg font-bold text-[#123B45]">
-                                    ${car.pricePerDay}
-                                  </span>
-                                  <span className="text-xs text-[#123B45]/60 font-medium">/ day</span>
-                                </div>
-
-                                {/* INCLUDED Benefits */}
-                                <div className="pt-2.5 border-t border-[#123B45]/8 space-y-1.5">
-                                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#4F9DA6] block">
-                                    INCLUDED
-                                  </span>
-                                  <ul className="space-y-1.5 text-xs text-[#123B45]/85">
-                                    <li className="flex items-center gap-1.5">
-                                      <UserCheck className="w-3 h-3 text-[#4F9DA6] shrink-0" />
-                                      <span className="font-medium text-xs">Professional driver</span>
-                                    </li>
-                                    <li className="flex items-center gap-1.5">
-                                      <Fuel className="w-3 h-3 text-[#4F9DA6] shrink-0" />
-                                      <span className="font-medium text-xs">Fuel for your selected itinerary</span>
-                                    </li>
-                                    <li className="flex items-center gap-1.5">
-                                      <Cookie className="w-3 h-3 text-[#4F9DA6] shrink-0" />
-                                      <span className="font-medium text-xs">Traditional Lombok snack</span>
-                                    </li>
-                                    <li className="flex items-center gap-1.5">
-                                      <Clock className="w-3 h-3 text-[#4F9DA6] shrink-0" />
-                                      <span className="font-medium text-xs text-[#123B45]/70">Up to 12 hours / day</span>
-                                    </li>
-                                  </ul>
-                                  <p className="text-[10px] text-[#123B45]/50 leading-normal pt-0.5">
-                                    Fuel included for the agreed itinerary, an additional hours are excluded.
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Actions */}
-                              <div className="mt-auto pt-2 border-t border-[#123B45]/8 flex items-center gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => handleChoose(car)}
-                                  className={`w-full text-xs font-semibold uppercase tracking-[0.14em] py-2.5 px-4 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
-                                    isSelected
-                                      ? 'bg-[#123B45] text-[#FAF7F0] hover:bg-[#0E2E36]'
-                                      : 'bg-[#FAF7F0] text-[#123B45] hover:bg-[#123B45] hover:text-[#FAF7F0] border border-[#123B45]/15'
-                                  }`}
-                                >
-                                  {isSelected ? (
-                                    <>
-                                      <Check className="w-3.5 h-3.5 text-[#F4C95D]" />
-                                      <span>Selected</span>
-                                    </>
-                                  ) : (
-                                    <span>CHOOSE</span>
-                                  )}
-                                </button>
-
-                                {isSelected && (
-                                  <button
-                                    type="button"
-                                    onClick={() => onContinueToPlan(car)}
-                                    title="Continue to Plan Your Trip"
-                                    className="shrink-0 bg-[#F4C95D] hover:bg-[#eab941] text-[#123B45] p-2.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center shadow-xs"
-                                    aria-label="Continue to trip planner"
-                                  >
-                                    <ArrowRight className="w-4 h-4" />
-                                  </button>
-                                )}
-                              </div>
-                            </div>
+                              domId={`additional-vehicle-${car.id}`}
+                              car={car}
+                              isSelected={isSelected}
+                              onChoose={() => handleChoose(car)}
+                              onContinue={() => onContinueToPlan(car)}
+                              compact
+                            />
                           );
                         })}
                       </div>
