@@ -201,28 +201,33 @@ export const SIGNATURE_ALPHARD: VehicleOption = VEHICLE_OPTIONS.find(
 export interface SubCategory {
   id: string;
   name: string;
+  note: string;
   vehicleIds: string[];
 }
 
 export const REMAINING_CATEGORIES: SubCategory[] = [
   {
     id: 'city-compact',
-    name: 'CITY & COMPACT',
+    name: 'City & Compact',
+    note: 'Up to 4 guests, easy on narrow village roads',
     vehicleIds: ['toyota-agya', 'daihatsu-ayla', 'honda-brio'],
   },
   {
     id: 'comfort-family',
-    name: 'COMFORT & FAMILY',
+    name: 'Comfort & Family',
+    note: 'Up to 7 guests, with room for luggage',
     vehicleIds: ['suzuki-xl7', 'ertiga-hybrid', 'all-new-avanza', 'all-new-xenia'],
   },
   {
     id: 'suv-adventure',
-    name: 'SUV & ADVENTURE',
+    name: 'SUV & Adventure',
+    note: '5 to 7 guests, higher clearance for hill roads',
     vehicleIds: ['honda-br-v', 'toyota-raize'],
   },
   {
     id: 'premium',
-    name: 'PREMIUM',
+    name: 'Premium',
+    note: '7 guests, the quietest ride on long drives',
     vehicleIds: ['zenix-type-g', 'toyota-fortuner'],
   },
 ];

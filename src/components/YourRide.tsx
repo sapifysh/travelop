@@ -306,10 +306,16 @@ export default function YourRide({
                   return (
                     <div key={cat.id} className="space-y-5">
                       {/* Subtle Category Heading */}
-                      <div className="pb-2.5 border-b border-[#123B45]/10">
-                        <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#123B45]/70">
-                          {cat.name}
-                        </h4>
+                      <div className="pb-3 border-b border-[#123B45]/[0.08] flex items-end justify-between gap-4">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-semibold tracking-tight text-[#123B45]">
+                            {cat.name}
+                          </h4>
+                          <p className="mt-1 text-[13px] text-[#123B45]/55">{cat.note}</p>
+                        </div>
+                        <span className="shrink-0 text-[12px] text-[#123B45]/45">
+                          {vehicles.length} {vehicles.length === 1 ? 'car' : 'cars'}
+                        </span>
                       </div>
 
                       {/* Remaining Vehicles Grid (Optimized for Mobile, iPad, and Desktop) */}
