@@ -2,7 +2,8 @@
 
 @theme {
   --font-serif: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Lato', system-ui, -apple-system, sans-serif;
+  --font-display: 'Libre Caslon Condensed', 'Instrument Serif', Georgia, serif;
   --font-wordmark: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
   --color-warm-ivory: #FAF8F5;
   --color-warm-ivory-light: #FCFAF7;
@@ -19,7 +20,7 @@
 
 @layer base {
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
     background-color: #FAF7F0;
     color: #123B45;
     -webkit-font-smoothing: antialiased;
@@ -27,13 +28,23 @@
   }
 
   .font-editorial {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   .font-wordmark {
     font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
   }
 }
+
+/* Display headings: Libre Caslon Condensed (unlayered, so it wins over utility weights).
+   The navbar logo sets its own fonts inline and is not a heading, so it is untouched. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-style: normal;
+}
+h1, h2 { font-weight: 500; }
+h3 { font-weight: 600; }
+h1 { letter-spacing: -0.01em; }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
