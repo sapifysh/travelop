@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
 import { BRAND } from '../data/content';
+import ctaImage from '../assets/images/cta_rinjani_golden_hour.jpg';
 
 interface FinalCTAProps {
   onPlanTrip: () => void;
@@ -14,17 +15,17 @@ export default function FinalCTA({ onPlanTrip }: FinalCTAProps) {
   return (
     <section
       id="final-cta"
-      className="relative py-28 sm:py-36 lg:py-44 w-full overflow-hidden bg-[#123B45] text-[#FAF7F0] flex items-center justify-center"
+      className="relative py-20 sm:py-24 lg:py-28 w-full overflow-hidden bg-[#123B45] text-[#FAF7F0] flex items-center justify-center"
     >
       {/* Static Background Image with Cinematic Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=2400&q=90"
-          alt="Lombok tropical coastline and turquoise bay"
+          src={ctaImage}
+          loading="lazy"
+          alt="Mount Rinjani at golden hour above the Sembalun valley, Lombok"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#123B45]/70 mix-blend-multiply pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#123B45] via-[#123B45]/55 to-[#123B45]/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#123B45]/80 via-[#123B45]/45 to-[#123B45]/50 pointer-events-none" />
       </div>
 
       {/* Content */}
@@ -40,15 +41,15 @@ export default function FinalCTA({ onPlanTrip }: FinalCTAProps) {
             Ready to Escape?
           </div>
 
-          <h2 className="font-bold text-4xl sm:text-6xl md:text-7xl text-[#FAF7F0] tracking-tight leading-[1.08]">
+          <h2 className="font-bold text-[34px] sm:text-5xl md:text-[56px] text-[#FAF7F0] tracking-tight leading-[1.08] drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
             Let's Plan Your Time in Lombok.
           </h2>
 
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-[#FAF7F0]/90 font-normal max-w-xl leading-relaxed">
+          <p className="mt-5 text-[15px] sm:text-base md:text-lg text-[#FAF7F0]/90 font-normal max-w-xl leading-relaxed">
             Tell us what kind of trip you have in mind. We'll help you put together the right days, places and experiences.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             {/* Primary CTA */}
             <button
               type="button"
