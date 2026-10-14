@@ -9,22 +9,28 @@
     "eyebrow": "LOMBOK PRIVATE DRIVER",
     "h1": "Your own private driver in Lombok, for as long as you need.",
     "intro": "Lombok is bigger than it looks and public transport barely reaches the best beaches, waterfalls and villages. A private driver solves it: one car and one local chauffeur for your group, a route you control, and no waiting for shuttles or haggling with taxis.",
-    "heroImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85",
+    "heroImage": "/seo/images/lombok-scenic-coastal-drive.jpg",
     "priceFrom": "From $40 / day with driver",
     "priceLow": 40,
     "priceHigh": 200,
     "sections": [
       {
         "h2": "How hiring a driver in Lombok works",
-        "body": "Tell us your dates, where you are staying and roughly what you want to see. We match you with a car sized for your group and a chauffeur who knows the route. On the day, your driver picks you up at your hotel, villa or Lombok International Airport (LOP) and stays with you for the whole day. Change plans as you go: stay longer at a beach, skip a stop, or ask for the warung locals actually eat at."
+        "body": "Tell us your dates, where you are staying and roughly what you want to see. We match you with a car sized for your group and a chauffeur who knows the route. On the day, your driver picks you up at your hotel, villa or Lombok International Airport (LOP) and stays with you for the whole day. Change plans as you go: stay longer at a beach, skip a stop, or ask for the warung locals actually eat at.",
+        "image": "/seo/images/toyota-alphard-lombok.jpg",
+        "imageAlt": "A private car waiting at a villa in Lombok"
       },
       {
         "h2": "Cars for every group size",
-        "body": "Couples usually take a compact Toyota Agya or Honda Brio. Families and groups of up to seven pick the Mitsubishi Xpander, Toyota Innova or Innova Zenix Hybrid. For special occasions, our flagship Toyota Alphard comes with captain seats and a premium cabin. Every car is air-conditioned and driven by a professional local chauffeur."
+        "body": "Couples usually take a compact Toyota Agya or Honda Brio. Families and groups of up to seven pick the Mitsubishi Xpander, Toyota Innova or Innova Zenix Hybrid. For special occasions, our flagship Toyota Alphard comes with captain seats and a premium cabin. Every car is air-conditioned and driven by a professional local chauffeur.",
+        "image": "/seo/images/cta-rinjani-golden-hour.jpg",
+        "imageAlt": "Mount Rinjani at golden hour"
       },
       {
         "h2": "Popular day routes with a private driver",
-        "body": "South Lombok beaches (Selong Belanak, Tanjung Aan, Bukit Merese and Kuta Mandalika); the Senaru waterfalls Sendang Gile and Tiu Kelep at the foot of Mount Rinjani; the Sasak villages of Sade, Sukarara and Banyumulek; and transfers to Teluk Nare or Bangsal harbour for the Gili Islands."
+        "body": "South Lombok beaches (Selong Belanak, Tanjung Aan, Bukit Merese and Kuta Mandalika); the Senaru waterfalls Sendang Gile and Tiu Kelep at the foot of Mount Rinjani; the Sasak villages of Sade, Sukarara and Banyumulek; and transfers to Teluk Nare or Bangsal harbour for the Gili Islands.",
+        "image": "/seo/images/pkg-lombok-adventure.jpg",
+        "imageAlt": "Tiu Kelep waterfall in North Lombok"
       }
     ],
     "highlights": [
@@ -52,7 +58,9 @@
         "q": "How far ahead should I book?",
         "a": "We recommend 24 to 48 hours ahead, and earlier in high season (July to September and the year-end holidays). Same-day requests are often possible depending on availability."
       }
-    ]
+    ],
+    "heroAlt": "A private car on the coastal road of Lombok",
+    "showFleet": true
   },
   {
     "slug": "lombok-airport-transfer",
@@ -64,22 +72,28 @@
     "eyebrow": "LOMBOK AIRPORT TRANSFER",
     "h1": "Private transfers from Lombok International Airport (LOP).",
     "intro": "Land, walk out of arrivals, and find your driver waiting with your name. FIRST-LOP airport transfers take you straight from Lombok International Airport to your hotel, villa or harbour in a private air-conditioned car, with no queues and no taxi negotiations.",
-    "heroImage": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=85",
+    "heroImage": "/seo/images/tanjung-aan-beach.jpg",
     "priceFrom": "Car with driver from $40 / day",
     "priceLow": 40,
     "priceHigh": 200,
     "sections": [
       {
         "h2": "Where we drive from the airport",
-        "body": "Lombok International Airport sits in Central Lombok, close to the south coast. The most requested transfers are to Kuta Mandalika and Tanjung Aan, Selong Belanak and the southwest surf beaches, Senggigi on the west coast, and Teluk Nare or Bangsal harbour for boats to Gili Trawangan, Gili Meno and Gili Air."
+        "body": "Lombok International Airport sits in Central Lombok, close to the south coast. The most requested transfers are to Kuta Mandalika and Tanjung Aan, Selong Belanak and the southwest surf beaches, Senggigi on the west coast, and Teluk Nare or Bangsal harbour for boats to Gili Trawangan, Gili Meno and Gili Air.",
+        "image": "/seo/images/pkg-lombok-essential.jpg",
+        "imageAlt": "A quiet bay in South Lombok"
       },
       {
         "h2": "What a FIRST-LOP airport transfer includes",
-        "body": "We track your flight, so a delay never leaves you stranded. Your driver greets you in the arrivals hall with a name board, helps with your luggage and drives you in a private car reserved only for your group. Chilled water is waiting in the car."
+        "body": "We track your flight, so a delay never leaves you stranded. Your driver greets you in the arrivals hall with a name board, helps with your luggage and drives you in a private car reserved only for your group. Chilled water is waiting in the car.",
+        "image": "/seo/images/alphard-clean-flagship.jpg",
+        "imageAlt": "A private transfer car at a Lombok resort"
       },
       {
         "h2": "Turn your transfer into a first day",
-        "body": "Arriving early? Add a few stops on the way: lunch by the beach in Kuta, the Sasak village of Sade, or a sunset at Bukit Merese before check-in. Just tell us when you book."
+        "body": "Arriving early? Add a few stops on the way: lunch by the beach in Kuta, the Sasak village of Sade, or a sunset at Bukit Merese before check-in. Just tell us when you book.",
+        "image": "/seo/images/exp-surf-beach.jpg",
+        "imageAlt": "Selong Belanak beach in South Lombok"
       }
     ],
     "highlights": [
@@ -107,7 +121,9 @@
         "q": "Which car should I choose for a family with luggage?",
         "a": "For up to seven people with luggage, choose a seven-seat car such as the Xpander, Innova or Innova Zenix. For extra comfort, the Toyota Alphard has a premium cabin and captain seats."
       }
-    ]
+    ],
+    "heroAlt": "Tanjung Aan beach near Lombok Airport",
+    "showFleet": true
   },
   {
     "slug": "gili-islands-private-tour",
@@ -119,22 +135,28 @@
     "eyebrow": "GILI ISLANDS PRIVATE TOUR",
     "h1": "The Gili Islands by private boat, without the crowded ferries.",
     "intro": "Gili Trawangan, Gili Meno and Gili Air are a short boat ride from Lombok's north coast. On a FIRST-LOP private tour, your driver takes you to the harbour and your own boat and captain take it from there: turtle reefs, the underwater statues and quiet beaches, on your schedule.",
-    "heroImage": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1600&q=85",
+    "heroImage": "/seo/images/gili-underwater-statues.jpg",
     "priceFrom": "From $110 / private charter",
     "priceLow": 110,
     "priceHigh": 200,
     "sections": [
       {
         "h2": "How the day works",
-        "body": "Your private driver picks you up anywhere on mainland Lombok and drives you to Teluk Nare harbour. There, a private wooden outrigger boat and a local captain are reserved only for your group. You snorkel with wild green sea turtles, visit the underwater statues off Gili Meno, and stop on Gili Trawangan for lunch and a car-free bicycle ride before the boat returns you to your driver."
+        "body": "Your private driver picks you up anywhere on mainland Lombok and drives you to Teluk Nare harbour. There, a private wooden outrigger boat and a local captain are reserved only for your group. You snorkel with wild green sea turtles, visit the underwater statues off Gili Meno, and stop on Gili Trawangan for lunch and a car-free bicycle ride before the boat returns you to your driver.",
+        "image": "/seo/images/exp-island-escapes.jpg",
+        "imageAlt": "A wooden boat in the Gili Islands"
       },
       {
         "h2": "Why a private Gili tour",
-        "body": "Public boats run on fixed timetables and fill up in high season. A private charter leaves when you are ready, goes where you want, and lets you stay longer at the best snorkel spots. It also suits families and couples who want a quiet day on the water."
+        "body": "Public boats run on fixed timetables and fill up in high season. A private charter leaves when you are ready, goes where you want, and lets you stay longer at the best snorkel spots. It also suits families and couples who want a quiet day on the water.",
+        "image": "/seo/images/gili-trawangan-underwater.jpg",
+        "imageAlt": "Snorkelling with a sea turtle in the Gilis"
       },
       {
         "h2": "Good to know before you go",
-        "body": "The day takes about 7 to 9 hours including the drive. Bring reef-safe sunscreen, a hat and cash for lunch on the islands. Sea conditions are calmest in the morning, so we usually start early."
+        "body": "The day takes about 7 to 9 hours including the drive. Bring reef-safe sunscreen, a hat and cash for lunch on the islands. Sea conditions are calmest in the morning, so we usually start early.",
+        "image": "/seo/images/pkg-island-escape.jpg",
+        "imageAlt": "A beach swing on Gili Trawangan"
       }
     ],
     "highlights": [
@@ -162,7 +184,9 @@
         "q": "Is snorkel gear included?",
         "a": "Tell us when you book and we will arrange snorkel gear for your group."
       }
-    ]
+    ],
+    "heroAlt": "Snorkelling over the underwater statues off Gili Meno",
+    "showFleet": false
   },
   {
     "slug": "south-lombok-tour",
@@ -174,22 +198,28 @@
     "eyebrow": "SOUTH LOMBOK TOUR",
     "h1": "South Lombok's best beaches in one private day.",
     "intro": "The south coast is why most people fall for Lombok: wide white bays, green headlands and surf that rolls in all year. A private South Lombok tour links the best of it in one relaxed day, ending with sunset on the hill at Bukit Merese.",
-    "heroImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85",
+    "heroImage": "/seo/images/hero-tanjung-aan.jpg",
     "priceFrom": "From $65 / vehicle (up to 4 guests)",
     "priceLow": 65,
     "priceHigh": 200,
     "sections": [
       {
         "h2": "A typical South Lombok itinerary",
-        "body": "Morning swim at Selong Belanak, the gentlest beach on the coast and a good place for first-time surfers. Lunch in Kuta Mandalika. Afternoon at Tanjung Aan's powdery sand and hidden coves. Finish on Bukit Merese for golden hour over the twin bays. The full day takes about 8 to 10 hours, and every stop can be changed."
+        "body": "Morning swim at Selong Belanak, the gentlest beach on the coast and a good place for first-time surfers. Lunch in Kuta Mandalika. Afternoon at Tanjung Aan's powdery sand and hidden coves. Finish on Bukit Merese for golden hour over the twin bays. The full day takes about 8 to 10 hours, and every stop can be changed.",
+        "image": "/seo/images/bukit-merese-sunset.jpg",
+        "imageAlt": "Sunset over Bukit Merese"
       },
       {
         "h2": "Add the Sasak village of Sade",
-        "body": "On the way south, stop at Sade, a traditional Sasak hamlet with thatched houses and handwoven textiles. It adds about an hour and gives the beach day some local culture."
+        "body": "On the way south, stop at Sade, a traditional Sasak hamlet with thatched houses and handwoven textiles. It adds about an hour and gives the beach day some local culture.",
+        "image": "/seo/images/sukarara-weaver.jpg",
+        "imageAlt": "A Sasak weaver in Sukarara village"
       },
       {
         "h2": "Who this tour is for",
-        "body": "Beach lovers, photographers, families and surf beginners. If you are staying in Senggigi, Mataram or near the airport, this is the easiest way to see the south without renting a scooter."
+        "body": "Beach lovers, photographers, families and surf beginners. If you are staying in Senggigi, Mataram or near the airport, this is the easiest way to see the south without renting a scooter.",
+        "image": "/seo/images/pkg-south-lombok-day.jpg",
+        "imageAlt": "A quiet South Lombok beach"
       }
     ],
     "highlights": [
@@ -217,7 +247,9 @@
         "q": "Where can you pick us up?",
         "a": "Anywhere in Lombok, including Senggigi, Mataram, Kuta and Lombok International Airport."
       }
-    ]
+    ],
+    "heroAlt": "Tanjung Aan bay in South Lombok",
+    "showFleet": false
   },
   {
     "slug": "sewa-mobil-lombok",
@@ -229,22 +261,28 @@
     "eyebrow": "SEWA MOBIL LOMBOK",
     "h1": "Sewa mobil Lombok dengan sopir, tinggal duduk dan nikmati perjalanan.",
     "intro": "Keliling Lombok paling nyaman dengan mobil pribadi dan sopir lokal yang hafal jalan. FIRST-LOP menyediakan armada dari city car sampai Toyota Alphard, sudah termasuk sopir dan BBM untuk rute perjalanan Anda, dengan penjemputan di hotel, vila, atau Bandara Internasional Lombok.",
-    "heroImage": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=85",
+    "heroImage": "/seo/images/alphard-clean-flagship.jpg",
     "priceFrom": "Mulai $40 / hari dengan sopir",
     "priceLow": 40,
     "priceHigh": 200,
     "sections": [
       {
         "h2": "Pilihan armada sewa mobil di Lombok",
-        "body": "City car untuk berdua: Toyota Agya, Daihatsu Ayla, Honda Brio. Mobil keluarga 7 kursi: Avanza, Xenia, Ertiga Hybrid, Suzuki XL7, Xpander. Kelas premium: Innova Reborn, Innova Zenix, Toyota Fortuner. Untuk acara spesial atau tamu VIP: Toyota Alphard dengan kabin premium."
+        "body": "City car untuk berdua: Toyota Agya, Daihatsu Ayla, Honda Brio. Mobil keluarga 7 kursi: Avanza, Xenia, Ertiga Hybrid, Suzuki XL7, Xpander. Kelas premium: Innova Reborn, Innova Zenix, Toyota Fortuner. Untuk acara spesial atau tamu VIP: Toyota Alphard dengan kabin premium.",
+        "image": "/seo/images/toyota-alphard-lombok.jpg",
+        "imageAlt": "Mobil sewaan di vila Lombok"
       },
       {
         "h2": "Yang sudah termasuk dalam harga",
-        "body": "Mobil ber-AC khusus untuk rombongan Anda, sopir lokal profesional, BBM sesuai rute, tol, dan parkir di destinasi. Tanpa biaya tersembunyi. Rute bisa diubah di hari perjalanan sesuai keinginan Anda."
+        "body": "Mobil ber-AC khusus untuk rombongan Anda, sopir lokal profesional, BBM sesuai rute, tol, dan parkir di destinasi. Tanpa biaya tersembunyi. Rute bisa diubah di hari perjalanan sesuai keinginan Anda.",
+        "image": "/seo/images/cta-rinjani-golden-hour.jpg",
+        "imageAlt": "Gunung Rinjani saat matahari terbenam"
       },
       {
         "h2": "Rute favorit tamu kami",
-        "body": "Pantai selatan (Selong Belanak, Tanjung Aan, Kuta Mandalika, Bukit Merese), air terjun Sendang Gile dan Tiu Kelep di Senaru, desa adat Sasak Sade dan Sukarara, serta antar ke Pelabuhan Teluk Nare atau Bangsal untuk menyeberang ke Gili Trawangan, Gili Meno, dan Gili Air."
+        "body": "Pantai selatan (Selong Belanak, Tanjung Aan, Kuta Mandalika, Bukit Merese), air terjun Sendang Gile dan Tiu Kelep di Senaru, desa adat Sasak Sade dan Sukarara, serta antar ke Pelabuhan Teluk Nare atau Bangsal untuk menyeberang ke Gili Trawangan, Gili Meno, dan Gili Air.",
+        "image": "/seo/images/mandalika-circuit-aerial.jpg",
+        "imageAlt": "Sirkuit Mandalika dan pantai Lombok Selatan"
       }
     ],
     "highlights": [
@@ -272,6 +310,8 @@
         "q": "Berapa lama sebelumnya harus memesan?",
         "a": "Sebaiknya 1 sampai 2 hari sebelumnya, dan lebih awal saat musim ramai (Juli sampai September dan libur akhir tahun). Pesanan di hari yang sama sering bisa, tergantung ketersediaan armada."
       }
-    ]
+    ],
+    "heroAlt": "Sewa mobil dengan sopir di Lombok",
+    "showFleet": true
   }
 ]

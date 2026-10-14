@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ChevronDown, Clock, MessageCircle } from 'lucide
 import FirstLopLogo from '../components/FirstLopLogo';
 import { BRAND } from '../data/content';
 import blogPosts from '../data/blog-posts.json';
-import { SEO_PAGES } from './SeoLandingPage';
+import { SEO_PAGES } from '../data/seoPages';
 
 export interface BlogPost {
   slug: string;

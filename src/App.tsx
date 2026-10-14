@@ -63,6 +63,16 @@ export default function App() {
     };
   }, []);
 
+  // Arriving from a landing page link such as "/#packages": scroll to that home section.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (window.location.pathname !== '/' || !id) return;
+    const t = setTimeout(() => {
+      if (document.getElementById(id)) scrollToTarget('#' + id, { offset: -80, duration: 1.15 });
+    }, 400);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
