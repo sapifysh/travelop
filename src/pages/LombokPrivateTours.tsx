@@ -217,7 +217,7 @@ export default function LombokPrivateTours({
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     const originalCanonical = canonicalLink?.getAttribute('href') || '';
     if (canonicalLink) {
-      canonicalLink.setAttribute('href', 'https://firstlop.site/lombok-private-tours');
+      canonicalLink.setAttribute('href', 'https://firstlop.site/lombok-private-tours/');
     }
 
     return () => {

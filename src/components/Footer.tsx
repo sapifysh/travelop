@@ -130,7 +130,7 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
                 </li>
               ))}
               <li>
-                <a href="/blog" className={linkCls}>
+                <a href="/blog/" className={linkCls}>
                   <LinkDot />
                   Journal
                 </a>
@@ -142,14 +142,14 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
             <ColTitle n="02">Private Tours</ColTitle>
             <ul className="space-y-3.5">
               <li>
-                <a href="/lombok-private-tours" className={linkCls}>
+                <a href="/lombok-private-tours/" className={linkCls}>
                   <LinkDot />
                   Lombok Private Tours
                 </a>
               </li>
               {SEO_PAGES.map((p) => (
                 <li key={p.slug}>
-                  <a href={`/${p.slug}`} className={linkCls}>
+                  <a href={`/${p.slug}/`} className={linkCls}>
                     <LinkDot />
                     {p.navLabel}
                   </a>
