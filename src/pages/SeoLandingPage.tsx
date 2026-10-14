@@ -220,8 +220,8 @@ export default function SeoLandingPage({ page, onNavigate, onOpenPlanModal }: Se
         <section className="pt-20 sm:pt-28 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
           <span className="text-[10.5px] uppercase tracking-[0.28em] font-mono text-[#2E7987] block mb-6">{t.readNext}</span>
           <a
-            href={`/blog/${guide.slug}`}
-            onClick={(e) => go(e, `/blog/${guide.slug}`)}
+            href={`/blog/${guide.slug}/`}
+            onClick={(e) => go(e, `/blog/${guide.slug}/`)}
             className="group grid grid-cols-1 md:grid-cols-5 bg-white rounded-2xl border border-[#123B45]/10 overflow-hidden hover:shadow-xl transition-shadow"
           >
             <div className="md:col-span-2 overflow-hidden">

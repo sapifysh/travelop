@@ -12,7 +12,7 @@ const today = new Date().toISOString().slice(0, 10);
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 for (const p of pages) {
-  const url = `${SITE}/${p.slug}`;
+  const url = `${SITE}/${p.slug}/`;
   const others = pages.filter((o) => o.slug !== p.slug);
   const ld = {
     '@context': 'https://schema.org',
@@ -67,8 +67,8 @@ ${p.highlights.map((h) => `          <li>${esc(h)}</li>`).join('\n')}
 ${p.faqs.map((f) => `        <h3>${esc(f.q)}</h3>\n        <p>${esc(f.a)}</p>`).join('\n')}
         <nav>
           <a href="/">FIRST-LOP</a>
-          <a href="/lombok-private-tours">Lombok Private Tours</a>
-${others.map((o) => `          <a href="/${o.slug}">${esc(o.navLabel)}</a>`).join('\n')}
+          <a href="/lombok-private-tours/">Lombok Private Tours</a>
+${others.map((o) => `          <a href="/${o.slug}/">${esc(o.navLabel)}</a>`).join('\n')}
         </nav>
       </main>`;
 
@@ -162,7 +162,7 @@ ${JSON.stringify(ld, null, 2)}
 `;
 
 for (const post of posts) {
-  const url = `${SITE}/blog/${post.slug}`;
+  const url = `${SITE}/blog/${post.slug}/`;
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -217,8 +217,8 @@ ${post.faqs.map((f) => `          <h3>${esc(f.q)}</h3>\n          <p>${esc(f.a)}
         </article>
         <nav>
           <a href="/">FIRST-LOP</a>
-          <a href="/blog">Journal</a>
-${post.related.map((r) => `          <a href="/${r}">${esc(pageLabel(r))}</a>`).join('\n')}
+          <a href="/blog/">Journal</a>
+${post.related.map((r) => `          <a href="/${r}/">${esc(pageLabel(r))}</a>`).join('\n')}
         </nav>
       </main>`;
   fs.mkdirSync(path.join(root, 'blog', post.slug), { recursive: true });
@@ -229,7 +229,7 @@ ${post.related.map((r) => `          <a href="/${r}">${esc(pageLabel(r))}</a>`).
 }
 
 {
-  const url = `${SITE}/blog`;
+  const url = `${SITE}/blog/`;
   const title = 'Lombok Travel Journal: Itineraries, Guides & Tips | FIRST-LOP';
   const description = 'Practical Lombok and Gili Islands travel guides from the FIRST-LOP team: itineraries, where to stay, getting around and the best time to visit.';
   const ld = {
@@ -245,7 +245,7 @@ ${post.related.map((r) => `          <a href="/${r}">${esc(pageLabel(r))}</a>`).
       <main>
         <h1>The FIRST-LOP Journal</h1>
         <p>${esc(description)}</p>
-${posts.map((p) => `        <article>\n          <h2><a href="/blog/${p.slug}">${esc(p.h1)}</a></h2>\n          <p>${esc(p.description)}</p>\n        </article>`).join('\n')}
+${posts.map((p) => `        <article>\n          <h2><a href="/blog/${p.slug}/">${esc(p.h1)}</a></h2>\n          <p>${esc(p.description)}</p>\n        </article>`).join('\n')}
         <nav><a href="/">FIRST-LOP</a></nav>
       </main>`;
   fs.mkdirSync(path.join(root, 'blog'), { recursive: true });
@@ -255,10 +255,10 @@ ${posts.map((p) => `        <article>\n          <h2><a href="/blog/${p.slug}">$
 // Sitemap
 const urls = [
   { loc: `${SITE}/`, priority: '1.0' },
-  { loc: `${SITE}/lombok-private-tours`, priority: '0.9' },
-  ...pages.map((p) => ({ loc: `${SITE}/${p.slug}`, priority: '0.8' })),
-  { loc: `${SITE}/blog`, priority: '0.6' },
-  ...posts.map((p) => ({ loc: `${SITE}/blog/${p.slug}`, priority: '0.7' })),
+  { loc: `${SITE}/lombok-private-tours/`, priority: '0.9' },
+  ...pages.map((p) => ({ loc: `${SITE}/${p.slug}/`, priority: '0.8' })),
+  { loc: `${SITE}/blog/`, priority: '0.6' },
+  ...posts.map((p) => ({ loc: `${SITE}/blog/${p.slug}/`, priority: '0.7' })),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

@@ -97,8 +97,8 @@ function BlogShell({ label, onNavigate, onOpenPlanModal, children }: ShellProps)
           </a>
           <div className="flex items-center gap-3">
             <a
-              href="/blog"
-              onClick={(e) => go(e, '/blog')}
+              href="/blog/"
+              onClick={(e) => go(e, '/blog/')}
               className="hidden md:inline-flex text-xs font-mono uppercase tracking-[0.2em] text-[#123B45]/70 hover:text-[#123B45]"
             >
               Journal
@@ -130,7 +130,7 @@ export function BlogIndexPage({ onNavigate, onOpenPlanModal }: PageProps) {
   useMeta(
     'Lombok Travel Journal: Itineraries, Guides & Tips | FIRST-LOP',
     'Practical Lombok and Gili Islands travel guides from the FIRST-LOP team: itineraries, where to stay, getting around and the best time to visit.',
-    'https://firstlop.site/blog'
+    'https://firstlop.site/blog/'
   );
   const go = (e: MouseEvent, path: string) => {
     e.preventDefault();
@@ -151,8 +151,8 @@ export function BlogIndexPage({ onNavigate, onOpenPlanModal }: PageProps) {
         {BLOG_POSTS.map((p) => (
           <a
             key={p.slug}
-            href={`/blog/${p.slug}`}
-            onClick={(e) => go(e, `/blog/${p.slug}`)}
+            href={`/blog/${p.slug}/`}
+            onClick={(e) => go(e, `/blog/${p.slug}/`)}
             className="group block bg-white rounded-2xl overflow-hidden border border-[#123B45]/10 hover:shadow-xl transition-shadow"
           >
             <div className="aspect-[16/10] overflow-hidden">
@@ -181,7 +181,7 @@ export function BlogIndexPage({ onNavigate, onOpenPlanModal }: PageProps) {
 
 export function BlogPostPage({ post, onNavigate, onOpenPlanModal }: PageProps & { post: BlogPost }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  useMeta(post.title, post.description, `https://firstlop.site/blog/${post.slug}`);
+  useMeta(post.title, post.description, `https://firstlop.site/blog/${post.slug}/`);
   const go = (e: MouseEvent, path: string) => {
     e.preventDefault();
     onNavigate(path);
@@ -198,8 +198,8 @@ export function BlogPostPage({ post, onNavigate, onOpenPlanModal }: PageProps & 
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E171A]/90 via-[#0E171A]/45 to-[#0E171A]/10" />
           <div className="relative z-10 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-14 pt-32 text-[#FAF7F0]">
             <a
-              href="/blog"
-              onClick={(e) => go(e, '/blog')}
+              href="/blog/"
+              onClick={(e) => go(e, '/blog/')}
               className="inline-flex items-center gap-2 text-[10.5px] uppercase tracking-[0.28em] font-mono text-[#FAF7F0]/70 hover:text-white mb-6"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Journal
