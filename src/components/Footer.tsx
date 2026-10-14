@@ -91,6 +91,11 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
                   Lombok Private Tours
                 </a>
               </li>
+              <li>
+                <a href="/blog" className="hover:text-white transition-colors">
+                  Journal
+                </a>
+              </li>
               {SEO_PAGES.map((p) => (
                 <li key={p.slug}>
                   <a href={`/${p.slug}`} className="hover:text-white transition-colors">
