@@ -31,6 +31,11 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
+    // On landing pages and the blog the home sections are not rendered: go to the home page section instead.
+    if (!document.getElementById(id)) {
+      window.location.href = '/#' + id;
+      return;
+    }
     scrollToTarget('#' + id, { offset: -88, duration: 1.15 });
   };
 
@@ -51,6 +56,10 @@ export default function Navbar({ onOpenPlanModal }: NavbarProps) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
+              if (window.location.pathname !== '/') {
+                window.location.href = '/';
+                return;
+              }
               scrollToTarget(0, { offset: 0, duration: 1.15 });
             }}
             className="group flex items-center focus:outline-none select-none transition-opacity duration-200 hover:opacity-90"

@@ -58,7 +58,8 @@ for (const p of pages) {
         <h1>${esc(p.h1)}</h1>
         <p>${esc(p.intro)}</p>
         <p>${esc(p.priceFrom)}</p>
-${p.sections.map((s) => `        <h2>${esc(s.h2)}</h2>\n        <p>${esc(s.body)}</p>`).join('\n')}
+        <img src="${p.heroImage}" alt="${esc(p.heroAlt || p.keyword)}" />
+${p.sections.map((s) => `        <h2>${esc(s.h2)}</h2>\n` + (s.image ? `        <img src="${s.image}" alt="${esc(s.imageAlt || s.h2)}" loading="lazy" />\n` : '') + `        <p>${esc(s.body)}</p>`).join('\n')}
         <ul>
 ${p.highlights.map((h) => `          <li>${esc(h)}</li>`).join('\n')}
         </ul>
@@ -93,11 +94,11 @@ ${others.map((o) => `          <a href="/${o.slug}">${esc(o.navLabel)}</a>`).joi
     <meta property="og:url" content="${url}" />
     <meta property="og:site_name" content="FIRST-LOP" />
     <meta property="og:locale" content="${p.lang === 'id' ? 'id_ID' : 'en_US'}" />
-    <meta property="og:image" content="${esc(p.heroImage.replace('w=1600', 'w=1200&h=630'))}" />
+    <meta property="og:image" content="${esc(p.heroImage.startsWith('/') ? SITE + p.heroImage : p.heroImage.replace('w=1600', 'w=1200&h=630'))}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${esc(p.title)}" />
     <meta name="twitter:description" content="${esc(p.description)}" />
-    <meta name="twitter:image" content="${esc(p.heroImage.replace('w=1600', 'w=1200&h=630'))}" />
+    <meta name="twitter:image" content="${esc(p.heroImage.startsWith('/') ? SITE + p.heroImage : p.heroImage.replace('w=1600', 'w=1200&h=630'))}" />
     <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
     </script>
