@@ -18,6 +18,7 @@ import PackageModal from './components/PackageModal';
 
 import LombokPrivateTours from './pages/LombokPrivateTours';
 import SeoLandingPage, { findSeoPage } from './pages/SeoLandingPage';
+import { BlogIndexPage, BlogPostPage, findBlogPost, isBlogIndex } from './pages/Blog';
 
 import { Destination, Experience, TravelPackage, VehicleOption } from './types';
 import { DESTINATIONS } from './data/content';
@@ -159,11 +160,15 @@ export default function App() {
         window.location.pathname === '/lombok-private-tours/'));
 
   const seoPage = findSeoPage(currentPath);
+  const blogPost = findBlogPost(currentPath);
+  const blogIndex = isBlogIndex(currentPath);
 
-  if (seoPage) {
+  if (seoPage || blogPost || blogIndex) {
     return (
       <div className="min-h-screen bg-[#FAF7F0] text-[#123B45] overflow-x-hidden">
-        <SeoLandingPage page={seoPage} onNavigate={handleNavigate} onOpenPlanModal={handleOpenPlanModal} />
+        {seoPage && <SeoLandingPage page={seoPage} onNavigate={handleNavigate} onOpenPlanModal={handleOpenPlanModal} />}
+        {blogPost && <BlogPostPage post={blogPost} onNavigate={handleNavigate} onOpenPlanModal={handleOpenPlanModal} />}
+        {blogIndex && <BlogIndexPage onNavigate={handleNavigate} onOpenPlanModal={handleOpenPlanModal} />}
         <PlanTripModal
           isOpen={isPlanModalOpen}
           onClose={handleClosePlanModal}

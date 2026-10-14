@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 import seoPages from './src/data/seo-pages.json';
+import blogPosts from './src/data/blog-posts.json';
 
 export default defineConfig(() => {
   return {
@@ -19,6 +20,10 @@ export default defineConfig(() => {
           'lombok-private-tours': path.resolve(__dirname, 'lombok-private-tours/index.html'),
           ...Object.fromEntries(
             seoPages.map((p: {slug: string}) => [p.slug, path.resolve(__dirname, `${p.slug}/index.html`)]),
+          ),
+          blog: path.resolve(__dirname, 'blog/index.html'),
+          ...Object.fromEntries(
+            blogPosts.map((p: {slug: string}) => [`blog-${p.slug}`, path.resolve(__dirname, `blog/${p.slug}/index.html`)]),
           ),
         },
       },
