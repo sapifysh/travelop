@@ -81,6 +81,7 @@ export interface TripInquiryPayload {
   travelers: string;
   interests: string;
   message: string;
+  vehicle?: string;
 }
 
 export interface TripInquiryData {

@@ -211,11 +211,7 @@ export default function PlanTripModal({
       ? "I'd like a car (consultation)"
       : 'No car needed';
 
-    const fullMessage = notes.trim()
-      ? `${notes.trim()}${selectedVehicle || transportChoice === 'need-car' ? ` (Transport: ${carSummary})` : ''}`
-      : selectedVehicle || transportChoice === 'need-car'
-      ? `Transport: ${carSummary}`
-      : 'None';
+    const fullMessage = notes.trim() || 'None';
 
     const styleLabel = TRIP_STYLES.find((t) => t.id === tripStyle)?.label || 'Not chosen';
     const payload: TripInquiryPayload = {
@@ -226,6 +222,7 @@ export default function PlanTripModal({
       travelers: String(travelers),
       interests: `Style: ${styleLabel} | Places: ${destinationsText}`,
       message: fullMessage,
+      vehicle: carSummary,
     };
 
     try {
