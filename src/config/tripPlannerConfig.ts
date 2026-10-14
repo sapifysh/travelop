@@ -19,7 +19,7 @@ export const GOOGLE_SCRIPT_URL: string = GOOGLE_APPS_SCRIPT_URL;
  * Sends the trip inquiry data to the Google Apps Script Web App endpoint.
  * Payload structure:
  * {
- *   name, email, whatsapp, travelDate, travelers, interests, message
+ *   name, email, whatsapp, travelDate, travelers, interests, message, vehicle
  * }
  */
 export async function submitTripInquiryToGoogleSheet(
@@ -39,6 +39,7 @@ export async function submitTripInquiryToGoogleSheet(
           : 'Not sure yet')
     ),
     message: String(data.message || (data as TripInquiryData).additionalNotes || 'None'),
+    vehicle: String((data as TripInquiryPayload).vehicle || 'No car needed'),
   };
 
   const controller = new AbortController();
@@ -116,7 +117,8 @@ function doPost(e) {
         "Travelers",
         "Interests",
         "Budget",
-        "Message"
+        "Message",
+        "Car"
       ];
       sheet.appendRow(headers);
       var headerRange = sheet.getRange(1, 1, 1, headers.length);
@@ -136,6 +138,7 @@ function doPost(e) {
     var interests = data.interests || "";
     var budget = data.budget || "Flexible";
     var message = data.message || "";
+    var vehicle = data.vehicle || "";
     
     // Append the new submission row
     sheet.appendRow([
@@ -147,7 +150,8 @@ function doPost(e) {
       travelers,
       interests,
       budget,
-      message
+      message,
+      vehicle
     ]);
     
     return ContentService
