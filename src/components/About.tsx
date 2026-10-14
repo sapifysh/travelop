@@ -58,7 +58,7 @@ export default function About() {
         <ul className="about-marquee-track">
           {[...photos, ...photos].map((ph, i) => (
             <li key={`${ph.caption}-${i}`} aria-hidden={i >= photos.length} className="about-tile">
-              <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/70 liquid-glass-standard p-1.5 shadow-[0_16px_45px_rgba(14,23,26,0.07)]">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_16px_45px_rgba(14,23,26,0.07)]">
                 <img
                   src={ph.src}
                   alt={ph.alt}
