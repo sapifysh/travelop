@@ -19,11 +19,12 @@ function useLombokTime() {
       timeZone: 'Asia/Makassar',
       hour: '2-digit',
       minute: '2-digit',
+      second: '2-digit',
       hour12: false,
     }).format(new Date());
   const [time, setTime] = useState(fmt);
   useEffect(() => {
-    const id = window.setInterval(() => setTime(fmt()), 30_000);
+    const id = window.setInterval(() => setTime(fmt()), 1_000);
     return () => window.clearInterval(id);
   }, []);
   return time;
@@ -103,7 +104,7 @@ export default function Footer({ onOpenPlanModal }: FooterProps) {
               <span>8.65° S · 116.32° E</span>
               <span className="flex items-center gap-2">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-[#F4C95D]" />
-                Lombok · {time} WITA
+                Lombok · <span className="tabular-nums">{time}</span> WITA
               </span>
             </div>
             <div>
