@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
 import { BRAND } from '../data/content';
-import ctaImage from '../assets/images/cta_rinjani_dusk.jpg';
+import ctaImage from '../assets/images/cta_rinjani_sunrise.jpg';
 
 interface FinalCTAProps {
   onPlanTrip: () => void;
@@ -22,7 +22,7 @@ export default function FinalCTA({ onPlanTrip }: FinalCTAProps) {
         <img
           src={ctaImage}
           loading="lazy"
-          alt="Illustration of Mount Rinjani at dusk above the Sembalun hills, Lombok"
+          alt="Golden sunrise from Mount Rinjani, looking over the Gili Islands toward Mount Agung, Lombok"
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#123B45]/80 via-[#123B45]/45 to-[#123B45]/50 pointer-events-none" />
