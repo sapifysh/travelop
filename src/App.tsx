@@ -9,6 +9,7 @@ import Packages from './components/Packages';
 import YourRide from './components/YourRide';
 import WhyBookWithUs from './components/WhyBookWithUs';
 import About from './components/About';
+import Faq from './components/Faq';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 
@@ -258,6 +259,9 @@ export default function App() {
 
         {/* Dedicated Editorial About FIRST-LOP Section */}
         <About />
+
+        {/* FAQ — the essentials, answered plainly */}
+        <Faq />
 
         {/* Final CTA Banner */}
         <FinalCTA onPlanTrip={() => handleOpenPlanModal()} />
