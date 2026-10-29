@@ -126,10 +126,10 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                     type="button"
                     onClick={() => onViewItinerary(pkg)}
                     id={`btn-view-itinerary-${pkg.id}`}
-                    className="w-full liquid-glass-btn-primary inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] py-3 sm:py-3.5 rounded-full cursor-pointer"
+                    className="group w-full inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.14em] py-3 sm:py-3.5 rounded-full cursor-pointer bg-[#F4C95D] hover:bg-[#E5BC50] active:scale-[0.98] text-[#123B45] shadow-[0_4px_18px_rgba(244,201,93,0.35)] transition-all duration-200"
                   >
                     <span>Explore Package</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </button>
                 </div>
               </motion.div>
