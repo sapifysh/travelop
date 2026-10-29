@@ -4,6 +4,11 @@ import { ArrowRight, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
 import { PACKAGES } from '../data/content';
 import { TravelPackage } from '../types';
 
+// Display-only: package names are stored in ALL CAPS in the data; render them
+// in Title Case on the cards (data itself is unchanged).
+const toTitleCase = (str: string) =>
+  str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+
 interface PackagesProps {
   onSelectPackage: (pkg: TravelPackage) => void;
   onViewItinerary: (pkg: TravelPackage) => void;
@@ -80,7 +85,7 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                   {/* Card Content */}
                   <div className="p-5 sm:p-7">
                     <h3 className="font-semibold text-lg sm:text-2xl text-white tracking-tight">
-                      {pkg.name}
+                      {toTitleCase(pkg.name)}
                     </h3>
 
                     <p className="mt-2 text-[13px] sm:text-sm text-white/70 font-normal leading-relaxed sm:min-h-[40px]">
