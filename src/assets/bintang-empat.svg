@@ -1,6 +1,5 @@
-
 <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'>
-  <g transform='translate(0 1.2)' opacity='.28'><g stroke='#FFFFFF' fill='none' stroke-width='1.25'>
+  <g transform='translate(0 1.4)' opacity='.45'><g stroke='#FFFFFF' fill='none' stroke-width='1.6'>
 <path d='M60 8 C66 40 80 54 112 60 C80 66 66 80 60 112 C54 80 40 66 8 60 C40 54 54 40 60 8 Z'/>
 <path d='M60 30 C64 48 66 52 78 60 C66 68 64 72 60 90 C56 72 54 68 42 60 C54 52 56 48 60 30 Z'/>
 <path d='M60 51 L69 60 L60 69 L51 60 Z'/>
@@ -8,11 +7,11 @@
 <path d='M0 0 L7 7 M120 0 L113 7 M0 120 L7 113 M120 120 L113 113'/>
 <path d='M60 0 L64 4 L60 8 L56 4 Z M60 112 L64 116 L60 120 L56 116 Z M0 60 L4 56 L8 60 L4 64 Z M112 60 L116 56 L120 60 L116 64 Z'/>
 </g></g>
-  <g stroke='#F3EEE0' fill='none' stroke-width='1.25'>
+  <g stroke='#E8E1CD' fill='none' stroke-width='1.6'>
 <path d='M60 8 C66 40 80 54 112 60 C80 66 66 80 60 112 C54 80 40 66 8 60 C40 54 54 40 60 8 Z'/>
 <path d='M60 30 C64 48 66 52 78 60 C66 68 64 72 60 90 C56 72 54 68 42 60 C54 52 56 48 60 30 Z'/>
 <path d='M60 51 L69 60 L60 69 L51 60 Z'/>
-<path d='M60 56.5 L63.5 60 L60 63.5 L56.5 60 Z' fill='#F3EEE0' stroke='none'/>
+<path d='M60 56.5 L63.5 60 L60 63.5 L56.5 60 Z' fill='#E8E1CD' stroke='none'/>
 <path d='M0 0 L7 7 M120 0 L113 7 M0 120 L7 113 M120 120 L113 113'/>
 <path d='M60 0 L64 4 L60 8 L56 4 Z M60 112 L64 116 L60 120 L56 116 Z M0 60 L4 56 L8 60 L4 64 Z M112 60 L116 56 L120 60 L116 64 Z'/>
 </g>
