@@ -62,156 +62,143 @@ h1 { letter-spacing: -0.01em; }
 
 /* 1. GLASS SUBTLE (Secondary controls, badges, micro-elements) */
 .liquid-glass-subtle {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 
-    0 4px 16px rgba(14, 23, 26, 0.04),
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(11px) saturate(145%);
+  -webkit-backdrop-filter: blur(11px) saturate(145%);
+  border: 1px solid rgba(18, 59, 69, 0.07);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
 }
 
 .liquid-glass-dark-subtle {
-  background: rgba(14, 23, 26, 0.45);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0.5px rgba(255, 255, 255, 0.18);
+  background: rgba(14, 23, 26, 0.16);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* 2. GLASS STANDARD (Cards, buttons, floating controls) */
 .liquid-glass-standard {
-  background: rgba(255, 255, 255, 0.68);
-  backdrop-filter: blur(28px) saturate(150%);
-  -webkit-backdrop-filter: blur(28px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 
-    0 10px 32px rgba(14, 23, 26, 0.06),
-    0 2px 8px rgba(14, 23, 26, 0.03),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 1px rgba(14, 23, 26, 0.03);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(18, 59, 69, 0.08);
+  box-shadow:
+    0 1px 4px rgba(14, 23, 26, 0.03),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.3);
 }
 
 .liquid-glass-dark-standard {
-  background: rgba(14, 23, 26, 0.65);
-  backdrop-filter: blur(28px) saturate(140%);
-  -webkit-backdrop-filter: blur(28px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 
-    0 12px 36px rgba(0, 0, 0, 0.28),
-    inset 0 1px 1px rgba(255, 255, 255, 0.22),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  background: rgba(14, 23, 26, 0.28);
+  backdrop-filter: blur(13px) saturate(145%);
+  -webkit-backdrop-filter: blur(13px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.10);
 }
 
 /* 3. GLASS ELEVATED (Featured modals, active hero capsules, primary CTAs) */
 .liquid-glass-elevated {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(36px) saturate(160%);
-  -webkit-backdrop-filter: blur(36px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 
-    0 24px 64px rgba(14, 23, 26, 0.12),
-    0 6px 18px rgba(14, 23, 26, 0.05),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px rgba(14, 23, 26, 0.04);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(18, 59, 69, 0.08);
+  box-shadow:
+    0 4px 16px rgba(14, 23, 26, 0.05),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.35);
 }
 
 .liquid-glass-dark-elevated {
-  background: rgba(14, 23, 26, 0.8);
-  backdrop-filter: blur(36px) saturate(150%);
-  -webkit-backdrop-filter: blur(36px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    0 24px 64px rgba(0, 0, 0, 0.45),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.28),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+  background: rgba(14, 23, 26, 0.40);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.10),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* 4. LIQUID GLASS BUTTONS (Physical, tactile controls with Apple spring feel) */
 .liquid-glass-btn-primary {
   position: relative;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.55);
   color: #0E171A;
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1.5px rgba(255, 255, 255, 1),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.45);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-glass-btn-primary:hover {
-  background: rgba(255, 255, 255, 0.96);
-  transform: translateY(-1.5px);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.12),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.68);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.55);
 }
 
 .liquid-glass-btn-primary:active {
-  transform: scale(0.975);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(0, 0, 0, 0.08);
+  transform: scale(0.99);
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow:
+    inset 0 0.5px 0 rgba(0, 0, 0, 0.04);
 }
 
 .liquid-glass-btn-dark-primary {
   position: relative;
-  background: rgba(14, 23, 26, 0.82);
+  background: rgba(14, 23, 26, 0.55);
   color: #FAF8F5;
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    0 4px 18px rgba(0, 0, 0, 0.25),
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px) saturate(145%);
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.16);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-glass-btn-dark-primary:hover {
-  background: rgba(20, 32, 36, 0.92);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-1.5px);
-  box-shadow: 
-    0 8px 28px rgba(0, 0, 0, 0.35),
-    inset 0 1px 2px rgba(255, 255, 255, 0.38);
+  background: rgba(20, 32, 36, 0.65);
+  border-color: rgba(255, 255, 255, 0.20);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.22);
 }
 
 .liquid-glass-btn-dark-primary:active {
-  transform: scale(0.975);
-  background: rgba(10, 18, 20, 0.85);
+  transform: scale(0.99);
+  background: rgba(10, 18, 20, 0.58);
 }
 
 .liquid-glass-btn-secondary {
   position: relative;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
   color: #FAF8F5;
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 
-    0 4px 14px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(11px) saturate(140%);
+  -webkit-backdrop-filter: blur(11px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.18);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-glass-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.45);
-  transform: translateY(-1.5px);
-  box-shadow: 
-    0 8px 22px rgba(0, 0, 0, 0.12),
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.26);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
 }
 
 .liquid-glass-btn-secondary:active {
-  transform: scale(0.975);
-  background: rgba(255, 255, 255, 0.12);
+  transform: scale(0.99);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* 5. REFRACTION HIGHLIGHT GRADIENT OVERLAY */
@@ -225,7 +212,7 @@ h1 { letter-spacing: -0.01em; }
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.7) 65%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 35%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.3) 65%, rgba(255,255,255,0) 100%);
   pointer-events: none;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
