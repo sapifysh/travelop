@@ -4,6 +4,7 @@ import pasarBambuImage from '../assets/images/pasar_bambu_bonjeruk.jpg';
 import giliUnderwaterImage from '../assets/images/gili_trawangan_underwater.jpg';
 import sukararaWeaverImage from '../assets/images/sukarara_weaver.jpg';
 import tampahHillsImage from '../assets/images/tampah_hills.jpg';
+import bintangEmpatPattern from '../assets/bintang-empat.svg';
 
 export default function About() {
   const principles = [
@@ -40,6 +41,19 @@ export default function About() {
       id="about"
       className="relative bg-[#FAF8F5] text-[#0E171A] pt-16 sm:pt-36 lg:pt-40 pb-20 sm:pb-36 lg:pb-44 overflow-hidden scroll-mt-20 border-t border-[#0E171A]/8"
     >
+      {/* Bintang Empat songket motif — carved tone-on-tone texture behind the closing statement */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[480px] sm:h-[560px] lg:h-[640px]"
+        style={{
+          backgroundImage: `url(${bintangEmpatPattern})`,
+          backgroundSize: '132px 132px',
+          WebkitMaskImage:
+            'radial-gradient(ellipse 58% 60% at 50% 50%, rgba(0,0,0,0.04) 0%, rgba(0,0,0,1) 74%)',
+          maskImage:
+            'radial-gradient(ellipse 58% 60% at 50% 50%, rgba(0,0,0,0.04) 0%, rgba(0,0,0,1) 74%)',
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Intro: Large Editorial Headline */}
         <motion.div
