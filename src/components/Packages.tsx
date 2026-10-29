@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
-import { PACKAGES } from '../data/content';
+import { PACKAGES, USD_IDR_RATE } from '../data/content';
 import { TravelPackage } from '../types';
 
 // Display-only: package names are stored in ALL CAPS in the data; render them
 // in Title Case on the cards (data itself is unchanged).
 const toTitleCase = (str: string) =>
   str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Parse the USD amount out of a priceEstimate string like "From $460 / guest"
+// and format its IDR estimate compactly, e.g. "Rp8,3 jt".
+const usdFromEstimate = (estimate?: string) => {
+  const m = estimate?.match(/\$([\d,]+)/);
+  return m ? Number(m[1].replace(/,/g, '')) : NaN;
+};
+const idrCompact = (usd: number) =>
+  'Rp' + ((usd * USD_IDR_RATE) / 1_000_000).toFixed(1).replace('.', ',') + ' jt';
 
 interface PackagesProps {
   onSelectPackage: (pkg: TravelPackage) => void;
@@ -105,9 +114,16 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
                     </div>
 
                     {pkg.priceEstimate && (
-                      <p className="mt-3 sm:mt-4 text-[13px] sm:text-sm font-semibold text-[#3D95A5]">
-                        {pkg.priceEstimate}
-                      </p>
+                      <>
+                        <p className="mt-3 sm:mt-4 text-[13px] sm:text-sm font-semibold text-[#3D95A5]">
+                          {pkg.priceEstimate}
+                        </p>
+                        {!Number.isNaN(usdFromEstimate(pkg.priceEstimate)) && (
+                          <p className="mt-0.5 text-xs text-white/50">
+                            ≈ {idrCompact(usdFromEstimate(pkg.priceEstimate))} / tamu
+                          </p>
+                        )}
+                      </>
                     )}
 
                     {/* Inclusions summary preview (hidden on phones; full list lives in the modal) */}

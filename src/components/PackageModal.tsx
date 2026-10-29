@@ -1,6 +1,17 @@
 import { motion } from 'motion/react';
 import { X, ArrowRight, Check, Clock } from 'lucide-react';
 import { TravelPackage } from '../types';
+import { USD_IDR_RATE } from '../data/content';
+
+// Parse the USD amount out of a priceEstimate string like "From $460 / guest"
+// and format its IDR estimate in full, rounded to the nearest Rp25.000,
+// e.g. "Rp8.325.000".
+const usdFromEstimate = (estimate?: string) => {
+  const m = estimate?.match(/\$([\d,]+)/);
+  return m ? Number(m[1].replace(/,/g, '')) : NaN;
+};
+const idrFull = (usd: number) =>
+  'Rp' + (Math.round((usd * USD_IDR_RATE) / 25000) * 25000).toLocaleString('id-ID');
 
 interface PackageModalProps {
   pkg: TravelPackage | null;
@@ -126,6 +137,11 @@ export default function PackageModal({
             <div>
               <span className="text-xs text-[#0E171A]/60 block font-medium">Estimated Pricing</span>
               <span className="text-lg font-bold text-[#0E171A]">{pkg.priceEstimate}</span>
+              {!Number.isNaN(usdFromEstimate(pkg.priceEstimate)) && (
+                <span className="block text-[13px] text-[#0E171A]/55 mt-0.5">
+                  ≈ {idrFull(usdFromEstimate(pkg.priceEstimate))} / tamu
+                </span>
+              )}
             </div>
 
             <button

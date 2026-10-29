@@ -162,6 +162,11 @@ export const EXPERIENCES: Experience[] = [
   },
 ];
 
+// Reference USD->IDR rate, used only for the "≈ Rp" estimates shown under the
+// USD prices (package cards + package modal). Estimates are rounded and the
+// USD price remains the official one. Update this single number as the rate moves.
+export const USD_IDR_RATE = 18100;
+
 export const PACKAGES: TravelPackage[] = [
   {
     id: 'lombok-essential',
