@@ -25,7 +25,7 @@ export default function Hero({
           src={heroImage}
           alt="Tanjung Aan bay seen from Bukit Merese at golden hour, South Lombok"
           fetchPriority="high"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center kenburns"
         />
         {/* Layer 1: Subtle top vignette for crystal clear navigation readability without a dark bar */}
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,36,43,0.30)] via-[rgba(41,78,86,0.18)] to-[rgba(31,74,82,0.35)]" />

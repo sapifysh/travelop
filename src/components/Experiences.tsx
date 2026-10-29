@@ -20,14 +20,20 @@ export default function Experiences({ onPlanExperience }: ExperiencesProps) {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* Section Header */}
-        <div className="max-w-3xl mb-8 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-8 sm:mb-16"
+        >
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#0E171A] tracking-tight leading-[1.08]">
             Don't Just Visit Lombok.<br />Experience It.
           </h2>
           <p className="mt-5 text-base sm:text-lg text-[#0E171A]/75 font-normal leading-relaxed max-w-2xl">
             The best trips aren't measured by how many places you see, but by what stays with you when you leave.
           </p>
-        </div>
+        </motion.div>
 
         {/* Apple-Style Liquid Glass Segmented Control Filter */}
         <div data-lenis-prevent className="flex items-center overflow-x-auto pb-3 sm:pb-4 mb-6 sm:mb-14 no-scrollbar">

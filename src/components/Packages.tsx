@@ -45,14 +45,20 @@ export default function Packages({ onSelectPackage, onViewItinerary }: PackagesP
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-10 sm:mb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-10 sm:mb-24"
+        >
           <h2 className="font-semibold text-3xl sm:text-5xl lg:text-6xl text-[#FAF8F5] tracking-tight leading-[1.08]">
             Choose Your Kind<br />of Escape.
           </h2>
           <p className="mt-5 text-base sm:text-lg text-[#FAF8F5]/75 font-normal leading-relaxed max-w-2xl">
             Thoughtfully balanced journeys crafted around effortless pacing, genuine island hospitality, and breathtaking coastlines.
           </p>
-        </div>
+        </motion.div>
 
         {/* Apple-Style Liquid Glass Package Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-7 lg:gap-8">

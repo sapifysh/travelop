@@ -177,7 +177,13 @@ export default function YourRide({
         {/* ========================================================================= */}
         {/* 1. HERO HEADER */}
         {/* ========================================================================= */}
-        <div className="mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 sm:mb-16"
+        >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               {/* Main Headline */}
@@ -208,7 +214,7 @@ export default function YourRide({
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* ========================================================================= */}
         {/* 2. BEST PICKS SECTION */}

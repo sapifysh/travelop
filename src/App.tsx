@@ -12,6 +12,7 @@ import About from './components/About';
 import Faq from './components/Faq';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import StickyCTA from './components/StickyCTA';
 
 import PlanTripModal from './components/PlanTripModal';
 import DestinationModal from './components/DestinationModal';
@@ -269,6 +270,9 @@ export default function App() {
 
       {/* Footer */}
       <Footer onOpenPlanModal={() => handleOpenPlanModal()} />
+
+      {/* Mobile sticky CTA: appears after the hero is scrolled past */}
+      <StickyCTA onPlanTrip={() => handleOpenPlanModal()} />
 
       {/* Interactive Modals */}
       <PlanTripModal

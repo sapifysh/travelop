@@ -1,3 +1,5 @@
+import { motion } from 'motion/react';
+
 const PROMISES = [
   {
     title: 'All-in pricing',
@@ -33,6 +35,12 @@ export default function WhyBookWithUs() {
       <div className="absolute -right-32 bottom-0 w-[600px] h-[420px] bg-[#2E7987]/25 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
         <span className="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[#2E7987] block mb-3">
           Why travelers book with us
         </span>
@@ -45,6 +53,7 @@ export default function WhyBookWithUs() {
         <p className="mt-4 text-base sm:text-lg text-[#0E171A]/65 leading-relaxed max-w-2xl">
           We live in Lombok and plan every trip ourselves.
         </p>
+        </motion.div>
       </div>
 
       {/* Marquee: moves left to right, pauses on hover */}

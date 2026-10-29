@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import bukitMereseImage from '../assets/images/bukit_merese_sunset.jpg';
 import pasarBambuImage from '../assets/images/pasar_bambu_bonjeruk.jpg';
 import giliUnderwaterImage from '../assets/images/gili_trawangan_underwater.jpg';
@@ -41,7 +42,13 @@ export default function About() {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Intro: Large Editorial Headline */}
-        <div className="max-w-3xl mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-10 sm:mb-14"
+        >
           <h2
             id="about-headline"
             className="font-semibold text-3xl sm:text-5xl lg:text-[58px] text-[#0E171A] tracking-[-0.025em] leading-[1.06]"
@@ -49,7 +56,7 @@ export default function About() {
             Lombok,<br />
             experienced differently.
           </h2>
-        </div>
+        </motion.div>
 
       </div>
 
