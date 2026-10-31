@@ -82,6 +82,8 @@ export interface TripInquiryPayload {
   interests: string;
   message: string;
   vehicle?: string;
+  /** Honeypot anti-spam field — humans never see or fill it; must stay empty. */
+  company?: string;
 }
 
 export interface TripInquiryData {

@@ -75,6 +75,10 @@ export default function PlanTripModal({
   const [whatsapp, setWhatsapp] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
 
+  // Anti-spam: honeypot field (invisible to humans) + when the form was opened
+  const [company, setCompany] = useState<string>('');
+  const [openedAt, setOpenedAt] = useState<number>(0);
+
   // Submission / UI state
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -88,6 +92,8 @@ export default function PlanTripModal({
       setErrorMessage(null);
       setFieldErrors({});
       setIsSubmitting(false);
+      setCompany('');
+      setOpenedAt(Date.now());
 
       if (initialDestination) {
         const match = DESTINATION_CHIPS.find(
@@ -196,6 +202,13 @@ export default function PlanTripModal({
     e.preventDefault();
     if (isSubmitting) return;
 
+    // Anti-spam: a filled honeypot or an inhumanly fast submit is silently
+    // "accepted" so bots learn nothing, but nothing is sent or stored.
+    if (company.trim() !== '' || (openedAt > 0 && Date.now() - openedAt < 3000)) {
+      setIsSuccess(true);
+      return;
+    }
+
     setErrorMessage(null);
 
     // Validate minimum required fields
@@ -223,6 +236,7 @@ export default function PlanTripModal({
       interests: `Style: ${styleLabel} | Places: ${destinationsText}`,
       message: fullMessage,
       vehicle: carSummary,
+      company: company.trim(),
     };
 
     try {
@@ -391,6 +405,21 @@ export default function PlanTripModal({
                 exit={{ opacity: 0 }}
                 className="space-y-5"
               >
+                {/* Honeypot — off-screen and invisible to humans; bots that fill it are silently dropped */}
+                <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+                  <label>
+                    Company
+                    <input
+                      type="text"
+                      name="company"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                    />
+                  </label>
+                </div>
+
                 {/* Header */}
                 <div className="pr-8">
                   <div className="flex items-center gap-2 mb-1">
@@ -720,6 +749,7 @@ export default function PlanTripModal({
                       <input
                         type="text"
                         placeholder="Your name"
+                        maxLength={100}
                         value={name}
                         onChange={(e) => {
                           setName(e.target.value);
@@ -750,6 +780,7 @@ export default function PlanTripModal({
                       <input
                         type="email"
                         placeholder="you@example.com"
+                        maxLength={120}
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
@@ -780,6 +811,7 @@ export default function PlanTripModal({
                       <input
                         type="tel"
                         placeholder="+61 412 345 678"
+                        maxLength={30}
                         value={whatsapp}
                         onChange={(e) => {
                           setWhatsapp(e.target.value);
@@ -810,6 +842,7 @@ export default function PlanTripModal({
                     </label>
                     <input
                       type="text"
+                      maxLength={2000}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Tell us what you have in mind or any special wishes…"

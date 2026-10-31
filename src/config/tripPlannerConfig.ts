@@ -25,21 +25,28 @@ export const GOOGLE_SCRIPT_URL: string = GOOGLE_APPS_SCRIPT_URL;
 export async function submitTripInquiryToGoogleSheet(
   data: TripInquiryPayload | TripInquiryData
 ): Promise<{ success: boolean; message: string }> {
-  // Normalize payload into the exact required Google Apps Script JSON structure
+  // Normalize payload into the exact required Google Apps Script JSON structure.
+  // Length caps are enforced here too (defense in depth — the Apps Script
+  // endpoint re-validates and sanitizes everything server-side).
+  const cap = (v: string, max: number) => v.slice(0, max);
   const normalizedPayload: TripInquiryPayload = {
-    name: String(data.name || '').trim(),
-    email: String(data.email || '').trim(),
-    whatsapp: String(data.whatsapp || '').trim(),
-    travelDate: String(data.travelDate || ''),
-    travelers: String(data.travelers ?? (data as TripInquiryData).numberOfTravelers ?? 2),
-    interests: String(
-      data.interests ||
-        (Array.isArray((data as TripInquiryData).destinations)
-          ? (data as TripInquiryData).destinations!.join(', ')
-          : 'Not sure yet')
+    name: cap(String(data.name || '').trim(), 100),
+    email: cap(String(data.email || '').trim(), 120),
+    whatsapp: cap(String(data.whatsapp || '').trim(), 30),
+    travelDate: cap(String(data.travelDate || ''), 60),
+    travelers: cap(String(data.travelers ?? (data as TripInquiryData).numberOfTravelers ?? 2), 10),
+    interests: cap(
+      String(
+        data.interests ||
+          (Array.isArray((data as TripInquiryData).destinations)
+            ? (data as TripInquiryData).destinations!.join(', ')
+            : 'Not sure yet')
+      ),
+      300
     ),
-    message: String(data.message || (data as TripInquiryData).additionalNotes || 'None'),
-    vehicle: String((data as TripInquiryPayload).vehicle || 'No car needed'),
+    message: cap(String(data.message || (data as TripInquiryData).additionalNotes || 'None'), 2000),
+    vehicle: cap(String((data as TripInquiryPayload).vehicle || 'No car needed'), 120),
+    company: String((data as TripInquiryPayload).company || ''),
   };
 
   const controller = new AbortController();
@@ -99,13 +106,63 @@ export const GOOGLE_APPS_SCRIPT_TEMPLATE = `
  * - Who has access: Anyone
  */
 
+function jsonOut(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Clean one field: force string, strip control characters, cap the length,
+// and neutralize spreadsheet formula injection — any value starting with
+// =, +, -, @ (or tab/CR) is prefixed with an apostrophe so Sheets stores it
+// as plain text instead of evaluating it as a formula.
+function clean(value, maxLen) {
+  var s = String(value == null ? "" : value);
+  s = s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ").trim();
+  if (s.length > maxLen) s = s.slice(0, maxLen);
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  return s;
+}
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
-  lock.tryLock(10000); // Wait up to 10 seconds for concurrent lock
-  
+  var hasLock = lock.tryLock(10000); // Wait up to 10 seconds for concurrent lock
+  if (!hasLock) {
+    return jsonOut({ success: false, message: "Server busy, please try again." });
+  }
+
   try {
+    var data = JSON.parse(e.postData.contents);
+
+    // Honeypot: the "company" field is invisible on the website. If it is
+    // filled in, a bot sent this — pretend success and store nothing.
+    if (data.company && String(data.company).trim() !== "") {
+      return jsonOut({ success: true, message: "Inquiry recorded successfully." });
+    }
+
+    var name = clean(data.name, 100);
+    var email = clean(data.email, 120);
+    var whatsapp = clean(data.whatsapp, 30);
+    var travelDate = clean(data.travelDate, 60);
+    var travelers = clean(data.travelers || "1", 10);
+    var interests = clean(data.interests, 300);
+    var budget = clean(data.budget || "Flexible", 60);
+    var message = clean(data.message, 2000);
+    var vehicle = clean(data.vehicle, 120);
+
+    // Server-side validation (never trust the client alone)
+    if (!name) {
+      return jsonOut({ success: false, message: "Name is required." });
+    }
+    if (!email && !whatsapp) {
+      return jsonOut({ success: false, message: "Email or WhatsApp is required." });
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return jsonOut({ success: false, message: "Invalid email address." });
+    }
+
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
+
     // Auto-create header row on initial submission if sheet is empty
     if (sheet.getLastRow() === 0) {
       var headers = [
@@ -126,21 +183,10 @@ function doPost(e) {
       headerRange.setBackground("#123B45");
       headerRange.setFontColor("#FAF7F0");
     }
-    
-    var data = JSON.parse(e.postData.contents);
-    
+
     var timestamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd HH:mm:ss");
-    var name = data.name || "";
-    var email = data.email || "";
-    var whatsapp = data.whatsapp || "";
-    var travelDate = data.travelDate || "";
-    var travelers = data.travelers || "1";
-    var interests = data.interests || "";
-    var budget = data.budget || "Flexible";
-    var message = data.message || "";
-    var vehicle = data.vehicle || "";
-    
-    // Append the new submission row
+
+    // Append the new submission row (all fields sanitized by clean())
     sheet.appendRow([
       timestamp,
       name,
@@ -153,15 +199,11 @@ function doPost(e) {
       message,
       vehicle
     ]);
-    
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: true, message: "Inquiry recorded successfully." }))
-      .setMimeType(ContentService.MimeType.JSON);
-      
+
+    return jsonOut({ success: true, message: "Inquiry recorded successfully." });
+
   } catch (error) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: false, message: error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonOut({ success: false, message: "Could not record the inquiry." });
   } finally {
     lock.releaseLock();
   }
